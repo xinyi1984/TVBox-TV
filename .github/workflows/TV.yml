@@ -74,7 +74,8 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          #rm -rf release 删除xinyi1984-TV的release目录
+          #删除xinyi1984-TV的release目录
+          rm -rf release
           zip -q -x ".git/*" -x  ".github/*" -r source-${{ env.commitS }}.zip .
           #tar -cJf source-${{ env.commitS }}.tar.xz --exclude=.git --exclude=.github *
       
