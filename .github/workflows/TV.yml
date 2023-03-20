@@ -132,7 +132,7 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          lastCommit=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}" ${{ github.workspace }}/README.md |grep -o '[a-z0-9]\{40\}')
+          lastCommit=$(grep "${{ env.upStream }}/commits/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[a-z0-9]\{40\}')
           export LESSCHARSET=utf-8
           echo -e "Credit: [${{ matrix.userName }}](${{ env.upStream }})\nCommit: ${{ env.commit }}\nChangelog:" > apk/${{ matrix.userName }}-Release.log
           if [ "${{ env.commit }}" == "${lastCommit}" ]; then
