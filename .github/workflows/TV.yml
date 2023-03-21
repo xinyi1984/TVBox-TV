@@ -1,8 +1,13 @@
 name: TV
 
 on:
-  schedule:
-    - cron: 15,45 0-18,22-23 * * *
+  push:
+    branches:
+      - geek release 
+  pull_request:
+#on:
+#  schedule:
+#    - cron: 15,45 0-18,22-23 * * *
   workflow_dispatch:
     inputs:
       rebuild:
