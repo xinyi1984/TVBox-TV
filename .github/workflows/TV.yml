@@ -30,7 +30,7 @@ jobs:
             branchName: dev 
           - userName: xinyi1984
             repoName: TV
-            branchName: release
+            branchName: geek
     steps:
       - name: Checkout
         uses: actions/checkout@v3
