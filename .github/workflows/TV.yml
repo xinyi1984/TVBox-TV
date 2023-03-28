@@ -27,10 +27,10 @@ jobs:
         include:
           - userName: xinyi1984
             repoName: TV 
-            branchName: release 
+            branchName: dev 
           - userName: xinyi1984
             repoName: TV
-            branchName: geek
+            branchName: release
     steps:
       - name: Checkout
         uses: actions/checkout@v3
