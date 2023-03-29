@@ -6,6 +6,9 @@
 name: Delete older releases and workflows
 
 on:
+  schedule:
+    - cron: '0 0 * * *'
+# 每天的00:00执行
   repository_dispatch:
   workflow_dispatch:
     inputs:
