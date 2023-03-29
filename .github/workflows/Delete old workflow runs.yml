@@ -1,7 +1,7 @@
 name: Delete old workflow runs
 on:
   schedule:
-    - cron: '0 0 0 * ? L ?'
+    - cron: '0 0 0 * ? L'
    #每周星期天凌晨0点实行一次
   workflow_dispatch:
     inputs:
