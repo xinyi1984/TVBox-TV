@@ -1,5 +1,8 @@
 name: 'Delete old artifacts (manual)'
 on:
+  schedule:
+    - cron: '0 0 * * *'
+# 每天的00:00执行
   workflow_dispatch:
     inputs:
       expireIn:
