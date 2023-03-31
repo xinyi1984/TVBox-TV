@@ -45,7 +45,7 @@ on:
       releases_keep_keyword:
         description: "Keyword of the keep releases."
         required: false
-        default: "s9xxx/kernel"
+        default: ""
       delete_workflows:
         description: "Delete workflows records?"
         required: true
@@ -54,7 +54,7 @@ on:
       workflows_keep_day:
         description: "Days to keep workflows."
         required: false
-        default: "1"
+        default: "0"
         type: choice
         options:
           - 30
