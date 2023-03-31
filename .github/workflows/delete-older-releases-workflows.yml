@@ -24,6 +24,7 @@ jobs:
       - name: Delete releases and workflows runs
         uses: xinyi1984/delete-releases-workflows@main
         with:
+          required: true
           del_releases: true
           releases_keep_latest: 1
           del_workflows: true
