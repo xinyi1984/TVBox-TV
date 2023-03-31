@@ -24,12 +24,8 @@ jobs:
       - name: Delete releases and workflows runs
         uses: xinyi1984/delete-releases-workflows@main
         with:
-          delete_releases: "false"
-          delete_tags: "false"
-          releases_keep_latest: "90"
-          releases_keep_keyword: ()
-          delete_workflows: "false"
-          workflows_keep_day: "90"
-          workflows_keep_keyword: ()
-          out_log: "false"
+          del_releases: true
+          releases_keep_latest: 1
+          del_workflows: true
+          workflows_keep_day: 0
           gh_token: ${{ secrets.GITHUB_TOKEN }}
