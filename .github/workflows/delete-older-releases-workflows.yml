@@ -12,102 +12,80 @@ on:
 
   workflow_dispatch:
     inputs:
-      delete_releases:
-        description: "Delete Releases file?"
-        required: true
-        default: true
-        type: boolean
-      delete_tags:
-        description: "Delete related Tags?"
-        required: false
-        default: true
-        type: boolean
-      releases_keep_latest:
-        description: "How many latest releases to keep."
-        required: false
-        default: "1"
-        type: choice
-        options:
-          - 30
-          - 20
-          - 10
-          - 9
-          - 8
-          - 7
-          - 6
-          - 5
-          - 4
-          - 3
-          - 2
-          - 1
-          - 0
-      releases_keep_keyword:
-        description: "Keyword of the keep releases."
-        required: false
-        default: ""
-      delete_workflows:
-        description: "Delete workflows records?"
-        required: true
-        default: true
-        type: boolean
-      workflows_keep_day:
-        description: "Days to keep workflows."
-        required: false
-        default: "0"
-        type: choice
-        options:
-          - 30
-          - 20
-          - 10
-          - 9
-          - 8
-          - 7
-          - 6
-          - 5
-          - 4
-          - 3
-          - 2
-          - 1
-          - 0
-      workflows_keep_keyword:
-        description: "keywords for keep workflows."
-        required: false
-        default: ""
-      out_log:
-        description: "Output a list log for each step?"
-        required: false
-        default: false
-        type: boolean
+      repo:
+    description: "Repo name in the form of <owner>/<repo>"
+    required: false
+  delete_releases:
+    description: "Whether to delete releases records"
+    required: true
+    default: "false"
+  delete_tags:
+    description: "Whether to delete associated tags"
+    required: false
+    default: "false"
+  releases_keep_latest:
+    description: "How many latest releases to keep"
+    required: false
+    default: "1"
+  releases_keep_keyword:
+    description: "Keyword of the keep releases"
+    required: false
+    default: ""
+  delete_workflows:
+    description: "Whether to delete workflows records"
+    required: true
+    default: "false"
+  workflows_keep_day:
+    description: "Days to keep workflows"
+    required: false
+    default: "0"
+  workflows_keep_keyword:
+    description: "keywords for keep workflows"
+    required: false
+    default: ""
+  out_log:
+    description: "Output a list log for each step"
+    required: false
+    default: "false"
+  gh_token:
+    description: "Set the token"
+    required: true
 
-env:
-  TZ: Asia/Shanghai
-
-jobs:
-  build:
-    runs-on: ubuntu-22.04
-    if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Initialization environment
-        id: init
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          sudo timedatectl set-timezone "${TZ}"
-          echo "status=success" >> ${GITHUB_OUTPUT}
-
-      - name: Delete releases and workflows runs
-        uses: xinyi1984/delete-releases-workflows@main
-        with:
-          delete_releases: ${{ inputs.delete_releases }}
-          delete_tags: ${{ inputs.delete_tags }}
-          releases_keep_latest: ${{ inputs.releases_keep_latest }}
-          releases_keep_keyword: ${{ inputs.releases_keep_keyword }}
-          delete_workflows: ${{ inputs.delete_workflows }}
-          workflows_keep_day: ${{ inputs.workflows_keep_day }}
-          workflows_keep_keyword: ${{ inputs.workflows_keep_keyword }}
-          out_log: ${{ inputs.out_log }}
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        cd ${GITHUB_ACTION_PATH}
+        echo -e "Current Actions path: ${PWD}"
+        echo -e "Current workflow run_id: ${GITHUB_RUN_ID}"
+        gh_token="${{ inputs.gh_token }}"
+        [[ -z "${gh_token}" ]] && echo -e "Please set the token: [ gh_token ]." && exit 1
+        repo="${{ inputs.repo }}"
+        [[ -z "${repo}" ]] && repo="${GITHUB_REPOSITORY}"
+        out_log="${{ inputs.out_log }}"
+        delete_releases="${{ inputs.delete_releases }}"
+        [[ -z "${delete_releases}" ]] && echo -e "Please set whether to delete releases." && exit 1
+        delete_tags="${{ inputs.delete_tags }}"
+        releases_keep_latest="${{ inputs.releases_keep_latest }}"
+        releases_keep_keyword="${{ inputs.releases_keep_keyword }}"
+        delete_workflows="${{ inputs.delete_workflows }}"
+        [[ -z "${delete_workflows}" ]] && echo -e "Please set whether to delete workflows." && exit 1
+        workflows_keep_day="${{ inputs.workflows_keep_day }}"
+        workflows_keep_keyword="${{ inputs.workflows_keep_keyword }}"
+        make_command=""
+        [[ -n "${repo}" ]] && make_command="${make_command} -r ${repo}"
+        [[ -n "${delete_releases}" ]] && make_command="${make_command} -p ${delete_releases}"
+        [[ -n "${delete_tags}" ]] && make_command="${make_command} -t ${delete_tags}"
+        [[ -n "${releases_keep_latest}" ]] && make_command="${make_command} -l ${releases_keep_latest}"
+        [[ -n "${releases_keep_keyword}" ]] && make_command="${make_command} -w ${releases_keep_keyword}"
+        [[ -n "${delete_workflows}" ]] && make_command="${make_command} -s ${delete_workflows}"
+        [[ -n "${workflows_keep_day}" ]] && make_command="${make_command} -d ${workflows_keep_day}"
+        [[ -n "${workflows_keep_keyword}" ]] && make_command="${make_command} -k ${workflows_keep_keyword}"
+        [[ -n "${out_log}" ]] && make_command="${make_command} -o ${out_log}"
+        [[ -n "${gh_token}" ]] && make_command="${make_command} -g ${gh_token}"
+        chmod +x del.sh
+        ./del.sh ${make_command}
+branding:
+  icon: "terminal"
+  color: "gray-dark"
