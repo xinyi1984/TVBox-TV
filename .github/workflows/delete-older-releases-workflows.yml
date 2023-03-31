@@ -28,7 +28,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Delete releases and workflows runs
-        uses: ophub/delete-releases-workflows@main
+        uses: xinyi1984/delete-releases-workflows@main
         with:
           delete_releases: true
           delete_tags: true
