@@ -32,3 +32,4 @@ jobs:
           workflows_keep_day: "90"
           workflows_keep_keyword: ()
           out_log: "false"
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
