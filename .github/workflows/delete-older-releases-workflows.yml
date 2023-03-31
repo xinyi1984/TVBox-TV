@@ -103,7 +103,7 @@ jobs:
       - name: Delete releases and workflows runs
         uses: xinyi1984/delete-releases-workflows@main
         with:
-          repository: ${{ github.repository }}
+          repository: ${{ github.repository_dispatch }}
           delete_releases: ${{ inputs.delete_releases }}
           delete_tags: ${{ inputs.delete_tags }}
           releases_keep_latest: ${{ inputs.releases_keep_latest }}
