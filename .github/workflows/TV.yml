@@ -27,8 +27,8 @@ jobs:
       matrix:
         include:
           - userName: xinyi1984
-             repoName: TV 
-             branchName: dev 
+            repoName: TV 
+            branchName: dev 
           - userName: xinyi1984
             repoName: TV
             branchName: release
