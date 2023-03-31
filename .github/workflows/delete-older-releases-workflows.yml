@@ -19,7 +19,7 @@ on:
         type: boolean
       delete_tags:
         description: "Delete related Tags?"
-        required: false
+        required: true
         default: true
         type: boolean
       releases_keep_latest:
