@@ -7,10 +7,9 @@ name: Delete older releases and workflows
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0/2 * * * *'
 # 这里默认一小时执行一次
 
-  repository_dispatch:
   workflow_dispatch:
     inputs:
       delete_releases:
@@ -103,7 +102,6 @@ jobs:
       - name: Delete releases and workflows runs
         uses: xinyi1984/delete-releases-workflows@main
         with:
-          repository: ${{ github.repository_dispatch }}
           delete_releases: ${{ inputs.delete_releases }}
           delete_tags: ${{ inputs.delete_tags }}
           releases_keep_latest: ${{ inputs.releases_keep_latest }}
