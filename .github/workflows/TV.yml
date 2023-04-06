@@ -121,9 +121,12 @@ jobs:
         working-directory: TVBox-TV
         run: |
           rm -rf apk/
-          mkdir -p ${{ github.workspace }}/apk/
-          for file in `find ~ -name "*.apk" -print`; do
-            mv "$file" ${{ github.workspace }}/apk/
+          mkdir -p apk/
+          for file in `find ~ -name "*leanback*.apk" -print`; do
+            mv "$file" apk/leanback-java.apk
+          done
+          for file in `find ~ -name "*mobile*.apk" -print`; do
+            mv "$file" apk/mobile-java.apk
           done
       
       - name: Release Note
