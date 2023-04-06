@@ -127,6 +127,7 @@ jobs:
           done
           for file in `find ~ -name "*mobile*.apk" -print`; do
             mv "$file" apk/mobile-java.apk
+            #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
           done
       
       - name: Release Note
