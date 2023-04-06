@@ -169,7 +169,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: true
           artifacts: |
-            TVBox-TV//apk/*.apk
+            TVBox-TV/apk/*.apk
             TVBox-TV/source-${{ env.commitS }}.*    
       
       - name: Post To Telegram leanback
