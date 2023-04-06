@@ -120,7 +120,7 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          rm -rf apk/
+          #rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*leanback*.apk" -print`; do
             mv "$file" apk/leanback-java.apk
