@@ -122,12 +122,12 @@ jobs:
         run: |
           rm -rf apk/
           mkdir -p apk/
-          for file in `find ~ -name "*leanback*.apk" -print`; do
+          #for file in `find ~ -name "*leanback*.apk" -print`; do
             #mv "$file" apk/leanbac_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-           #done
-           #for file in `find ~ -name "*mobile*.apk" -print`; do
-             #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-           #done
+          #done
+          #for file in `find ~ -name "*mobile*.apk" -print`; do
+            #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
+          #done
       
       - name: Release Note
         if: ${{ env.commit }}
