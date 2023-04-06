@@ -115,19 +115,16 @@ jobs:
           cp -r gradle.properties local.properties
           ./gradlew assembleleanbackjavarelease --build-cache --parallel --daemon --warning-mode all
           ./gradlew assemblemobilejavarelease --build-cache --parallel --daemon --warning-mode all
-      
+  
       - name: Prepare App
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           rm -rf apk/
           mkdir -p apk/
-          #for file in `find ~ -name "*leanback*.apk" -print`; do
-            #mv "$file" apk/leanbac_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-          #done
-          #for file in `find ~ -name "*mobile*.apk" -print`; do
-            #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-          #done
+          for file in `find ~ -name "*.apk" -print`; do
+            mv "$file" /apk/
+          done
       
       - name: Release Note
         if: ${{ env.commit }}
