@@ -149,7 +149,6 @@ jobs:
           name: ${{ matrix.userName }}-${{ matrix.repoName }}-${{ matrix.branchName }}
           path: |
             TVBox-TV/apk/*
-            release
              
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
