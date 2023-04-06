@@ -123,11 +123,11 @@ jobs:
           rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*leanback*.apk" -print`; do
-            mv "$file" apk/leanbac_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-          done
-          for file in `find ~ -name "*mobile*.apk" -print`; do
-            mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-          done
+            #mv "$file" apk/leanbac_java_${{ matrix.branchName }}_${{ env.tag }}.apk
+           #done
+           #for file in `find ~ -name "*mobile*.apk" -print`; do
+             #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
+           #done
       
       - name: Release Note
         if: ${{ env.commit }}
@@ -147,7 +147,7 @@ jobs:
         with:
          default_author: github_actions
          message: 'Update release'
-         add: "['./release/leanbac_java_${{ matrix.branchName }}_${{ env.tag }}.apk', './release/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk']"
+         add: "['./release/leanback-java.apk', './release/mobile-java.apk']"
       
       - name: Upload App To Artifact
         if: ${{ env.commit }}
