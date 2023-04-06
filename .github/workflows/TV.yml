@@ -146,7 +146,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
          default_author: github_actions
-         message: 'release'
+         message: 'Update release'
          add: "['./release/leanbac_java_${{ matrix.branchName }}_${{ env.tag }}.apk', './release/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk']"
       
       - name: Upload App To Artifact
