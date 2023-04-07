@@ -220,8 +220,7 @@ jobs:
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git remote rm origin
+          git git remote rm origin
           git remote add origin git@github.com:xinyi1984/TV.git
           git pull --rebase
           git add --all
