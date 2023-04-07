@@ -219,7 +219,7 @@ jobs:
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote set-url --add origin "https://github.com/xinyi1984/TV"
+          git remote add origin git@github.com:xinyi1984/TV.git
           git add --all
           git commit -m "${{ env.commit }}"
           git push -u -f ${{ matrix.branchName }}
