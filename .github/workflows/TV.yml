@@ -216,6 +216,7 @@ jobs:
       - name: Push to ${{ matrix.branchName }}
         if: ${{ env.commit }}
         run: |
+          rm -rf TVBox-TV
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
