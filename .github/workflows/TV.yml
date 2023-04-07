@@ -223,10 +223,10 @@ jobs:
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git remote add origin git@github.com:xinyi1984/TV.git
           git remote rm origin
+          git remote add origin git@github.com:xinyi1984/TV.git
           git pull --rebase
           git add --all
           git commit -m "${{ env.commit }}"
-          git remote add origin git@github.com:xinyi1984/TV.git
           git push -u -f origin ${{ matrix.branchName }}
           #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
         continue-on-error: true
