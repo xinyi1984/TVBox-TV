@@ -175,7 +175,7 @@ jobs:
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
             if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
             fi
             ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
             #检查源码尺寸，太大则不上传
@@ -200,7 +200,7 @@ jobs:
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
             if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
             fi
             ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
             #检查源码尺寸，太大则不上传
@@ -213,7 +213,7 @@ jobs:
               curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
             fi
           fi
-      - name: Push to ${{ matrix.repoName }}
+      - name: Push to ${{ matrix.branchName }}
         if: ${{ env.commit }}
         run: |
           git config --local user.name "github-actions[bot]"
@@ -221,7 +221,7 @@ jobs:
           git add *.apk
           git commit -m "${{ env.commit }}"
           git remote add origin git@github.com:xinyi1984/TV.git
-          git push -u -f origin ${{ matrix.repoName }}
+          git push -u -f origin ${{ matrix.branchName }}
           #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
         continue-on-error: true
       
