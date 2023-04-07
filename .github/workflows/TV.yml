@@ -215,17 +215,14 @@ jobs:
           fi
       - name: Push to ${{ matrix.branchName }}
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
         run: |
-          OUTPUT="${{ github.workspace }}/TVBox-TV"
-          export appRelease=$(find $OUTPUT/apk/ -name "*java*.apk")
+          sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mobile-java.apk
+          git remote set-url --add origin "https://github.com/xinyi1984/TV"
+          git add --all
           git commit -m "${{ env.commit }}"
-          git remote add origin git@github.com:xinyi1984/TV.git
-          git push -u -f origin ${{ matrix.branchName }}
-          #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
+          git push -u -f ${{ matrix.branchName }}
         continue-on-error: true
       
       - name: Push to master
