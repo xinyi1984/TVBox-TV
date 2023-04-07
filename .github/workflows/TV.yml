@@ -136,7 +136,7 @@ jobs:
         run: |
           lastCommit=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[a-z0-9]\{40\}')
           export LESSCHARSET=utf-8
-          echo -e "Credit: [${{ matrix.userName }}](${{ env.upStream }})\nCommit: ${{ env.commit }}\nChangelog:" > apk/${{ matrix.userName }}-Release.log
+          echo -e "Credit: [${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}](${{ env.upStream }})\nCommit: ${{ env.commit }}\nChangelog:" > apk/${{ matrix.userName }}-Release.log
           if [ "${{ env.commit }}" == "${lastCommit}" ]; then
             git log --pretty=format:%B ${{ env.commitS }} -1 |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           else
@@ -200,7 +200,7 @@ jobs:
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
             if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
             fi
             ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
             #检查源码尺寸，太大则不上传
