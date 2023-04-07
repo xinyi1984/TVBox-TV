@@ -175,8 +175,8 @@ jobs:
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
             if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
-            fi
+              ESCAPED="$(echo -e "Credit: ${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+            fi                            
             ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
             #检查源码尺寸，太大则不上传
             file_size=$(du -s ${sourceCode} | awk '{print $1}')
@@ -200,7 +200,7 @@ jobs:
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
             if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+              ESCAPED="$(echo -e "Credit: ${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
             fi
             ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
             #检查源码尺寸，太大则不上传
@@ -218,7 +218,7 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add *.apk
+          git add mobile-java.apk
           git commit -m "${{ env.commit }}"
           git remote add origin git@github.com:xinyi1984/TV.git
           git push -u -f origin ${{ matrix.branchName }}
