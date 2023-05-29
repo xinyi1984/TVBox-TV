@@ -113,7 +113,7 @@ jobs:
         run: |
           chmod +x gradlew
           cp -r gradle.properties local.properties
-          ./gradlew assemblelleanbackJavaArmeabi_v7alease --build-cache --parallel --daemon --warning-mode all
+          ./gradlew assembleleanbackJavaArmeabi_v7alease --build-cache --parallel --daemon --warning-mode all
           ./gradlew assemblemobileJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
   
       - name: Prepare App
