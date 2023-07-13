@@ -28,7 +28,7 @@ jobs:
         include:
           - userName: xinyi1984
             repoName: TVBoxOS
-            branchName: py */
+            branchName: py
           - userName: takagen99
             repoName: Box
             branchName: main
