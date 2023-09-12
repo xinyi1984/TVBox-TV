@@ -10,5 +10,5 @@
 This repo relies on the following third-party projects:
 - [xinyi1984/TVBoxOS](https://github.com/xinyi1984/TVBoxOS) (Updated: ea59d29003daa08352cc60dac865ead35b86df0a)
 - [takagen99/Box](https://github.com/takagen99/Box) (Updated: 0f8f9870b0ee4d1d285a6a62751b608d3fb0e502)
-- [xinyi1984/TV/tree/dev](https://github.com/xinyi1984/TV/tree/dev) (Updated: 5a3bddbf6e3a43463c848aed84ab3d99cf5254be)
+- [xinyi1984/TV/tree/dev](https://github.com/xinyi1984/TV/tree/dev) (Updated: fb38bbf8fde2f198888ca8354bfe2672a607c364)
 - [xinyi1984/TV/tree/release](https://github.com/xinyi1984/TV/tree/release) (Updated: 7493bf9353455d9f9f2f0eefb11c420bff84f7e3)
