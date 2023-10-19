@@ -147,22 +147,6 @@ jobs:
             git log --pretty=format:%B ${{ env.commitS }}...${lastCommit:0:7} |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           fi
           
-      - name: Upload App To to xytv
-        if: ${{ env.commit }}
-        working-directory: TVBox-TV
-        run: |  
-          git clone https://github.com/xinyi1984/xytv 
-          rm -r xytv/tv-apk/*
-          mv .TVBox-TV/apk/* xytv/tv-apk/
-          cd xytv
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tv-apk/
-          git remote rm origin
-          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
-          git commit -m "更新apk"
-          git push -f -u origin master
-          
       - name: Upload App To Artifact
         if: ${{ env.commit }}
         uses: actions/upload-artifact@v3
@@ -258,7 +242,23 @@ jobs:
               curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
             fi
           fi
-      
+          
+      - name: Upload App To to xytv
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |  
+          git clone https://github.com/xinyi1984/xytv 
+          rm -r xytv/tv-apk/*
+          mv ./TVBox-TV/apk/* xytv/tv-apk/
+          cd xytv
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tv-apk/
+          git remote rm origin
+          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          git commit -m "更新apk"
+          git push -f -u origin master
+          
       - name: Push to master
         if: ${{ env.commit }}
         run: |
