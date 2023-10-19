@@ -146,7 +146,23 @@ jobs:
           else
             git log --pretty=format:%B ${{ env.commitS }}...${lastCommit:0:7} |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           fi
-      
+          
+      - name: Upload App To to xytv
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |  
+          git clone https://github.com/xinyi1984/xytv 
+          rm -r xytv/tv-apk/*
+          mv .TVBox-TV/apk/* xytv/tv-apk/
+          cd xytv
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tv-apk/
+          git remote rm origin
+          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          git commit -m "更新apk"
+          git push -f -u origin master
+          
       - name: Upload App To Artifact
         if: ${{ env.commit }}
         uses: actions/upload-artifact@v3
