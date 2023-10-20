@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - userName: xinyi1984
+          - userName: q215613905
             repoName: TVBoxOS
             branchName: main
           - userName: takagen99
@@ -109,7 +109,7 @@ jobs:
           rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*release*.apk" -print`; do
-            mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
+            mv "$file" apk/TVBox_${{ matrix.userName }}.apk
           done
       - name: Release Note
         if: ${{ env.commit }}
@@ -176,8 +176,8 @@ jobs:
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv 
-          rm -r xytv/box-apk/*
-          mv ./apk/* xytv/box-apk/
+          rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
+          mv ./apk/TVBox_${{ matrix.userName }}.apk xytv/box-apk/
           cd xytv
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
