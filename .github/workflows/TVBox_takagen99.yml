@@ -103,9 +103,10 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          mkdir -p ${{ github.workspace }}/apk/
+          rm -rf apk/
+          mkdir -p apk/
           for file in `find ~ -name "*.apk" -print`; do
-            mv "$file" ${{ github.workspace }}/apk/
+            mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
           done
       - name: Release Note
         if: ${{ env.commit }}
