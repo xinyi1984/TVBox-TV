@@ -103,13 +103,9 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          #rm -rf apk/
-          mkdir -p apk/
-          for file in `find ~ -name "TVBox_takagen99_32位*.apk" -print`; do
-            mv "$file" apk/TVBox_takagen99_32位.apk
-          done
-          for file in `find ~ -name "TVBox_takagen99_64位*.apk" -print`; do
-            mv "$file" apk/TVBox_takagen99_64位.apk
+          mkdir -p ${{ github.workspace }}/apk/
+          for file in `find ~ -name "*.apk" -print`; do
+            mv "$file" ${{ github.workspace }}/apk/
           done
       - name: Release Note
         if: ${{ env.commit }}
