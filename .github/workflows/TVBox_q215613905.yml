@@ -29,9 +29,6 @@ jobs:
           - userName: q215613905
             repoName: TVBoxOS
             branchName: main
-          #- userName: takagen99
-            #repoName: Box
-            #branchName: main
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -108,7 +105,7 @@ jobs:
         run: |
           rm -rf apk/
           mkdir -p apk/
-          for file in `find ~ -name "*.apk" -print`; do
+          for file in `find ~ -name "*release*.apk" -print`; do
             mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
           done
       - name: Release Note
