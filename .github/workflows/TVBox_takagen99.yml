@@ -103,7 +103,7 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          rm -rf apk/
+          #rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "TVBox_takagen99_32位*.apk" -print`; do
             mv "$file" apk/TVBox_takagen99_32位.apk
