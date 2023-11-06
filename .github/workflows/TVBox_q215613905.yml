@@ -106,7 +106,7 @@ jobs:
           rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*release*.apk" -print`; do
-            mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
+            mv "$file" apk/TVBox_${{ matrix.userName }}.apk
           done
       - name: Release Note
         if: ${{ env.commit }}
