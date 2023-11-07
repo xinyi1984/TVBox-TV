@@ -1,4 +1,4 @@
-name: TVBox_q
+name: TVBox_q215613905
 
 on:
   push:
@@ -29,9 +29,6 @@ jobs:
           - userName: q215613905
             repoName: TVBoxOS
             branchName: main
-          - userName: takagen99
-            repoName: Box
-            branchName: main  
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -147,13 +144,13 @@ jobs:
             TVBox-TV/apk/*.apk
             TVBox-TV/source-${{ env.commitS }}.*
       
-      - name: Post To Telegram
+      - name: Post To Telegram 32位
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
-            export appRelease=$(find $OUTPUT/apk/ -name "*${{ matrix.userName }}*.apk")
+            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_takagen99.apk")
             export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
