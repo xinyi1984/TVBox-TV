@@ -1,4 +1,4 @@
-name: TVBox_t
+name: TVBox
 
 on:
   push:
