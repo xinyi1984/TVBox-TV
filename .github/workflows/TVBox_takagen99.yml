@@ -1,4 +1,4 @@
-name: TVBox
+name: TVBox_takagen99
 
 on:
   push:
@@ -26,9 +26,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - userName: q215613905
-            repoName: TVBoxOS
-            branchName: main
           - userName: takagen99
             repoName: Box
             branchName: main  
