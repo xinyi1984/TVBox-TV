@@ -7,8 +7,8 @@ name: Delete older releases and workflows
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
-# 这里默认间隔3小时执行一次
+    - cron: '0 */4 * * *'
+# 这里默认间隔4小时执行一次
 
   workflow_dispatch:
     
