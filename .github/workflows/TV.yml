@@ -132,13 +132,13 @@ jobs:
           #rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*leanback-java-arm64*.apk" -print`; do
-            mv "$file" apk/leanback-java-arm64_v8a.apk
+            mv "$file" apk/${{ matrix.branchName }}_leanback-java-arm64_v8a.apk
           done
           for file in `find ~ -name "*leanback-java-armeabi*.apk" -print`; do
-            mv "$file" apk/leanback-java-armeabi_v7a.apk
+            mv "$file" apk/${{ matrix.branchName }}_leanback-java-armeabi_v7a.apk
           done
           for file in `find ~ -name "*mobile-java-arm64*.apk" -print`; do
-            mv "$file" apk/mobile-java-arm64_v8a.apk
+            mv "$file" apk/${{ matrix.branchName }}_mobile-java-arm64_v8a.apk
             #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
           done
       
@@ -256,10 +256,12 @@ jobs:
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv
-          sed -i "s#[0-9\-]#${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#[0-9\-]#${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#[0-9\-]#${{ env.tag }}#g" xytv/json/market.json
-          rm -r xytv/tv-apk/*.apk
+          sed -i "s#dev-v7a[0-9\-]*#dev-v7a${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#dev-v8a[0-9\-]*#dev-v8a${{ env.tag }}#g" xytv/json/market.json
+          #dev-v7a${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#release-v7a[0-9\-]*#release-v7a${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#release-v8a[0-9\-]*#release-v7a${{ env.tag }}#g" xytv/json/market.json
+          rm -r xytv/tv-apk/${{ matrix.branchName }_*.apk
           mv ./apk/*.apk xytv/tv-apk/
           cd xytv
           git config --global user.name "github-actions[bot]"
