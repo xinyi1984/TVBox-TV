@@ -256,9 +256,9 @@ jobs:
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv
-          sed -i "s#电视-java-v7*#电视-java-v7${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#电视-java-v8*#电视-java-v8${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#手机-java-v8*#手机-java-v8${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#电视-java-v7-[0-9\-]*#电视-java-v7-${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#电视-java-v8-[0-9\-]*#电视-java-v8-${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#手机-java-v8-[0-9\-]*#手机-java-v8-${{ env.tag }}#g" xytv/json/market.json
           rm -r xytv/tv-apk/*.apk
           mv ./apk/*.apk xytv/tv-apk/
           cd xytv
