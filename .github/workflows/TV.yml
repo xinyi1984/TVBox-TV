@@ -256,10 +256,8 @@ jobs:
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv
-          sed -i "s#dev-v7a-[0-9\-]*#dev-v7a-${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#dev-v8a-[0-9\-]*#dev-v8a-${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#release-v7a-[0-9\-]*#release-v7a-${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#release-v8a-[0-9\-]*#release-v7a-${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#${{ matrix.branchName }}-v7a-[0-9\-]*#dev-v7a-${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#${{ matrix.branchName }}-v8a-[0-9\-]*#dev-v8a-${{ env.tag }}#g" xytv/json/market.json
           rm -r xytv/tv-apk/${{ matrix.branchName }}_*.apk
           mv ./apk/${{ matrix.branchName }}_*.apk xytv/tv-apk/
           cd xytv
