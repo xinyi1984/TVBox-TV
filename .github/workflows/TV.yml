@@ -123,7 +123,7 @@ jobs:
         working-directory: TVBox-TV
         run: |
           chmod +x gradlew
-          cp -r gradle.properties local.properties
+          #cp -r gradle.properties local.properties
           ./gradlew assembleleanbackJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
           ./gradlew assembleleanbackJavaArmeabi_v7arelease --build-cache --parallel --daemon --warning-mode all
           ./gradlew assemblemobileJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
