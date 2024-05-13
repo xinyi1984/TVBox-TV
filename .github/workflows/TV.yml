@@ -124,6 +124,8 @@ jobs:
         run: |
           chmod +x gradlew
           #cp -r gradle.properties local.properties
+          rm -rf app/src/armeabi_v7a/assets
+          rm -rf app/src/arm64_v8a/assets
           ./gradlew assembleleanbackJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
           ./gradlew assembleleanbackJavaArmeabi_v7arelease --build-cache --parallel --daemon --warning-mode all
           ./gradlew assemblemobileJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
