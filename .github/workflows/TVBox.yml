@@ -184,7 +184,7 @@ jobs:
         run: |  
           git clone https://github.com/xinyi1984/xytv 
           mkdir -p xytv/box-apk/
-          #rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
+          rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
           mv ./apk/TVBox_${{ matrix.userName }}.apk xytv/box-apk/
           cd xytv
           git config --global user.name "github-actions[bot]"
