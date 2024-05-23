@@ -180,10 +180,12 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
+          git clone https://github.com/xinyi1984/TVBox-TV
           mkdir -p tv-apk/
-          mv ./apk/${{ matrix.branchName }}_*.apk ./tv-apk/
+          mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cd TVBox-TV
           git add --all
           git remote rm origin
           git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/TVBox-TV"
