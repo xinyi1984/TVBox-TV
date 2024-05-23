@@ -178,6 +178,7 @@ jobs:
           
       - name: Push app to master
         if: ${{ env.commit }}
+        working-directory: TVBox-TV
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -185,7 +186,7 @@ jobs:
           mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
           git add tv-apk/${{ matrix.branchName }}_*.apk
           git commit -m "更新apk"
-          git push -u -f origin ${{ github.ref }}
+          git push -u -f origin main
       
       - name: Push to master
         if: ${{ env.commit }}
