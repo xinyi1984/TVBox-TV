@@ -275,7 +275,7 @@ jobs:
           
       - name: Push to master
         if: ${{ env.commit }}
-        run: 
+        run: | 
           rm -rf TVBox-TV
           mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
           sed -i '/url =/d' ./.git/config
