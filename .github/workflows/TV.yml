@@ -179,20 +179,19 @@ jobs:
           removeArtifacts: true
           artifacts: |
             TVBox-TV/apk/*.apk
-            TVBox-TV/source-${{ env.commitS }}.*   
+            TVBox-TV/source-${{ env.commitS }}.*  
           
       - name: Push to master
         if: ${{ env.commit }}
         run: | 
           rm -rf TVBox-TV
+          mkdir -p tv-apk/
+          mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
+          sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git pull --rebase
-          #cd TVBox-TV
-          #mkdir -p tv-apk/
-          #mv ./apk/${{ matrix.branchName }}_*.apk ./tv-apk
-          sed -i '/url =/d' ./.git/config
           sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
           #sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
           git add --all
