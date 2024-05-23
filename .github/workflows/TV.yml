@@ -26,15 +26,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- userName: xinyi1984
-            #repoName: TV 
-            #branchName: fongmi
+          - userName: xinyi1984
+            repoName: TV 
+            branchName: fongmi
           - userName: xinyi1984
             repoName: TV 
             branchName: dev
-          #- userName: xinyi1984
-            #repoName: TV
-            #branchName: release
+          - userName: xinyi1984
+            repoName: TV
+            branchName: release
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -159,35 +159,124 @@ jobs:
           else
             git log --pretty=format:%B ${{ env.commitS }}...${lastCommit:0:7} |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           fi
-      #- name: Update json To xytv
-        #if: ${{ env.commit }}
-        #working-directory: TVBox-TV
-        #run: |  
-          #git clone https://github.com/xinyi1984/xytv
-          #sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
-          #sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
-          #cd xytv
-          #git config --global user.name "github-actions[bot]"
-          #git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          #git add json/market.json
-          #git remote rm origin
-          #git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
-          #git commit -m "更新apk"
-          #git push -f -u origin master
-        #continue-on-error: true
           
-      - name: Push app to master
+      - name: Upload App To Artifact
+        if: ${{ env.commit }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.userName }}-${{ matrix.repoName }}-${{ matrix.branchName }}
+          path: |
+            TVBox-TV/apk/*
+      
+      - name: Release and Upload Assets
+        uses: ncipollo/release-action@v1
+        if: ${{ env.commit }}
+        with:
+          name: ${{ env.tag }}
+          tag: ${{ env.tag }}
+          bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
+          allowUpdates: true
+          removeArtifacts: true
+          artifacts: |
+            TVBox-TV/apk/*.apk
+            TVBox-TV/source-${{ env.commitS }}.*    
+      
+      - name: Post To Telegram leanback arm64
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
+          if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
+            OUTPUT="${{ github.workspace }}/TVBox-TV"
+            export appRelease=$(find $OUTPUT/apk/ -name "*leanback-java-arm64*.apk")
+            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
+            ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
+            count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
+            if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
+              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+            fi                            
+            ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
+            #检查源码尺寸，太大则不上传
+            file_size=$(du -s ${sourceCode} | awk '{print $1}')
+            #文件最大值，1024代表1M
+            file_limit_size=20480
+            if [[ ${file_size} -lt ${file_limit_size} ]];then
+              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FsourceCode%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease" -F sourceCode="@$sourceCode"
+            else
+              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
+            fi
+          fi
+    
+      - name: Post To Telegram leanback armeabi
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |
+          if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
+            OUTPUT="${{ github.workspace }}/TVBox-TV"
+            export appRelease=$(find $OUTPUT/apk/ -name "*leanback-java-armeabi*.apk")
+            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
+            ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
+            count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
+            if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
+              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+            fi                            
+            ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
+            #检查源码尺寸，太大则不上传
+            file_size=$(du -s ${sourceCode} | awk '{print $1}')
+            #文件最大值，1024代表1M
+            file_limit_size=20480
+            if [[ ${file_size} -lt ${file_limit_size} ]];then
+              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FsourceCode%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease" -F sourceCode="@$sourceCode"
+            else
+              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
+            fi
+          fi
+    
+      - name: Post To Telegram mobile
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |
+          if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
+            OUTPUT="${{ github.workspace }}/TVBox-TV"
+            export appRelease=$(find $OUTPUT/apk/ -name "*mobile*.apk")
+            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
+            ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
+            count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
+            if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
+              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
+            fi
+            ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
+            #检查源码尺寸，太大则不上传
+            file_size=$(du -s ${sourceCode} | awk '{print $1}')
+            #文件最大值，1024代表1M
+            file_limit_size=20480
+            if [[ ${file_size} -lt ${file_limit_size} ]];then
+              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FsourceCode%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease" -F sourceCode="@$sourceCode"
+            else
+              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
+            fi
+          fi
+          
+      - name: Upload App To xytv
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |  
+          git clone https://github.com/xinyi1984/xytv
+          sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          mkdir -p tv-apk/
+          rm -r xytv/tv-apk/${{ matrix.branchName }}_*.apk
+          mv ./apk/${{ matrix.branchName }}_*.apk xytv/tv-apk/
+          cd xytv
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p tv-apk/
-          mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
+          git add json/market.json
           git add tv-apk/${{ matrix.branchName }}_*.apk
-          git commit -m "更新apk"
-          git push -u -f origin release
-      
+          git remote rm origin
+          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          git commit -m "更新apk market.json"
+          git push -f -u origin master
+        continue-on-error: true
+          
       - name: Push to master
         if: ${{ env.commit }}
         run: |
@@ -196,7 +285,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          #git pull --rebase
+          git pull --rebase
           sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
           #sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
           git add --all
