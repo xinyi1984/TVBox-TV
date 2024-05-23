@@ -26,15 +26,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- userName: xinyi1984
-            #repoName: TV 
-            #branchName: fongmi
+          - userName: xinyi1984
+            repoName: TV 
+            branchName: fongmi
           - userName: xinyi1984
             repoName: TV 
             branchName: dev
-          #- userName: xinyi1984
-            #repoName: TV
-            #branchName: release
+          - userName: xinyi1984
+            repoName: TV
+            branchName: release
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -159,27 +159,22 @@ jobs:
           else
             git log --pretty=format:%B ${{ env.commitS }}...${lastCommit:0:7} |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           fi
-          
-      - name: Upload App To Artifact
-        if: ${{ env.commit }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.userName }}-${{ matrix.repoName }}-${{ matrix.branchName }}
-          path: |
-            TVBox-TV/apk/*
-      
-      - name: Release and Upload Assets
-        uses: ncipollo/release-action@v1
-        if: ${{ env.commit }}
-        with:
-          name: ${{ env.tag }}
-          tag: ${{ env.tag }}
-          bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
-          allowUpdates: true
-          removeArtifacts: true
-          artifacts: |
-            TVBox-TV/apk/*.apk
-            TVBox-TV/source-${{ env.commitS }}.*  
+      #- name: Update json To xytv
+        #if: ${{ env.commit }}
+        #working-directory: TVBox-TV
+        #run: |  
+          #git clone https://github.com/xinyi1984/xytv
+          #sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          #sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          #cd xytv
+          #git config --global user.name "github-actions[bot]"
+          #git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          #git add json/market.json
+          #git remote rm origin
+          #git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          #git commit -m "更新apk"
+          #git push -f -u origin master
+        #continue-on-error: true
           
       - name: Push to master
         if: ${{ env.commit }}
