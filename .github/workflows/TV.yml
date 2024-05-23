@@ -259,8 +259,9 @@ jobs:
       - name: Push to master
         if: ${{ env.commit }}
         run: | 
+          git add ./apk/${{ matrix.branchName }}_*.apk
+          mv ./apk/${{ matrix.branchName }}_*.apk ./tv-apk/
           rm -rf TVBox-TV
-          cp ./apk/${{ matrix.branchName }}_*.apk ./tv-apk/
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
