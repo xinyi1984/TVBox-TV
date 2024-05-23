@@ -178,7 +178,10 @@ jobs:
           
       - name: Push to master
         if: ${{ env.commit }}
+        working-directory: TVBox-TV
         run: |
+          mkdir -p tv-apk/
+          mv ./apk/${{ matrix.branchName }}_*.apk ./tv-apk/
           rm -rf TVBox-TV
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
