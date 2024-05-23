@@ -26,9 +26,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - userName: xinyi1984
-            repoName: TVBoxOS
-            branchName: main
           - userName: takagen99
             repoName: Box
             branchName: main
