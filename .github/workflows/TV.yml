@@ -256,20 +256,17 @@ jobs:
             fi
           fi
           
-      - name: Upload App To xytv
+      - name: Update json To xytv
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv
           sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
           sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
-          rm -r xytv/tv-apk/${{ matrix.branchName }}_*.apk
-          mv ./apk/${{ matrix.branchName }}_*.apk xytv/tv-apk/
           cd xytv
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add json/market.json
-          git add tv-apk/${{ matrix.branchName }}_*.apk
           git remote rm origin
           git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
           git commit -m "更新apk"
@@ -278,8 +275,9 @@ jobs:
           
       - name: Push to master
         if: ${{ env.commit }}
-        run: |
+        run: 
           rm -rf TVBox-TV
+          mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
