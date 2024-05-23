@@ -178,26 +178,27 @@ jobs:
               curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
             fi
           fi
-      - name: Upload App To xytv
-        if: ${{ env.commit }}
-        working-directory: TVBox-TV
-        run: |  
-          git clone https://github.com/xinyi1984/xytv 
-          rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
-          mv ./apk/TVBox_${{ matrix.userName }}.apk xytv/box-apk/
-          cd xytv
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add box-apk/
-          git remote rm origin
-          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
-          git commit -m "更新apk"
-          git push -f -u origin master
+      #- name: Update App To xytv
+         #if: ${{ env.commit }}
+         #working-directory: TVBox-TV
+         #run: |  
+           #git clone https://github.com/xinyi1984/xytv 
+           #rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
+           #mv ./apk/TVBox_${{ matrix.userName }}.apk xytv/box-apk/
+           #cd xytv
+           #git config --global user.name "github-actions[bot]"
+           #git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+           #git add box-apk/
+           #git remote rm origin
+           #git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+           #git commit -m "更新apk"
+           #git push -f -u origin master
      
       - name: Push to master
         if: ${{ env.commit }}
         run: |
           rm -rf TVBox-TV
+          mv ./apk/TVBox_${{ matrix.userName }}.apk TVBox-TV/box-apk/
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
