@@ -185,7 +185,7 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: | 
-          ls TVBox-TV/apk/dev_*.apk
+          ls ./apk/dev_*.apk
           #rm -rf TVBox-TV/tv-apk/
           #mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
           sed -i '/url =/d' ./.git/config
