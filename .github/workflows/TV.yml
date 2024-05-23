@@ -178,7 +178,6 @@ jobs:
           
       - name: Push app to master
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
