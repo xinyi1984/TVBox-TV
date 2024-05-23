@@ -185,9 +185,10 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: | 
-          ls ./apk/dev_*.apk
+          ls ./apk/${{ matrix.branchName }}_*.apk
+          ls ./tv-apk/${{ matrix.branchName }}_*.apk
           #rm -rf TVBox-TV/tv-apk/
-          #mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
+          mv ./apk/${{ matrix.branchName }}_*.apk ./tv-apk
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
