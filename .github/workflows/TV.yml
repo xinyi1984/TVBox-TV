@@ -269,7 +269,7 @@ jobs:
           git add json/market.json
           git remote rm origin
           git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
-          git commit -m "更新apk"
+          git commit -m "market.json"
           git push -f -u origin master
         continue-on-error: true
           
