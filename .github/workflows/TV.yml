@@ -180,8 +180,8 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "xinyi1984"
+          git config --global user.email "75725458@qq.com"
           mkdir -p tv-apk/
           mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
           git add tv-apk/${{ matrix.branchName }}_*.apk
