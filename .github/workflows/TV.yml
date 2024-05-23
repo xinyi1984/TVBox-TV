@@ -186,8 +186,7 @@ jobs:
         working-directory: TVBox-TV
         run: | 
           ls ./apk/${{ matrix.branchName }}_*.apk
-          ls ./tv-apk/${{ matrix.branchName }}_*.apk
-          #rm -rf TVBox-TV/tv-apk/
+          mkdir -p tv-apk/
           mv ./apk/${{ matrix.branchName }}_*.apk ./tv-apk
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
