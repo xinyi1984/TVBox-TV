@@ -160,26 +160,26 @@ jobs:
             git log --pretty=format:%B ${{ env.commitS }}...${lastCommit:0:7} |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           fi
           
-      - name: Upload App To Artifact
-        if: ${{ env.commit }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.userName }}-${{ matrix.repoName }}-${{ matrix.branchName }}
-          path: |
-            TVBox-TV/apk/*
+      #- name: Upload App To Artifact
+        #if: ${{ env.commit }}
+        #uses: actions/upload-artifact@v3
+        #with:
+          #name: ${{ matrix.userName }}-${{ matrix.repoName }}-${{ matrix.branchName }}
+          #path: |
+            #TVBox-TV/apk/*
       
-      - name: Release and Upload Assets
-        uses: ncipollo/release-action@v1
-        if: ${{ env.commit }}
-        with:
-          name: ${{ env.tag }}
-          tag: ${{ env.tag }}
-          bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
-          allowUpdates: true
-          removeArtifacts: true
-          artifacts: |
-            TVBox-TV/apk/*.apk
-            TVBox-TV/source-${{ env.commitS }}.*    
+      #- name: Release and Upload Assets
+       #uses: ncipollo/release-action@v1
+        #if: ${{ env.commit }}
+        #with:
+          #name: ${{ env.tag }}
+          #tag: ${{ env.tag }}
+          #bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
+          #allowUpdates: true
+          #removeArtifacts: true
+          #artifacts: |
+            #TVBox-TV/apk/*.apk
+            #TVBox-TV/source-${{ env.commitS }}.*    
       
       - name: Post To Telegram leanback arm64
         if: ${{ env.commit }}
