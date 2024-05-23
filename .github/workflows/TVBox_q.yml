@@ -1,4 +1,4 @@
-name: TVBox_q215613905
+name: TVBox_q
 
 on:
   push:
@@ -26,8 +26,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - userName: takagen99
-            repoName: Box
+          - userName: q215613905
+            repoName: TVBoxOS
             branchName: main
     steps:
       - name: Checkout
@@ -91,12 +91,12 @@ jobs:
           sed -i '$a\RELEASE_STORE_PASSWORD=TVBoxOSC'       ./gradle.properties
           sed -i '$a\RELEASE_KEY_PASSWORD=TVBoxOSC'         ./gradle.properties
       # Set up JDK 17 解决androidx/room/RoomProcessor has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0  61需要java-version: 17
-      #- name: set up JDK 17 
-        #if: ${{ env.commit }}
-        #uses: actions/setup-java@v4
-        #with:
-          #distribution: 'temurin'
-          #java-version: '17'
+      - name: set up JDK 17 
+        if: ${{ env.commit }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - name: Setup Gradle
         if: ${{ env.commit }}
         uses: gradle/gradle-build-action@v2
@@ -175,7 +175,6 @@ jobs:
               curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
             fi
           fi
-          
       - name: Upload App To xytv
         if: ${{ env.commit }}
         working-directory: TVBox-TV
