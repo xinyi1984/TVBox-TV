@@ -186,7 +186,7 @@ jobs:
           mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
           git add tv-apk/${{ matrix.branchName }}_*.apk
           git commit -m "更新apk"
-          git branch 
+          git checkout -b master
           git push -u -f origin ${{ github.ref }}
       
       - name: Push to master
