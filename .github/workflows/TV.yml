@@ -256,22 +256,22 @@ jobs:
             fi
           fi
       
-      - name: Upload App To xytv
-        if: ${{ ! env.commit }}
-        working-directory: TVBox-TV
-        run: |  
-          git clone https://github.com/xinyi1984/xytv.git
-          sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
-          sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
-          cd xytv
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add json/market.json
-          git remote rm origin
-          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
-          git commit -m "更新market.json"
-          git push -f -u origin master
-        continue-on-error: true
+      #- name: Upload App To xytv
+        #if: ${{ env.commit }}
+        #working-directory: TVBox-TV
+        #run: |  
+          #git clone https://github.com/xinyi1984/xytv.git
+          #sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          #sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          #cd xytv
+          #git config --global user.name "github-actions[bot]"
+          #git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          #vgit add json/market.json
+          #git remote rm origin
+          #git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          #git commit -m "更新market.json"
+          #git push -f -u origin master
+        #continue-on-error: true
           
       - name: Upload App To TVBox-TV
         if: ${{ env.commit }}
