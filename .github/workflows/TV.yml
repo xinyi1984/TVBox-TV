@@ -277,10 +277,10 @@ jobs:
         if: ${{ !env.commit }}
         run: |
           echo "当前工作目录是: $(pwd)" 
-          cd tv-apk || mkdir tv-apk
+          cd tv-apk || mkdir tv-apk 
           rm -f tv-apk/apk/${{ matrix.branchName }}_*.apk
-          cd TVBox-TV
-          mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
+          echo "当前工作目录是: $(pwd)"
+          #mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tv-apk/${{ matrix.branchName }}_*.apk
