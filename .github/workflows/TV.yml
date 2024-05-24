@@ -257,19 +257,17 @@ jobs:
           fi
           
       - name: Commit and push changes
-        if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
          mkdir -p apk/
          #rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
-         mv ./apk/${{ matrix.branchName }}_*.apk .
+         #mv ./apk/${{ matrix.branchName }}_*.apk .
          git config --global user.name "github-actions[bot]"
          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
          git push origin --delete release
-         git add .
+         git add ./apk/${{ matrix.branchName }}_*.apk
          git commit -m "更新apk "
       - name: Push changes to remote repository
-        if: ${{ env.commit }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUBXYTV_TOKEN }}
