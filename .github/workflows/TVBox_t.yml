@@ -175,20 +175,15 @@ jobs:
               curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
             fi
           fi
-      - name: Upload App To xytv
+      - name: Upload App To TVBox-TV
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
         run: |  
-          git clone https://github.com/xinyi1984/xytv 
-          mkdir -p xytv/box-apk/
-          rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
-          mv ./apk/TVBox_${{ matrix.userName }}.apk xytv/box-apk/
-          cd xytv
+          mkdir -p box-apk
+          #rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
+          mv TVBox-TV/apk/TVBox_${{ matrix.userName }}.apk box-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add box-apk/
-          git remote rm origin
-          git remote add origin "https://xytv:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          git add box-apk/*.apk
           git commit -m "更新apk"
           git push -f -u origin master
      
