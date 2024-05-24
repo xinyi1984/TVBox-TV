@@ -27,6 +27,12 @@ jobs:
       matrix:
         include:
           - userName: xinyi1984
+            repoName: TV 
+            branchName: fongmi
+          - userName: xinyi1984
+            repoName: TV 
+            branchName: dev
+          - userName: xinyi1984
             repoName: TV
             branchName: release
     steps:
@@ -272,7 +278,8 @@ jobs:
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/TVBox-TV.git
-          rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
+          mkdir -p TVBox-TV/tv-apk/
+          #rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
           mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
           cd TVBox-TV
           git config --global user.name "github-actions[bot]"
