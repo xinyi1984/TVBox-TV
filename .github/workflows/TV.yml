@@ -274,15 +274,17 @@ jobs:
         continue-on-error: true
           
       - name: Commit and push changes
+        if: ${{ env.commit }}
         run: |
          mkdir -p apk/
-         rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
+         #rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
          mv ./apk/${{ matrix.branchName }}_*.apk .
          git config --global user.name "github-actions[bot]"
          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
          git add .
          git commit -m "更新apk "
       - name: Push changes to remote repository
+        if: ${{ env.commit }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUBXYTV_TOKEN }}
