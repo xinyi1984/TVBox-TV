@@ -276,7 +276,7 @@ jobs:
       - name: Upload App To TVBox-TV
         if: ${{ env.commit }}
         run: |
-          cd tv-apk || mkdir tv-apk 
+          cd /home/runner/work/TVBox-TV/TVBox-TV/tv-apk || mkdir /home/runner/work/TVBox-TV/TVBox-TV/tv-apk 
           rm -f ${{ matrix.branchName }}_*.apk
           git add tv-apk/
           cd /home/runner/work/TVBox-TV/TVBox-TV
