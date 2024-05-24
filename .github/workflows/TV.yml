@@ -44,7 +44,7 @@ jobs:
       - name: Find APK file in the repository
         run: |
           # 使用find命令递归搜索.apk文件，并打印其路径
-          APK_PATH=$(find "$GITHUB_WORKSPACE" -type f -name "*.apk" -print -quit)
+          APK_PATH=$(find "$GITHUB_WORKSPACE" -type f -name "${{ matrix.branchName }}_*.apk" -print -quit)
           
           # 检查是否找到了文件
           if [ -n "$APK_PATH" ]; then
