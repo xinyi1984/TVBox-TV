@@ -259,7 +259,7 @@ jobs:
       - name: Commit and push changes
         working-directory: TVBox-TV
         run: |
-         mkdir -p apk/
+         #mkdir -p apk/
          #rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
          #mv ./apk/${{ matrix.branchName }}_*.apk .
          git config --global user.name "github-actions[bot]"
