@@ -257,7 +257,7 @@ jobs:
           fi
           
       - name: Upload App To xytv
-        if: ${{ env.commit }}
+        if: ! ${{ env.commit }}
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv
@@ -275,6 +275,7 @@ jobs:
           
       - name: Commit and push changes
         if: ${{ env.commit }}
+        working-directory: TVBox-TV
         run: |
          mkdir -p apk/
          #rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
