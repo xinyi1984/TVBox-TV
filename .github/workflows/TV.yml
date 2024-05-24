@@ -52,7 +52,7 @@ jobs:
           fi
       
       - name: Checkout Source Code
-        if: ${{ env.commit }}
+        if:  ! ${{ env.commit }}
         run: |
           git clone ${{ env.upStream }} TVBox-TV
           cd TVBox-TV
@@ -60,7 +60,7 @@ jobs:
           echo "tag=$(git log --date=format:'%Y%m%d-%H%M' --pretty=format:%cd ${{ env.commitS }} -1)" >> $GITHUB_ENV
       
       #- name: Extra Modify
-        #if: ${{ env.commit }}
+        #if: !  ${{ env.commit }}
        #working-directory: TVBox-TV
         #run: |
           #echo '修改VersionName'
@@ -75,7 +75,7 @@ jobs:
           #fi
 
       - name: Compress Source Code
-        if: ${{ env.commit }}
+        if:  ! ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           #删除xinyi1984-TV的release目录
@@ -92,7 +92,7 @@ jobs:
           sed -i "/armeabi-v7a[\'\"]$/s#\$#, 'arm64-v8a'#" player/build.gradle
       
       - name: Release Apk Sign
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           signingConfigs='ICAgIHNpZ25pbmdDb25maWdzIHtcCiAgICAgICAgaWYgKHByb2plY3QuaGFzUHJvcGVydHkoIlJFTEVBU0VfU1RPUkVfRklMRSIpKSB7XAogICAgICAgICAgICBteUNvbmZpZyB7XAogICAgICAgICAgICAgICAgc3RvcmVGaWxlIGZpbGUoUkVMRUFTRV9TVE9SRV9GSUxFKVwKICAgICAgICAgICAgICAgIHN0b3JlUGFzc3dvcmQgUkVMRUFTRV9TVE9SRV9QQVNTV09SRFwKICAgICAgICAgICAgICAgIGtleUFsaWFzIFJFTEVBU0VfS0VZX0FMSUFTXAogICAgICAgICAgICAgICAga2V5UGFzc3dvcmQgUkVMRUFTRV9LRVlfUEFTU1dPUkRcCiAgICAgICAgICAgICAgICB2MVNpZ25pbmdFbmFibGVkIHRydWVcCiAgICAgICAgICAgICAgICB2MlNpZ25pbmdFbmFibGVkIHRydWVcCiAgICAgICAgICAgICAgICBlbmFibGVWM1NpZ25pbmcgPSB0cnVlXAogICAgICAgICAgICAgICAgZW5hYmxlVjRTaWduaW5nID0gdHJ1ZVwKICAgICAgICAgICAgfVwKICAgICAgICB9XAogICAgfVwKXA=='
@@ -108,18 +108,18 @@ jobs:
 
       # Set up JDK 17 解决androidx/room/RoomProcessor has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0  61需要java-version: 17
       - name: set up JDK 17 
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
       
       - name: Setup Gradle
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         uses: gradle/gradle-build-action@v2
       
       - name: Build With Gradle
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           chmod +x gradlew
@@ -131,7 +131,7 @@ jobs:
           ./gradlew assemblemobileJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
   
       - name: Prepare App
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           #rm -rf apk/
@@ -148,7 +148,7 @@ jobs:
           done
       
       - name: Release Note
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           lastCommit=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[a-z0-9]\{40\}')
@@ -257,6 +257,7 @@ jobs:
           fi
           
       - name: Commit and push changes
+        if: !  ${{ env.commit }}
         #working-directory: TVBox-TV
         run: |
          #mkdir -p apk/
@@ -274,7 +275,7 @@ jobs:
           branch: master
           
       - name: Push to master
-        if: ${{ env.commit }}
+        if: !  ${{ env.commit }}
         run: |
           rm -rf TVBox-TV
           sed -i '/url =/d' ./.git/config
