@@ -186,7 +186,7 @@ jobs:
           git add box-apk/*.apk
           git commit -m "更新apk"
           git push -f -u origin master
-     
+        continue-on-error: true
       - name: Push to master
         if: ${{ env.commit }}
         run: |
