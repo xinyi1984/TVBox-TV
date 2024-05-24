@@ -44,7 +44,7 @@ jobs:
       - name: Find APK file in the repository
         run: |
           # 使用find命令递归搜索.apk文件，并打印其路径
-          APK_PATH=$(find "$GITHUB_WORKSPACE" -type f -name "${{ matrix.branchName }}_*.apk" -printf '%P\n' -quit)
+          APK_PATH=$(find "$GITHUB_WORKSPACE" -type f -name "${{ matrix.branchName }}_*.apk" -print -quit)
           
           # 检查是否找到了文件
           if [ -n "$APK_PATH" ]; then
@@ -288,7 +288,7 @@ jobs:
       - name: Upload App To TVBox-TV
         if: ${{ !env.commit }}
         run: | 
-          rm -r tv-apk/${{ matrix.branchName }}_*.apk
+          rm -r tv-apk/dev_leanback-java-armeabi_v7a.apk
           mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk tv-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
