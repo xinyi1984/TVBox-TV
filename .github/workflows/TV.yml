@@ -251,7 +251,7 @@ jobs:
           fi
       
       - name: Upload App To xytv
-        if: ${{ !env.commit }}
+        if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv.git
