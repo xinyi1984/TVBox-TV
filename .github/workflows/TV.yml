@@ -274,9 +274,10 @@ jobs:
         #continue-on-error: true
           
       - name: Upload App To TVBox-TV
-        if: ${{ env.commit }}
+        if: ${{ !env.commit }}
         run: |  
           mkdir -p tv-apk
+          ls tv-apk/${{ matrix.branchName }}_*.apk
           rm -r tv-apk/${{ matrix.branchName }}_*.apk
           mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk tv-apk/
           git config --global user.name "github-actions[bot]"
