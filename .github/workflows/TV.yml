@@ -275,18 +275,13 @@ jobs:
           
       - name: Upload App To TVBox-TV
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
         run: |  
-          git clone https://github.com/xinyi1984/TVBox-TV.git
-          mkdir -p TVBox-TV/tv-apk/
+          mkdir -p tv-apk/
           #rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
-          mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
-          cd TVBox-TV
+          mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk tv-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tv-apk/${{ matrix.branchName }}_*.apk 
-          git remote rm origin
-          git remote add origin "https://xytv:${{ secrets.GITHUBTVBox-TV_TOKEN }}@github.com/xinyi1984/xytv"
           git commit -m "更新apk"
           git push -f -u origin master
         continue-on-error: true
