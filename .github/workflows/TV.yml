@@ -40,19 +40,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
-      - name: Find APK file in the repository
-        run: |
-          # 使用find命令递归搜索.apk文件，并打印其路径
-          APK_PATH=$(find "$GITHUB_WORKSPACE" -type f -name "${{ matrix.branchName }}_*.apk" -print -quit)
           
-          # 检查是否找到了文件
-          if [ -n "$APK_PATH" ]; then
-            echo "APK file found at: $APK_PATH"
-          else
-            echo "No APK file found in the repository."
-            exit 1
-          fi
       - name: Check New Commit
         run: |
           upStream=https://github.com/${{ matrix.userName }}/${{ matrix.repoName }}
