@@ -278,7 +278,9 @@ jobs:
         run: |
           echo "当前工作目录是: $(pwd)" 
           cd tv-apk || mkdir tv-apk 
-          rm -f tv-apk/${{ matrix.branchName }}_*.apk
+          rm -f ${{ matrix.branchName }}_*.apk
+          echo "当前工作目录是: $(pwd)"
+          cd TVBox-TV
           echo "当前工作目录是: $(pwd)"
           #mv ./apk/${{ matrix.branchName }}_*.apk tv-apk/
           git config --global user.name "github-actions[bot]"
