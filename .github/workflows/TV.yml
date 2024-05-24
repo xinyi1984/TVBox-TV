@@ -84,7 +84,7 @@ jobs:
           #tar -cJf source-${{ env.commitS }}.tar.xz --exclude=.git --exclude=.github *
       
       - name: Option For Test
-        if: ${{ !env.commit }}
+        if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           #添加arm64支持，不支持ijk解码
