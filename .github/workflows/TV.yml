@@ -286,7 +286,7 @@ jobs:
         #continue-on-error: true
           
       - name: Upload App To TVBox-TV
-        if: ${{ !env.commit }}
+        if: ${{ env.commit }}
         run: | 
           rm -r /home/runner/work/TVBox-TV/TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
           mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk tv-apk/
