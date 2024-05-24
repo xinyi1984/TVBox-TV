@@ -16,7 +16,7 @@ jobs:
         run: |
           # 设置你的 GitHub 访问令牌
           # 警告：不要在代码中硬编码令牌，使用仓库的 secrets 更安全
-          TOKEN=${{ secrets.GITHUB_TOKEN }}
+          TOKEN=${{ secrets.GITHUBXYTV_TOKEN }}
           
           # 获取工作流触发时输入的分支名
           BRANCH_NAME=${{ github.event.inputs.branch_name }}
