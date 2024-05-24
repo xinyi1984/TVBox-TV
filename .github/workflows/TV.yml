@@ -276,6 +276,7 @@ jobs:
       - name: Upload App To TVBox-TV
         if: ${{ env.commit }}
         run: | 
+          cd /
           rm -r /tv-apk/${{ matrix.branchName }}_*.apk
           mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk /tv-apk/
           git config --global user.name "github-actions[bot]"
