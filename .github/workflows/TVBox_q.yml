@@ -179,8 +179,8 @@ jobs:
         if: ${{ env.commit }}
         run: |  
           mkdir -p box-apk
-          mv -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
-          cp TVBox-TV/apk/TVBox_${{ matrix.userName }}.apk box-apk/
+          rm -r xytv/box-apk/TVBox_${{ matrix.userName }}.apk
+          mv TVBox-TV/apk/TVBox_${{ matrix.userName }}.apk box-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add box-apk/*.apk
