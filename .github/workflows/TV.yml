@@ -277,8 +277,10 @@ jobs:
         if: ${{ env.commit }}
         run: | 
           cd /
-          rm -r /tv-apk/${{ matrix.branchName }}_*.apk
+          rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
+          cd TVBox-TV
           mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk /tv-apk/
+          cd /
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add /tv-apk/${{ matrix.branchName }}_*.apk
