@@ -272,7 +272,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUBXYTV_TOKEN }}
-          branch: master
+          branch: ${{ matrix.branchName }}
           
       - name: Push to master
         if: ${{ env.commit }}
