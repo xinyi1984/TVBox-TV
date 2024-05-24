@@ -182,7 +182,7 @@ jobs:
             #TVBox-TV/source-${{ env.commitS }}.*    
       
       - name: Post To Telegram leanback arm64
-        if: ${{ ! env.commit }}
+        if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
@@ -257,7 +257,7 @@ jobs:
           fi
       
       - name: Upload App To xytv
-        if: ${{ env.commit }}
+        if: ${{ ! env.commit }}
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv.git
