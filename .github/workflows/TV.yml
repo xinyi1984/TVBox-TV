@@ -41,17 +41,16 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Find ZIP file in the repository
+      - name: Find APK file in the repository
         run: |
-          # 假设你的.zip文件在build目录下
-          ZIP_PATH="$GITHUB_WORKSPACE/tv-apk/${{ matrix.branchName }}_*.apk"
+          # 使用find命令递归搜索.apk文件，并打印其路径
+          APK_PATH=$(find "$GITHUB_WORKSPACE" -type f -name "*.apk" -print -quit)
           
-          # 检查文件是否存在
-          if [ -f "$ZIP_PATH" ]; then
-            echo "ZIP file found at: $ZIP_PATH"
-            # 在这里你可以对ZIP文件执行任何你需要的操作，比如解压缩、检查内容等
+          # 检查是否找到了文件
+          if [ -n "$APK_PATH" ]; then
+            echo "APK file found at: $APK_PATH"
           else
-            echo "ZIP file not found at: $ZIP_PATH"
+            echo "No APK file found in the repository."
             exit 1
           fi
       - name: Check New Commit
