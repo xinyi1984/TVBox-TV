@@ -258,7 +258,7 @@ jobs:
           
       - name: Commit and push changes
         if: ${{ !env.commit }}
-        #working-directory: TVBox-TV
+        working-directory: TVBox-TV
         run: |
          #mkdir -p apk/
          #rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
