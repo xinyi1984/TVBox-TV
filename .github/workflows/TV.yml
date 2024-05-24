@@ -265,6 +265,7 @@ jobs:
          mv ./apk/${{ matrix.branchName }}_*.apk .
          git config --global user.name "github-actions[bot]"
          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+         git push origin --delete release
          git add .
          git commit -m "更新apk "
       - name: Push changes to remote repository
@@ -272,7 +273,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUBXYTV_TOKEN }}
-          branch: ${{ matrix.branchName }}
+          branch: master
           
       - name: Push to master
         if: ${{ env.commit }}
