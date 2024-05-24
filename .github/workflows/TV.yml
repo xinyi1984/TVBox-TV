@@ -276,12 +276,12 @@ jobs:
       - name: Upload App To TVBox-TV
         if: ${{ env.commit }}
         run: |  
-          mkdir -p box-apk
-          rm -r box-apk/TVBox_${{ matrix.userName }}.apk
-          mv TVBox-TV/apk/TVBox_${{ matrix.userName }}.apk box-apk/
+          mkdir -p tv-apk
+          rm -r tv-apk/${{ matrix.branchName }}_*.apk
+          mv TVBox-TV/apk/${{ matrix.branchName }}_*.apk tv-apk/
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add box-apk/*.apk
+          git add tv-apk/*.apk
           git commit -m "更新apk"
           git push -f -u origin master
         continue-on-error: true
