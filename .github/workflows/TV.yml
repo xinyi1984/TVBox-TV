@@ -251,7 +251,7 @@ jobs:
           fi
       
       - name: Upload App To xytv
-        if: ${{ env.commit }}
+        if: ${{!env.commit }}
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv.git
@@ -273,7 +273,7 @@ jobs:
         run: |  
           git clone https://github.com/xinyi1984/TVBox-TV.git
           mkdir -p TVBox-TV/tv-apk
-          rm -r tv-apk/${{ matrix.branchName }}_*.apk
+          rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
           mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
