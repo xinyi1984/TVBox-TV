@@ -278,7 +278,7 @@ jobs:
         working-directory: TVBox-TV
         run: |
           git clone https://github.com/xinyi1984/TVBox-TV.git
-          rm -r xytv/tv-apk/${{ matrix.branchName }}_*.apk
+          rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
           mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk/
           cd TVBox-TV
           git config --global user.name "github-actions[bot]"
