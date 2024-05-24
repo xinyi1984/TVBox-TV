@@ -257,7 +257,7 @@ jobs:
           fi
           
       - name: Commit and push changes
-        working-directory: TVBox-TV
+        #working-directory: TVBox-TV
         run: |
          #mkdir -p apk/
          #rm -r ./tv-apk/${{ matrix.branchName }}_*.apk
