@@ -26,7 +26,7 @@ jobs:
         with:
           delete_releases: true
           delete_tags: true
-          releases_keep_latest: 1
+          releases_keep_latest: 5
           releases_keep_keyword: true
           delete_workflows: true
           workflows_keep_day: true
