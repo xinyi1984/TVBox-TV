@@ -28,7 +28,14 @@ jobs:
         include:
           - userName: xinyi1984
             repoName: TV 
+            branchName: fongmi
+          - userName: xinyi1984
+            repoName: TV 
             branchName: dev
+          - userName: xinyi1984
+            repoName: TV
+            branchName: release
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -250,12 +257,12 @@ jobs:
             fi
           fi
       
-      - name: Upload App To xytv
-        if: ${{!env.commit }}
+      - name: Upload json To xytv
+        if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |  
           git clone https://github.com/xinyi1984/xytv.git
-          sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
+          sed -i "s#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/[0-9\-]/${{ matrix.branchName }}*#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/${{ env.tag }}/${{ matrix.branchName }}#g" xytv/json/market.json
           sed -i "s#${{ matrix.branchName }}-[0-9\-]*#${{ matrix.branchName }}-${{ env.tag }}#g" xytv/json/market.json
           cd xytv
           git config --global user.name "github-actions[bot]"
