@@ -138,18 +138,18 @@ jobs:
          #if: ${{ inputs.donotpublish && env.commit }}
          #run: |
            #echo "commit=" >> $GITHUB_ENV
-       #- name: Release and Upload Assets
-         #uses: ncipollo/release-action@v1
-         #if: ${{ env.commit }}
-         #with:
-           #name: ${{ env.tag }}
-           #tag: ${{ env.tag }}
-           #bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
-           #allowUpdates: true
-           #removeArtifacts: true
-           #artifacts: |
-             #TVBox-TV/apk/*.apk
-             #TVBox-TV/source-${{ env.commitS }}.*
+      - name: Release and Upload Assets
+        uses: ncipollo/release-action@v1
+        if: ${{ env.commit }}
+        with:
+           name: ${{ env.tag }}
+           tag: ${{ env.tag }}
+           bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
+           allowUpdates: true
+           removeArtifacts: true
+           artifacts: |
+             TVBox-TV/apk/*.apk
+             TVBox-TV/source-${{ env.commitS }}.*
       
       - name: Post To Telegram
         if: ${{ env.commit }}
@@ -175,16 +175,20 @@ jobs:
               curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
             fi
           fi
-      - name: Upload App To TVBox-TV
+      
+      - name: Upload json To xytv
         if: ${{ env.commit }}
+        working-directory: TVBox-TV
         run: |  
-          mkdir -p box-apk
-          rm -r box-apk/TVBox_${{ matrix.userName }}.apk
-          mv TVBox-TV/apk/TVBox_${{ matrix.userName }}.apk box-apk/
+          git clone https://github.com/xinyi1984/xytv.git
+          sed -i "s#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/[0-9\-]*/TVBox_${{ matrix.userName }}#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/${{ env.tag }}/TVBox_${{ matrix.userName }}#g" xytv/json/market.json
+          cd xytv
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add box-apk/*.apk
-          git commit -m "更新apk"
+          git add json/market.json
+          git remote rm origin
+          git remote add origin "https://xinyi1984:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
+          git commit -m "更新market.json"
           git push -f -u origin master
         continue-on-error: true
           
