@@ -162,16 +162,16 @@ jobs:
           #path: |
             #TVBox-TV/apk/*
       
-      #- name: Release and Upload Assets
-       #uses: ncipollo/release-action@v1
-        #if: ${{ env.commit }}
-        #with:
-          #name: ${{ env.tag }}
-          #tag: ${{ env.tag }}
-          #bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
-          #allowUpdates: true
-          #removeArtifacts: true
-          #artifacts: |
+      - name: Release and Upload Assets
+        uses: ncipollo/release-action@v1
+        if: ${{ env.commit }}
+        with:
+          name: ${{ env.tag }}
+          tag: ${{ env.tag }}
+          bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
+          allowUpdates: true
+          removeArtifacts: true
+          artifacts: |
             #TVBox-TV/apk/*.apk
             #TVBox-TV/source-${{ env.commitS }}.*    
       
@@ -264,23 +264,6 @@ jobs:
           git remote rm origin
           git remote add origin "https://xinyi1984:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/xytv"
           git commit -m "更新market.json"
-          git push -f -u origin master
-        continue-on-error: true
-          
-      - name: Upload App To TVBox-TV
-        if: ${{ env.commit }}
-        working-directory: TVBox-TV
-        run: |  
-          git clone https://github.com/xinyi1984/TVBox-TV.git
-          mkdir -p TVBox-TV/tv-apk
-          rm -r TVBox-TV/tv-apk/${{ matrix.branchName }}_*.apk
-          mv ./apk/${{ matrix.branchName }}_*.apk TVBox-TV/tv-apk
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add TVBox-TV/tv-apk/*.apk
-          git remote rm origin
-          git remote add origin "https://xinyi1984:${{ secrets.GITHUBXYTV_TOKEN }}@github.com/xinyi1984/TVBox-TV"
-          git commit -m "更新apk"
           git push -f -u origin master
         continue-on-error: true
           
