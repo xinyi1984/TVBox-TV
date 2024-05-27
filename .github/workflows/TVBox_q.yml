@@ -144,7 +144,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}
         run: |
           # 提取README.md中${{ matrix.repoName }}后面的name:后面的名称
-          RELEASE_NAME=$(grep -oP '\${{ matrix.repoName }}\s*name:\s*\[[0-9-]*\]' README.md | awk -F'name: ' '{print $2}' | awk -F'\]' '{print $1}' | tr -d ' ')
+          RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}')
 
           # 检查是否提取到了名称
           if [ -n "$RELEASE_NAME" ]; then
