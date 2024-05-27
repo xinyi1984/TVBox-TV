@@ -142,43 +142,44 @@ jobs:
       - name: 安装jq并检索并删除包含特定链接的Releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN进行身份验证
-          TARGET_LINK: "${{ matrix.userName }}" # 替换为你要在Releases描述中搜索的实际链接
+          TARGET_LINK_CONTENT: "${{ matrix.userName }}" # 替换为你要在Releases描述中搜索的实际链接
         run: |
-          # 更新apt包列表并安装jq
-          sudo apt-get update
-          sudo apt-get install -y jq
-          
+          # 安装jq，如果尚未安装的话
+          sudo apt-get update && sudo apt-get install -y jq
+
           # 初始化变量来存储需要删除的Releases的ID
           DELETE_RELEASE_IDS=""
-          
+
           # 设置GitHub API的Releases端点URL
           RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
-          
-          # 获取所有Releases，并通过jq过滤出描述中包含目标链接的Releases
+
+          # 使用curl和jq获取所有Releases，并过滤出描述中包含目标链接内容的Releases
+          echo "检索Releases并筛选包含特定链接内容的Releases..."
           RELEASES=$(curl -s "$RELEASES_URL?per_page=100" \
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github.v3+json")
-          
-          # 解析Releases的JSON响应，并筛选出描述中包含目标链接的Releases的ID
-          echo "$RELEASES" | jq -r --arg target_link="$TARGET_LINK" '
-            .[] | select(.body | test("\\b'${target_link}'\\b")) | .id
+
+          # 使用jq解析JSON响应，筛选出描述中包含目标链接内容的Releases的ID
+          echo "$RELEASES" | jq -r --arg target_content="$TARGET_LINK_CONTENT" '
+            .[] | select(.body | test("\\b'${target_content}'\\b")) | .id
           ' | while IFS= read -r id; do
             # 如果找到符合条件的Releases，则添加到删除列表
             DELETE_RELEASE_IDS="$DELETE_RELEASE_IDS $id"
           done
-          
+
           # 检查是否找到了需要删除的Releases
           if [ -n "$DELETE_RELEASE_IDS" ]; then
-            echo "找到包含指定链接的Releases，开始删除..."
-            
+            echo "找到包含指定链接内容的Releases，开始删除..."
+
             # 逐个删除找到的Releases
             for id in $DELETE_RELEASE_IDS; do
               DELETE_URL="https://api.github.com/repos/${{ github.repository }}/releases/$id"
+              echo "正在删除Release ID: $id"
               curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "$DELETE_URL"
-              echo "已删除包含指定链接的Release，ID为: $id"
+              echo "已删除Release ID: $id"
             done
           else
-            echo "未找到包含指定链接的Releases，跳过删除操作。"
+            echo "未找到包含指定链接内容的Releases，跳过删除操作。"
           fi
           
       - name: Release and Upload Assets
