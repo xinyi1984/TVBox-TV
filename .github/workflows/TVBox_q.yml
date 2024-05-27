@@ -140,6 +140,7 @@ jobs:
            #echo "commit=" >> $GITHUB_ENV
             
       - name: 安装jq并检索并删除包含特定描述内容的Releases
+        if: ${{ !env.commit }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN进行身份验证
           TARGET_DESCRIPTION_CONTENT: "Credit: ${{ matrix.userName }}" # 替换为你要在Releases描述中搜索的实际内容
