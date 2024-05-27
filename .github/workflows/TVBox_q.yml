@@ -169,7 +169,7 @@ jobs:
             done
         env:
             # 设置环境变量OWNER和REPO，分别为GitHub仓库的所有者和仓库名称
-            OWNER: ${{ matrix.userName }}
+            OWNER: xinyi1984
             REPO: ${{ matrix.repoName }}
             # 设置环境变量GITHUB_TOKEN，为GitHub个人访问令牌，用于授权API请求
             # 这里使用${{ secrets.GITHUB_TOKEN }}来引用存储在Secrets中的令牌
