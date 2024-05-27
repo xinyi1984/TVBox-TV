@@ -140,10 +140,10 @@ jobs:
            #echo "commit=" >> $GITHUB_ENV
             
       - name: Delete releases with specified description #  删除包含指定描述的Releases
-        if: ${{ env.commit }}
+        if: ${{ !env.commit }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 替换为你的GitHub Token Secret名称
-          TARGET_DESCRIPTION: "${{ matrix.repoName }}" # 替换为你要搜索的描述内容
+          TARGET_DESCRIPTION: "${{ matrix.userName }}" # 替换为你要搜索的描述内容
         run: |
           # 设置API请求的URL
           RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
