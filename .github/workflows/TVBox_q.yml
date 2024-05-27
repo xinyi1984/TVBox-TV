@@ -145,28 +145,28 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN
           TARGET_CONTENT: "${{ matrix.repoName }}" # 替换为你要在Assets文件中搜索的实际内容
         run: |
-          # 更新apt包列表并安装jq
-          sudo apt-get update
-          sudo apt-get install -y jq
-          
+          # 安装jq（如果尚未安装）
+          jq --version || sudo apt-get update && sudo apt-get install -y jq
+
           # 设置GitHub API的Releases端点URL
           RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
-          
-          # 使用curl和jq检索包含特定Assets内容的Releases ID
+
+          # 使用curl和jq检索包含特定Assets内容的Releases的ID
           RELEASE_IDS=$(curl -s "$RELEASES_URL?per_page=100" \
+            -H "Authorization: token $GITHUB_TOKEN" \
             | jq -r --arg target_content="$TARGET_CONTENT" '
-              .[] | select(any(.assets[]; .name | contains($target_content))) | .id
+              .[] | select(any(.assets[]; test("\\b'${target_content}'\\b"))) | .id
             ')
-          
+
           # 检查是否找到了符合条件的Releases
           if [ -n "$RELEASE_IDS" ]; then
             echo "找到包含指定Assets内容的Releases，开始删除..."
-            
+
             # 遍历找到的Releases ID并删除它们
             for id in $RELEASE_IDS; do
               # 构造删除Release的API URL
               DELETE_URL="https://api.github.com/repos/${{ github.repository }}/releases/$id"
-              
+
               # 使用curl发送DELETE请求删除Release
               curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "$DELETE_URL"
               echo "已删除包含指定Assets内容的Release，ID为: $id"
