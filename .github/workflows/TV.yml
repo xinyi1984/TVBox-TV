@@ -202,25 +202,8 @@ jobs:
           removeArtifacts: true
           artifacts: |
             TVBox-TV/apk/*.apk
-            TVBox-TV/source-${{ env.commitS }}.*    
-      
-      - name: Delete Latest Release
-        if: ${{ env.commit }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用个人访问令牌，确保有删除 Release 的权限
-          OWNER: xinyi1984 # 替换为你的仓库所有者
-          REPO: TVBox-TV # 替换为你的仓库名
-        run: |
-          # 获取最新的 Release ID
-          RELEASE_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$OWNER/$REPO/releases/latest | jq -r '.id')
-          
-          if [ -n "$RELEASE_ID" ]; then
-            # 删除 Release
-            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$OWNER/$REPO/releases/$RELEASE_ID
-            echo "Latest release deleted."
-          else
-            echo "No latest release found."
-          fi
+            TVBox-TV/source-${{ env.commitS }}.*  
+            
       - name: Post To Telegram leanback arm64
         if: ${{ env.commit }}
         working-directory: TVBox-TV
