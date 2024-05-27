@@ -190,6 +190,9 @@ jobs:
             curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
             echo "已删除描述中包含指定内容的Release，ID为: $release_id"
           done
+          else
+            echo "未找到描述中包含指定内容的Releases，跳过删除操作。"
+          fi
           
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
