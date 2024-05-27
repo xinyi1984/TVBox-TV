@@ -140,6 +140,7 @@ jobs:
            #echo "commit=" >> $GITHUB_ENV
             
       - name: Delete releases with specified description #  删除包含指定描述的Releases
+        if: ${{ env.commit }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 替换为你的GitHub Token Secret名称
           TARGET_DESCRIPTION: "${{ matrix.repoName }}" # 替换为你要搜索的描述内容
