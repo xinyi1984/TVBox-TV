@@ -168,34 +168,6 @@ jobs:
           #name: ${{ matrix.userName }}-${{ matrix.repoName }}-${{ matrix.branchName }}
           #path: |
             #TVBox-TV/apk/*
-            
-      - name: Delete releases with specified description #  删除包含指定描述的Releases
-        if: ${{ env.commit }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 替换为你的GitHub Token Secret名称
-          TARGET_DESCRIPTION: "${{ matrix.repoName }}/${{ matrix.branchName }}" # 替换为你要搜索的描述内容
-        run: |
-          # 设置API请求的URL
-          RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
-          
-          # 调用GitHub API获取所有Releases的JSON数据
-          RELEASES_RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$RELEASES_URL")
-          
-          # 使用grep和awk从JSON响应中提取包含目标描述的Releases ID
-          RELEASE_IDS=$(echo "$RELEASES_RESPONSE" | grep "\"body\": \"${TARGET_DESCRIPTION}\"" | awk -F '"' '{print $4}')
-          
-          # 检查是否找到了匹配的Releases
-          if [ -n "$RELEASE_IDS" ]; then
-            echo "找到描述中包含指定内容的Releases，开始删除..."
-            
-            # 遍历Releases ID，并使用curl命令删除对应的Releases
-            for release_id in $RELEASE_IDS; do
-              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
-              echo "已删除描述中包含指定内容的Release，ID为: $release_id"
-            done
-          else
-            echo "未找到描述中包含指定内容的Releases，跳过删除操作。"
-          fi
           
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
@@ -311,7 +283,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git pull --rebase
-          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
+          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#Updated: [a-zA-Z0-9]*name: [0-9\-]*#Updated: ${{ env.commit }}name: ${{ env.tag }}#" README.md
           #sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
           git add --all
           git commit -m "${{ env.commit }}"
