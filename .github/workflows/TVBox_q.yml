@@ -142,8 +142,8 @@ jobs:
       - name: Delete releases with specified description #  删除包含指定描述的Releases
         if: ${{ !env.commit }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 替换为你的GitHub Token Secret名称
-          TARGET_DESCRIPTION: "${{ matrix.repoName }}" # 替换为你要搜索的描述内容
+          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN
+          TARGET_CONTENT: "${{ matrix.repoName }}" # 替换为你要在Assets文件中搜索的实际内容
         run: |
           # 设置GitHub API的Releases端点URL
           RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
@@ -153,22 +153,25 @@ jobs:
           
           # 检查是否成功获取了响应数据
           if [ -n "$RELEASES_RESPONSE" ]; then
-            # 使用jq工具解析JSON响应，查找描述字段包含目标描述内容的Release
-            # jq '.[] | select(.body == env.TARGET_DESCRIPTION) | .id' 会从响应中选择body字段与目标描述内容相匹配的Release的id
-            RELEASE_ID=$(echo "$RELEASES_RESPONSE" | jq -r '.[] | select(.body == env.TARGET_DESCRIPTION) | .id')
+            # 使用jq工具解析JSON响应，查找Assets文件中包含目标内容的Releases
+            # jq '.[] | select(.assets[].name | contains("your-target-content")) | .id' 会从响应中选择Assets文件名包含目标内容的Releases的id
+            RELEASE_IDS=$(echo "$RELEASES_RESPONSE" | jq -r '.[] | select(.assets[].name | contains(env.TARGET_CONTENT)) | .id')
             
-            # 检查是否找到了符合条件的Release ID
-            if [ -n "$RELEASE_ID" ]; then
-              echo "找到描述中包含指定内容的Release，开始删除..."
-              
-              # 构造删除Release的API URL
-              DELETE_URL="https://api.github.com/repos/${{ github.repository }}/releases/$RELEASE_ID"
-              
-              # 使用curl命令发送DELETE请求删除找到的Release
-              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "$DELETE_URL"
-              echo "已删除描述中包含指定内容的Release，ID为: $RELEASE_ID"
+            # 如果RELEASE_IDS变量不为空，说明找到了符合条件的Releases
+            if [ -n "$RELEASE_IDS" ]; then
+              # 遍历找到的Releases ID，并删除它们
+              for RELEASE_ID in $RELEASE_IDS; do
+                echo "找到Assets文件中包含指定内容的Release，开始删除，ID为: $RELEASE_ID"
+                
+                # 构造删除Release的API URL
+                DELETE_URL="https://api.github.com/repos/${{ github.repository }}/releases/$RELEASE_ID"
+                
+                # 使用curl命令发送DELETE请求删除找到的Release
+                curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "$DELETE_URL"
+                echo "已删除包含指定Assets内容的Release，ID为: $RELEASE_ID"
+              done
             else
-              echo "未找到描述中包含指定内容的Release，跳过删除操作。"
+              echo "未找到Assets文件中包含指定内容的Releases，跳过删除操作。"
             fi
           else
             echo "无法获取Releases列表，请检查API调用。"
