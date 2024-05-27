@@ -143,7 +143,7 @@ jobs:
         run: |
           # 使用awk提取以5555/6666开头并且后面跟着(name:)的行
           # 然后提取(name:)之后的内容
-          RELEASE_NAME=$(awk '/^${{ matrix.userName }}\/${{ matrix.repoName }}.*\(name:\)/ {sub(".*\\(name:", ""); print substr($0, index($0, $1))}' README.md)
+          RELEASE_NAME=$(awk '/^- [${{ matrix.userName }}\/${{ matrix.repoName }}].*\(name:\)/ {sub(".*\\(name:", ""); print substr($0, index($0, $1))}' README.md)
           echo "Extracted release name: $RELEASE_NAME"
           
           # 检查是否提取到了名称
