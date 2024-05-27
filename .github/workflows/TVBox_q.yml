@@ -139,29 +139,28 @@ jobs:
          #run: |
            #echo "commit=" >> $GITHUB_ENV
             
-      - name: Find and delete matching releases
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}
+      - name: Check if release exists and delete it
         run: |
-          # 提取README.md中${{ matrix.repoName }}后面的name:后面的名称
-          RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}')
+          # 设置你的 GitHub 仓库信息
+          REPO_OWNER=xinyi1984
+          REPO_NAME=TVBox-TV
+          GITHUB_TOKEN=${{ secrets.GITHUBXYTV_TOKEN }} # 这是 GitHub Actions 自动提供的 token
+          RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}') # 这是你想要删除的 releases 的名称
 
-          # 检查是否提取到了名称
-          if [ -n "$RELEASE_NAME" ]; then
-            # 调用GitHub API获取所有releases
-            RELEASES=$(curl -s "https://api.github.com/repos/$GITHUB_REPOSITORY/releases" | jq -r '.[] | .tag_name')
+          # 使用 curl 和 GitHub API 获取 releases 列表
+          RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
 
-            # 遍历releases并检查是否有匹配项
-            for release in $RELEASES; do
-              if [[ "$release" == "$RELEASE_NAME" ]]; then
-                # 匹配到，删除release
-                curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/tags/$release"
-                echo "Deleted release: $release"
-                break  # 找到并删除后跳出循环
-              fi
-            done
+          # 使用 jq 工具解析 JSON，并查找匹配的 releases ID
+          RELEASE_ID=$(echo "$RELEASES" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
+
+          # 检查是否找到了匹配的 releases
+          if [ -n "$RELEASE_ID" ]; then
+            echo "Found release with name $RELEASE_NAME and ID $RELEASE_ID. Deleting it..."
+            # 使用 curl 和 GitHub API 删除匹配的 releases
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID"
+            echo "Release deleted successfully."
           else
-            echo "No release name found after ${{ matrix.repoName }}."
+            echo "No release found with name $RELEASE_NAME."
           fi
           
       - name: Release and Upload Assets
