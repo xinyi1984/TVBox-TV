@@ -140,27 +140,32 @@ jobs:
            #echo "commit=" >> $GITHUB_ENV
             
       - name: Delete releases with specified description #  删除包含指定描述的Releases
-        if: ${{ env.commit }}
+        if: ${{ !env.commit }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 替换为你的GitHub Token Secret名称
           TARGET_DESCRIPTION: "${{ matrix.repoName }}" # 替换为你要搜索的描述内容
         run: |
-          # 设置API请求的URL
+          # 设置API请求的URL，这里使用GitHub的Releases API
           RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
           
-          # 调用GitHub API获取所有Releases的JSON数据
+          # 使用curl命令获取所有Releases的JSON数据，并使用Authorization头进行身份验证
           RELEASES_RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$RELEASES_URL")
           
-          # 使用grep和awk从JSON响应中提取包含目标描述的Releases ID
+          # 使用grep命令从JSON响应中检索包含目标描述的行
+          # 使用awk命令提取这些行中的Releases ID
           RELEASE_IDS=$(echo "$RELEASES_RESPONSE" | grep "\"body\": \"${TARGET_DESCRIPTION}\"" | awk -F '"' '{print $4}')
           
-          # 检查是否找到了匹配的Releases
+          # 检查是否找到了匹配的Releases ID
           if [ -n "$RELEASE_IDS" ]; then
             echo "找到描述中包含指定内容的Releases，开始删除..."
             
-            # 遍历Releases ID，并使用curl命令删除对应的Releases
+            # 遍历每个找到的Releases ID
             for release_id in $RELEASE_IDS; do
+              # 使用curl命令发送DELETE请求来删除对应的Releases
+              # 同样使用Authorization头进行身份验证
               curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+              
+              # 输出已删除的Releases ID
               echo "已删除描述中包含指定内容的Release，ID为: $release_id"
             done
           else
