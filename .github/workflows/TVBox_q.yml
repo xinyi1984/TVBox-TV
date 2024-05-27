@@ -142,7 +142,7 @@ jobs:
       - name: 安装jq并检索并删除包含特定链接的Releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN进行身份验证
-          TARGET_LINK: "${{ matrix.repoName }}" # 替换为你要在Releases描述中搜索的实际链接
+          TARGET_LINK: "${{ matrix.userName }}" # 替换为你要在Releases描述中搜索的实际链接
         run: |
           # 更新apt包列表并安装jq
           sudo apt-get update
