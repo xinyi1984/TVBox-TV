@@ -140,6 +140,7 @@ jobs:
            #echo "commit=" >> $GITHUB_ENV
             
       - name: Check if release exists and delete it
+        if: ${{ env.commit }}
         run: |
           # 设置你的 GitHub 仓库信息
           REPO_OWNER=xinyi1984
