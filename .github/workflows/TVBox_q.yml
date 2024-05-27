@@ -139,33 +139,30 @@ jobs:
          #run: |
            #echo "commit=" >> $GITHUB_ENV
             
-      - name: Find and delete matching release
-        run: |
-          # 使用 grep 和 awk 提取 name: 后面的名称
-          NAME_TO_FIND=$(grep -A 1 'https://github.com/${{ matrix.userName }}/${{ matrix.repoName }}' README.md | grep 'name:' | awk -F': ' '{print $2}' | sed 's/)$//')
-
-          # 验证名称格式
-          if [[ ! $NAME_TO_FIND =&#126; ^[0-9\-]+$ ]]; then
-            echo "提取的名称格式不正确，跳过删除操作"
-            exit 0
-          fi
-
-          # 使用 curl 调用 GitHub API 获取 releases 列表
-          RELEASES=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_REPOSITORY}/releases | jq -r '.[].name')
-
-          # 检查并删除匹配的 release
-          for RELEASE in $RELEASES; do
-            if [[ $RELEASE == "$NAME_TO_FIND" ]]; then
-              RELEASE_ID=$(echo "$RELEASES" | jq -r "map(select(.name == \"$RELEASE\")).[].id | .[0]")
-              # 使用 curl 调用 GitHub API 删除 release
-              curl -s -X DELETE -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}
-              echo "已删除 release: $RELEASE"
-              break
-            fi
-          done
-
+      - name: Find and delete matching releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}
+        run: |
+          # 提取README.md中${{ matrix.repoName }}后面的name:后面的名称
+          RELEASE_NAME=$(grep -oP '\${{ matrix\.repoName }}\s*name:\s*\[[0-9-]*\]' README.md | awk -F'name: ' '{print $2}' | awk -F'\]' '{print $1}' | tr -d ' ')
+
+          # 检查是否提取到了名称
+          if [ -n "$RELEASE_NAME" ]; then
+            # 调用GitHub API获取所有releases
+            RELEASES=$(curl -s "https://api.github.com/repos/$GITHUB_REPOSITORY/releases" | jq -r '.[] | .tag_name')
+
+            # 遍历releases并检查是否有匹配项
+            for release in $RELEASES; do
+              if [[ "$release" == "$RELEASE_NAME" ]]; then
+                # 匹配到，删除release
+                curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/tags/$release"
+                echo "Deleted release: $release"
+                break  # 找到并删除后跳出循环
+              fi
+            done
+          else
+            echo "No release name found after ${{ matrix.repoName }}."
+          fi
           
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
