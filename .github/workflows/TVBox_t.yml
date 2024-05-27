@@ -139,32 +139,36 @@ jobs:
          #run: |
            #echo "commit=" >> $GITHUB_ENV
             
-      - name: Delete releases with specified description #  删除包含指定描述的Releases
-        if: ${{ !env.commit }}
+      - name: 检索并删除包含指定内容的Releases
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 替换为你的GitHub Token Secret名称
-          TARGET_DESCRIPTION: "${{ matrix.userName }}" # 替换为你要搜索的描述内容
+          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用仓库的 GitHub Token
         run: |
-          # 设置API请求的URL
+          # 定义要在Release描述中查找的内容
+          SEARCH_CONTENT="${{ matrix.userName }}" # 替换为你想要搜索的内容
+
+          # 获取仓库的Releases列表
           RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
-          
-          # 调用GitHub API获取所有Releases的JSON数据
-          RELEASES_RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$RELEASES_URL")
-          
-          # 使用grep和awk从JSON响应中提取包含目标描述的Releases ID
-          RELEASE_IDS=$(echo "$RELEASES_RESPONSE" | grep "\"body\": \"${TARGET_DESCRIPTION}\"" | awk -F '"' '{print $4}')
-          
-          # 检查是否找到了匹配的Releases
-          if [ -n "$RELEASE_IDS" ]; then
-            echo "找到描述中包含指定内容的Releases，开始删除..."
-            
-            # 遍历Releases ID，并使用curl命令删除对应的Releases
-            for release_id in $RELEASE_IDS; do
-              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
-              echo "已删除描述中包含指定内容的Release，ID为: $release_id"
-            done
-          else
-            echo "未找到描述中包含指定内容的Releases，跳过删除操作。"
+          RELEASES_JSON=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$RELEASES_URL")
+
+          # 遍历Releases，查找描述中包含指定内容的Release
+          FOUND_RELEASE=false
+          while IFS= read -r -d '' release; do
+            RELEASE_ID=$(echo "$release" | grep -oP '"id":\d+')
+            RELEASE_BODY=$(echo "$release" | grep -oP '"body":"[^"]*')
+
+            # 检查Release描述中是否包含指定内容
+            if echo "$RELEASE_BODY" | grep -qF "$SEARCH_CONTENT"; then
+              FOUND_RELEASE=true
+              echo "找到符合条件的Release，ID为: $RELEASE_ID"
+              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases/$RELEASE_ID"
+              echo "已删除Release，ID为: $RELEASE_ID"
+              break # 找到并删除后，退出循环
+            fi
+          done < <(echo "$RELEASES_JSON" | jq -c '.[]') # 使用jq将JSON数组转换为单行JSON对象
+
+          # 如果没有找到符合条件的Release，则跳过删除操作
+          if [ "$FOUND_RELEASE" = false ]; then
+            echo "未找到包含指定内容的Releases"
           fi
           
       - name: Release and Upload Assets
