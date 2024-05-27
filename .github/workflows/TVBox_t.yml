@@ -139,6 +139,31 @@ jobs:
          #run: |
            #echo "commit=" >> $GITHUB_ENV
           
+      - name: Check if release exists and delete it
+        if: ${{ env.commit }}
+        run: |
+          # 设置你的 GitHub 仓库信息
+          REPO_OWNER=xinyi1984
+          REPO_NAME=TVBox-TV
+          GITHUB_TOKEN=${{ secrets.GITHUBXYTV_TOKEN }} # 这是 GitHub Actions 自动提供的 token
+          RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}') # 这是你想要删除的 releases 的名称
+
+          # 使用 curl 和 GitHub API 获取 releases 列表
+          RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
+
+          # 使用 jq 工具解析 JSON，并查找匹配的 releases ID
+          RELEASE_ID=$(echo "$RELEASES" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
+
+          # 检查是否找到了匹配的 releases
+          if [ -n "$RELEASE_ID" ]; then
+            echo "Found release with name $RELEASE_NAME and ID $RELEASE_ID. Deleting it..."
+            # 使用 curl 和 GitHub API 删除匹配的 releases
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID"
+            echo "Release deleted successfully."
+          else
+            echo "No release found with name $RELEASE_NAME."
+          fi
+          
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
         if: ${{ env.commit }}
@@ -202,7 +227,8 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git pull --rebase
-          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#Updated: [a-zA-Z0-9]*name: [0-9\-]*#Updated: ${{ env.commit }}name: ${{ env.tag }}#" README.md
+          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
+          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}/s#name: [0-9\-]*#name: ${{ env.tag }}#" README.md
           git add --all
           git commit -m "${{ env.commit }}"
           git push -u -f origin master
