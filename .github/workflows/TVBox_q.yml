@@ -139,42 +139,35 @@ jobs:
          #run: |
            #echo "commit=" >> $GITHUB_ENV
             
-      - name: 安装jq并检索并删除包含特定链接的Releases
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN进行身份验证
-          TARGET_CONTENT: "${{ matrix.userName }}" # 替换为你要在Releases描述中搜索的实际链接
+      - name: Delete Releases with Specified Content
         run: |
-          # 更新apt包列表并安装jq
-          sudo apt-get update
-          sudo apt-get install -y jq
-
-          # 初始化变量来存储需要删除的Releases的ID
-          DELETE_RELEASE_IDS=""
-
-          # 设置GitHub API的Releases端点URL
-          RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
-
-          # 使用curl获取所有Releases的JSON数据，并通过jq过滤出body中包含目标内容的Releases的ID
-          echo "检索Releases并筛选包含特定内容的Releases..."
-          RELEASES_IDS=$(curl -s "$RELEASES_URL?per_page=100" \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" |
-            jq -r --arg target_content="$TARGET_CONTENT" '.[] | select(.body | contains($target_content)) | .id')
-
-          # 检查是否找到了需要删除的Releases
-          if [ -n "$RELEASES_IDS" ]; then
-            echo "找到包含指定内容的Releases，开始删除..."
-
-            # 逐个删除找到的Releases
-            for id in $RELEASES_IDS; do
-              DELETE_URL="https://api.github.com/repos/${{ github.repository }}/releases/$id"
-              echo "正在删除Release ID: $id"
-              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "$DELETE_URL"
-              echo "已删除Release ID: $id"
+            # 设置要查找的指定内容
+            SEARCH_CONTENT="${{ matrix.userName }}"
+    
+            # 使用curl获取所有Releases的列表
+            RELEASES_URL="https://api.github.com/repos/OWNER/REPO/releases"
+            RELEASES_JSON=$(curl -s "$RELEASES_URL" | jq -r '.[] | {tag_name, body} | @json')
+    
+            # 遍历每个Releases，检查body是否包含指定内容
+            echo "$RELEASES_JSON" | jq -r '.[] | "\(.tag_name): \(.body)"' | while read -r release; do
+              tag_name=$(echo "$release" | awk -F: '{print $1}')
+              body=$(echo "$release" | awk -F: '{print $2}')
+      
+              # 使用grep检查body是否包含指定内容
+              if echo "$body" | grep -q "$SEARCH_CONTENT"; then
+                echo "Found specified content in Release $tag_name. Deleting it..."
+                # 使用curl删除该Releases
+                curl -s -X DELETE -H "Authorization: token YOUR_GITHUB_TOKEN" "$RELEASES_URL/tags/$tag_name"
+              else
+                echo "Release $tag_name does not contain specified content. Skipping..."
+              fi
             done
-          else
-            echo "未找到包含指定内容的Releases，跳过删除操作。"
-          fi
+        env:
+            # 设置你的GitHub仓库的OWNER和REPO
+            OWNER: ${{ matrix.userName }}
+            REPO: ${{ matrix.repoName }}
+            # 设置你的GitHub个人访问令牌，用于授权API请求
+            GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}
           
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
