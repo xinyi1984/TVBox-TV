@@ -142,7 +142,7 @@ jobs:
       - name: 安装jq并检索并删除包含特定描述内容的Releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }} # 使用GitHub提供的默认TOKEN进行身份验证
-          TARGET_DESCRIPTION_CONTENT: "Credit: ${{ matrix.userName }" # 替换为你要在Releases描述中搜索的实际内容
+          TARGET_DESCRIPTION_CONTENT: "Credit: ${{ matrix.userName }}" # 替换为你要在Releases描述中搜索的实际内容
         run: |
           # 更新apt包列表并安装jq工具
           sudo apt-get update
