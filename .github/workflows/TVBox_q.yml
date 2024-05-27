@@ -144,8 +144,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}
         run: |
           # 从README.md中提取release名称
-          RELEASE_NAME=$(grep '{{ matrix.userName }}/${{ matrix.repoName }} \(name:' README.md | tail -n 1 | awk -F'name:' '{print $2}' | sed 's/ //g' | cut -d'(' -f1)
-
+          RELEASE_NAME=$(grep -E '${{ matrix.userName }}/${{ matrix.repoName }} \(name: [0-9\-]+' README.md | tail -n 1 | awk -F'name: ' '{print $2}' | sed 's/ .*//')
           # 检查是否成功提取到release名称
           if [ -z "$RELEASE_NAME" ]; then
             echo "Failed to extract release name from README.md"
