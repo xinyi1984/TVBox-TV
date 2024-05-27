@@ -139,6 +139,39 @@ jobs:
          #run: |
            #echo "commit=" >> $GITHUB_ENV
             
+      - name: Find and delete latest release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}  # 确保你的仓库有删除releases的权限
+        run: |
+          # 使用grep和awk从README.md中提取release名称
+          RELEASE_NAME=$(grep '${{ matrix.userName }}/${{ matrix.repoName }} \(name:' README.md | tail -n 1 | awk -F'name:' '{print $2}' | awk '{print $1}' | tr -d ' ')
+
+          # 检查是否成功提取到release名称
+          if [ -z "$RELEASE_NAME" ]; then
+            echo "Failed to extract release name from README.md"
+            exit 1
+          fi
+
+          # 使用curl和GitHub API获取release的ID
+          RELEASE_ID=$(curl -sL "https://api.github.com/repos/${{ github.repository }}/releases" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
+
+          # 检查是否成功获取到release的ID
+          if [ -z "$RELEASE_ID" ]; then
+            echo "Release $RELEASE_NAME not found"
+            exit 0  # 如果找不到，则不执行删除操作
+          fi
+
+          # 使用curl和GitHub API删除release
+          curl -sL -X DELETE "https://api.github.com/repos/${{ github.repository }}/releases/$RELEASE_ID" -H "Authorization: token $GITHUB_TOKEN"
+
+          # 输出删除结果
+          if [ $? -eq 0 ]; then
+            echo "Release $RELEASE_NAME deleted successfully"
+          else
+            echo "Failed to delete release $RELEASE_NAME"
+            exit 1
+          fi
+          
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
         if: ${{ env.commit }}
