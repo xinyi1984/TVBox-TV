@@ -28,7 +28,13 @@ jobs:
         include:
           - userName: xinyi1984
             repoName: TV 
+            branchName: fongmi
+          - userName: xinyi1984
+            repoName: TV 
             branchName: dev
+          - userName: xinyi1984
+            repoName: TV
+            branchName: release
 
     steps:
       - name: Checkout
@@ -187,6 +193,7 @@ jobs:
           else
             echo "No release found with name $RELEASE_NAME."
           fi
+          
       - name: Release and Upload Assets
         uses: ncipollo/release-action@v1
         if: ${{ env.commit }}
