@@ -177,13 +177,10 @@ jobs:
           REPO_NAME=TVBox-TV
           GITHUB_TOKEN=${{ secrets.GITHUBXYTV_TOKEN }} # 这是 GitHub Actions 自动提供的 token
           RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}') # 这是你想要删除的 releases 的名称
-
           # 使用 curl 和 GitHub API 获取 releases 列表
           RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
-
           # 使用 jq 工具解析 JSON，并查找匹配的 releases ID
           RELEASE_ID=$(echo "$RELEASES" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
-
           # 检查是否找到了匹配的 releases
           if [ -n "$RELEASE_ID" ]; then
             echo "Found release with name $RELEASE_NAME and ID $RELEASE_ID. Deleting it..."
