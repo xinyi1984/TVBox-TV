@@ -43,6 +43,7 @@ jobs:
             echo "commit=$commit" >> $GITHUB_ENV
             echo "commitS=${commit:0:7}" >> $GITHUB_ENV
           fi
+          
       - name: Checkout Source Code
         if: ${{ env.commit }}
         run: |
@@ -50,6 +51,7 @@ jobs:
           cd TVBox-TV
           git checkout ${{ env.commit }}
           echo "tag=$(git log --date=format:'%Y%m%d-%H%M' --pretty=format:%cd ${{ env.commitS }} -1)" >> $GITHUB_ENV
+          
       - name: Extra Modify
         if: ${{ env.commit }}
         working-directory: TVBox-TV
@@ -63,12 +65,14 @@ jobs:
           else
             sed -i "/jitpack.io/a\        maven { url 'https://xinyi1984.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
           fi
+          
       - name: Compress Source Code
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           zip -q -x ".git/*" -x  ".github/*" -r source-${{ env.commitS }}.zip .
           #tar -cJf source-${{ env.commitS }}.tar.xz --exclude=.git --exclude=.github *
+          
       - name: Option For Test
         if: ${{ inputs.testOption }}
         working-directory: TVBox-TV
@@ -76,6 +80,7 @@ jobs:
           #添加arm64支持，不支持ijk解码
           sed -i "/armeabi-v7a[\'\"]$/s#\$#, 'arm64-v8a'#" app/build.gradle
           sed -i "/armeabi-v7a[\'\"]$/s#\$#, 'arm64-v8a'#" player/build.gradle
+          
       - name: Release Apk Sign
         if: ${{ env.commit }}
         working-directory: TVBox-TV
@@ -91,12 +96,14 @@ jobs:
           sed -i '$a\RELEASE_STORE_PASSWORD=TVBoxOSC'       ./gradle.properties
           sed -i '$a\RELEASE_KEY_PASSWORD=TVBoxOSC'         ./gradle.properties
       # Set up JDK 17 解决androidx/room/RoomProcessor has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0  61需要java-version: 17
+      
       - name: set up JDK 17 
         if: ${{ env.commit }}
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
+          
       - name: Setup Gradle
         if: ${{ env.commit }}
         uses: gradle/gradle-build-action@v3
@@ -106,6 +113,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
+          
       - name: Prepare App
         if: ${{ env.commit }}
         working-directory: TVBox-TV
@@ -115,6 +123,7 @@ jobs:
           for file in `find ~ -name "*release*.apk" -print`; do
             mv "$file" apk/TVBox_${{ matrix.userName }}.apk
           done
+          
       - name: Release Note
         if: ${{ env.commit }}
         working-directory: TVBox-TV
@@ -127,6 +136,7 @@ jobs:
           else
             git log --pretty=format:%B ${{ env.commitS }}...${lastCommit:0:7} |sed -e "s# \{2,\}#\n#g" -e "/^Merge \(pull\|branch\|remote\)/d" -e '/^$/d' |cat -n |sort -k2,2 -k1,1n |uniq -f1 |sort -k1,1n |cut -f2- >> apk/${{ matrix.userName }}-Release.log
           fi
+          
       #- name: Upload App To Artifact
          #uses: actions/upload-artifact@v3
          #if: ${{ env.commit }}
@@ -147,13 +157,10 @@ jobs:
           REPO_NAME=TVBox-TV
           GITHUB_TOKEN=${{ secrets.GITHUBXYTV_TOKEN }} # 这是 GitHub Actions 自动提供的 token
           RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}') # 这是你想要删除的 releases 的名称
-
           # 使用 curl 和 GitHub API 获取 releases 列表
           RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
-
           # 使用 jq 工具解析 JSON，并查找匹配的 releases ID
           RELEASE_ID=$(echo "$RELEASES" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
-
           # 检查是否找到了匹配的 releases
           if [ -n "$RELEASE_ID" ]; then
             echo "Found release with name $RELEASE_NAME and ID $RELEASE_ID. Deleting it..."
