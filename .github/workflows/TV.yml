@@ -28,7 +28,7 @@ jobs:
         include:
           - userName: xinyi1984
             repoName: TV 
-            branchName: fongmi
+            branchName: release
 
     steps:
       - name: Checkout
