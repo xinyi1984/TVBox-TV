@@ -12,4 +12,4 @@ This repo relies on the following third-party projects:
 - [takagen99/Box](https://github.com/takagen99/Box) (Updated: 1e7aa4017cbafb07bad141c1656dea5620ee6ea0) (name: 20240604-2211)
 - [xinyi1984/TV/tree/dev](https://github.com/xinyi1984/TV/tree/dev) (Updated: fa7723a46dce69fabb77b520078d8f2dcb845f63) (name: 20240607-1157)
 - [xinyi1984/TV/tree/fongmi](https://github.com/xinyi1984/TV/tree/fongmi) (Updated: 3e1329fca4efc63b9595eb6b7f80f1ad9c2540fe) (name: 20240606-1812)
-- [xinyi1984/TV/tree/release](https://github.com/xinyi1984/TV/tree/release) (Updated: ac2fb29784d89ecc016b7aaabcc98dd87007e43c) (name: 20240606-1542)
+- [xinyi1984/TV/tree/release](https://github.com/xinyi1984/TV/tree/release) (Updated: 614a6136f2eff3a98ae83e8556e0319fe0d370b5) (name: 20240607-1232)
