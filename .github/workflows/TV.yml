@@ -28,7 +28,7 @@ jobs:
         include:
           - userName: xinyi1984
             repoName: TV 
-            branchName: xyfm
+            branchName: fongmi
           - userName: xinyi1984
             repoName: TV 
             branchName: dev
