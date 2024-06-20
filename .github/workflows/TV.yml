@@ -123,7 +123,7 @@ jobs:
       - name: Grant execute permission for gradlew
         if: ${{ env.commit }}
         working-directory: TVBox-TV
-        run: chmod +x ./gradlew
+        run: chmod +x /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/gradlew
         
       - name: Build With Gradle
         if: ${{ env.commit }}
