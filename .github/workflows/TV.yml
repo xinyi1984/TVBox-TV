@@ -78,7 +78,7 @@ jobs:
 
       - name: Compress Source Code
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           #删除xinyi1984-TV的release目录
           rm -rf release
@@ -87,7 +87,7 @@ jobs:
       
       - name: Option For Test
         if: ${{ inputs.testOption }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           #添加arm64支持，不支持ijk解码
           sed -i "/armeabi-v7a[\'\"]$/s#\$#, 'arm64-v8a'#" app/build.gradle
@@ -95,7 +95,7 @@ jobs:
       
       - name: Release Apk Sign
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           signingConfigs='ICAgIHNpZ25pbmdDb25maWdzIHtcCiAgICAgICAgaWYgKHByb2plY3QuaGFzUHJvcGVydHkoIlJFTEVBU0VfU1RPUkVfRklMRSIpKSB7XAogICAgICAgICAgICBteUNvbmZpZyB7XAogICAgICAgICAgICAgICAgc3RvcmVGaWxlIGZpbGUoUkVMRUFTRV9TVE9SRV9GSUxFKVwKICAgICAgICAgICAgICAgIHN0b3JlUGFzc3dvcmQgUkVMRUFTRV9TVE9SRV9QQVNTV09SRFwKICAgICAgICAgICAgICAgIGtleUFsaWFzIFJFTEVBU0VfS0VZX0FMSUFTXAogICAgICAgICAgICAgICAga2V5UGFzc3dvcmQgUkVMRUFTRV9LRVlfUEFTU1dPUkRcCiAgICAgICAgICAgICAgICB2MVNpZ25pbmdFbmFibGVkIHRydWVcCiAgICAgICAgICAgICAgICB2MlNpZ25pbmdFbmFibGVkIHRydWVcCiAgICAgICAgICAgICAgICBlbmFibGVWM1NpZ25pbmcgPSB0cnVlXAogICAgICAgICAgICAgICAgZW5hYmxlVjRTaWduaW5nID0gdHJ1ZVwKICAgICAgICAgICAgfVwKICAgICAgICB9XAogICAgfVwKXA=='
           signingConfig='ICAgICAgICAgICAgaWYgKHByb2plY3QuaGFzUHJvcGVydHkoIlJFTEVBU0VfU1RPUkVfRklMRSIpKSB7XAogICAgICAgICAgICAgICAgc2lnbmluZ0NvbmZpZyBzaWduaW5nQ29uZmlncy5teUNvbmZpZ1wKICAgICAgICAgICAgfVwK'
@@ -125,6 +125,7 @@ jobs:
         working-directory: TVBox-TV
         run: |
           chmod +x gradlew
+          cd TVBox-TV/media
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
           rm -rf app/src/arm64_v8a/assets
@@ -134,7 +135,7 @@ jobs:
   
       - name: Prepare App
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           #rm -rf apk/
           mkdir -p apk/
@@ -151,7 +152,7 @@ jobs:
       
       - name: Release Note
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           lastCommit=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[a-z0-9]\{40\}')
           export LESSCHARSET=utf-8
@@ -207,7 +208,7 @@ jobs:
             
       - name: Post To Telegram leanback arm64
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
@@ -232,7 +233,7 @@ jobs:
     
       - name: Post To Telegram leanback armeabi
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
@@ -257,7 +258,7 @@ jobs:
     
       - name: Post To Telegram mobile
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
@@ -282,7 +283,7 @@ jobs:
       
       - name: Upload json To xytv
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |  
           git clone https://github.com/xinyi1984/xytv.git
           sed -i "s#https://gh-proxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/[0-9\-]*/${{ matrix.branchName }}#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/${{ env.tag }}/${{ matrix.branchName }}#g" xytv/json/market.json
