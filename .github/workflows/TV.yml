@@ -119,17 +119,12 @@ jobs:
       - name: Setup Gradle
         if: ${{ env.commit }}
         uses: gradle/actions/setup-gradle@v3
-          
-      - name: Grant execute permission for gradlew
-        if: ${{ env.commit }}
-        working-directory: TVBox-TV
-        run: chmod +x /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/gradlew
         
       - name: Build With Gradle
         if: ${{ env.commit }}
-        working-directory: TVBox-TV/media
+        working-directory: TVBox-TV
         run: |
-          #cd /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media
+          chmod +x /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/gradlew
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
           rm -rf app/src/arm64_v8a/assets
