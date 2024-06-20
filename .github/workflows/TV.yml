@@ -124,7 +124,9 @@ jobs:
         working-directory: TVBox-TV
         run: |
           git clone https://github.com/androidx/media.git
-          cp -r media/* TVBox-TV/
+          cd media
+          cp -r media/* .
+          cd .
           find . -name core_settings.gradle
           
       - name: Build With Gradle
