@@ -34,7 +34,7 @@ jobs:
             branchName: dev
           - userName: xinyi1984
             repoName: TV
-            branchName: release11
+            branchName: release
 
     steps:
       - name: Checkout
