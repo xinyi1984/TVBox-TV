@@ -198,12 +198,12 @@ jobs:
         with:
           name: ${{ env.tag }}
           tag: ${{ env.tag }}
-          bodyFile: TVBox-TV/apk/${{ matrix.userName }}-Release.log
+          bodyFile: TVBox-TV/media/apk/${{ matrix.userName }}-Release.log
           allowUpdates: true
           removeArtifacts: true
           artifacts: |
-            TVBox-TV/apk/*.apk
-            TVBox-TV/source-${{ env.commitS }}.*  
+            TVBox-TV/media/apk/*.apk
+            TVBox-TV/media/source-${{ env.commitS }}.*  
             
       - name: Post To Telegram leanback arm64
         if: ${{ env.commit }}
