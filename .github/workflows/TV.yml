@@ -124,8 +124,16 @@ jobs:
         working-directory: TVBox-TV
         run: |
           git clone https://github.com/androidx/media.git
-          cp -r ./* .
-          find . -name core_settings.gradle
+          FILE_PATH="$GITHUB_WORKSPACE/core_settings.gradle"
+          
+          # 检查文件是否存在
+          if [ -f "$FILE_PATH" ]; then
+              echo "File exists at $FILE_PATH"
+              # 你可以在这里执行任何需要的操作，比如读取文件内容等
+          else
+              echo "File does not exist at $FILE_PATH"
+              exit 1
+          fi
           
       - name: Build With Gradle
         if: ${{ env.commit }}
