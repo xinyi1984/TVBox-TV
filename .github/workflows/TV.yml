@@ -129,7 +129,6 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBox-TV/media
         run: |
-          ./gradlew build
           #cd /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
