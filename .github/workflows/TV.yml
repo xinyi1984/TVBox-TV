@@ -125,7 +125,7 @@ jobs:
         working-directory: TVBox-TV
         run: |
           chmod +x gradlew
-          cd TVBox-TV/media
+          cd /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
           rm -rf app/src/arm64_v8a/assets
