@@ -124,7 +124,6 @@ jobs:
         working-directory: TVBox-TV
         run: |
           git clone https://github.com/androidx/media.git
-          cd media
           
       - name: Build With Gradle
         if: ${{ env.commit }}
