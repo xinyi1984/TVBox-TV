@@ -125,7 +125,7 @@ jobs:
         run: |
           git clone https://github.com/androidx/media.git media
           cd media
-          cp -r media/* .
+          cp -r ./media/* .
           cd .
           find . -name core_settings.gradle
           
