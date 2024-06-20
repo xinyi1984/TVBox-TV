@@ -119,12 +119,17 @@ jobs:
         if: ${{ env.commit }}
         uses: gradle/actions/setup-gradle@v3
       
-      - name: Build With Gradle
+      - name: clone androidx media
         if: ${{ env.commit }}
         working-directory: TVBox-TV
         run: |
           git clone https://github.com/androidx/media.git
           cd media
+          
+      - name: Build With Gradle
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |
           chmod +x gradlew
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
