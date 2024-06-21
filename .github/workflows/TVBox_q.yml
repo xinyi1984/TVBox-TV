@@ -96,18 +96,26 @@ jobs:
           sed -i '$a\RELEASE_KEY_ALIAS=TVBoxOSC'            ./gradle.properties
           sed -i '$a\RELEASE_STORE_PASSWORD=TVBoxOSC'       ./gradle.properties
           sed -i '$a\RELEASE_KEY_PASSWORD=TVBoxOSC'         ./gradle.properties
-      # Set up JDK 17 解决androidx/room/RoomProcessor has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0  61需要java-version: 17
       
-      #- name: set up JDK 17 
-        #if: ${{ env.commit }}
-        #uses: actions/setup-java@v4
-        #with:
-          #distribution: 'temurin'
-          #java-version: '17'
-      
-      - name: Setup Gradle
+      - name: Check JAVA Version
         if: ${{ env.commit }}
-        uses: gradle/gradle-build-action@v3
+        working-directory: TVBox-TV
+        run: |
+          setup_java_ver=$(grep -o 'JavaVersion.VERSION_[0-9_]\+' app/build.gradle |head -1 |sed 's/.*_//')
+          if [ $setup_java_ver -gt 11 ]; then
+            echo "setup_java_ver=$setup_java_ver" >> $GITHUB_ENV
+          else
+            echo "setup_java_ver=17" >> $GITHUB_ENV
+          fi
+      
+      - uses: actions/setup-java@v4
+        if: ${{ env.setup_java_ver }}
+        with:
+          distribution: temurin
+          java-version: ${{ env.setup_java_ver }}
+      
+      - uses: gradle/gradle-build-action@v3
+        if: ${{ env.commit }}
       
       - name: Build With Gradle
         if: ${{ env.commit }}
