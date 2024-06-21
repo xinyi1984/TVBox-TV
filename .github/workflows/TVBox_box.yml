@@ -112,7 +112,7 @@ jobs:
           #fi
       
       - uses: actions/setup-java@v4
-        if: ${{ env.commit }} && ${{ matrix.userName }} == takagen99
+        if: ${{ env.commit && matrix.userName == 'takagen99' }}
         with:
           distribution: temurin
           java-version: 17
