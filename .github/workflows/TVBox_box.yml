@@ -1,4 +1,4 @@
-name: TVBox_q
+name: TVBox_box
 
 on:
   push:
@@ -109,7 +109,7 @@ jobs:
           #fi
       
       - uses: actions/setup-java@v4
-        if: takagen99
+        if: ${{ matrix.userName }} == takagen99
         with:
           distribution: temurin
           java-version: ${{ env.setup_java_ver }}
