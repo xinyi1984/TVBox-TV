@@ -111,6 +111,8 @@ jobs:
             #echo "setup_java_ver=17" >> $GITHUB_ENV
           #fi
       
+      - name: set up JDK 17 
+        if: ${{ env.commit }}
       - uses: actions/setup-java@v4
         if: ${{ matrix.userName }} == takagen99
         with:
