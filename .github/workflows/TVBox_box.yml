@@ -97,19 +97,19 @@ jobs:
           sed -i '$a\RELEASE_STORE_PASSWORD=TVBoxOSC'       ./gradle.properties
           sed -i '$a\RELEASE_KEY_PASSWORD=TVBoxOSC'         ./gradle.properties
       
-      - name: Check JAVA Version
-        if: ${{ env.commit }}
-        working-directory: TVBox-TV
-        run: |
-          setup_java_ver=$(grep -o 'JavaVersion.VERSION_[0-9_]\+' app/build.gradle |head -1 |sed 's/.*_//')
-          if [ $setup_java_ver -gt 11 ]; then
-            echo "setup_java_ver=$setup_java_ver" >> $GITHUB_ENV
-          else
-            echo "setup_java_ver=17" >> $GITHUB_ENV
-          fi
+      #- name: Check JAVA Version
+        #if: ${{ env.commit }}
+        #working-directory: TVBox-TV
+        #run: |
+          #setup_java_ver=$(grep -o 'JavaVersion.VERSION_[0-9_]\+' app/build.gradle |head -1 |sed 's/.*_//')
+          #if [ $setup_java_ver -gt 11 ]; then
+            #echo "setup_java_ver=$setup_java_ver" >> $GITHUB_ENV
+          #else
+            #echo "setup_java_ver=17" >> $GITHUB_ENV
+          #fi
       
       - uses: actions/setup-java@v4
-        if: ${{ env.setup_java_ver }}
+        if: takagen99
         with:
           distribution: temurin
           java-version: ${{ env.setup_java_ver }}
