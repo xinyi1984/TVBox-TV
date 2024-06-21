@@ -115,7 +115,7 @@ jobs:
         if: ${{ matrix.userName }} == takagen99
         with:
           distribution: temurin
-          java-version: ${{ env.setup_java_ver }}
+          java-version: 17
       
       - uses: gradle/gradle-build-action@v3
         if: ${{ env.commit }}
