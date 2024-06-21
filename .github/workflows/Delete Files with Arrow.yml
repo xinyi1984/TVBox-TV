@@ -1,0 +1,37 @@
+name: Delete Files with Arrow
+
+on:
+  workflow_dispatch: # 允许手动触发
+  # 也可以设置定时触发，例如每天运行
+  # schedule:
+  #   - cron: '0 0 * * *' # 每天午夜触发
+
+jobs:
+  delete-arrow-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          # 设置为fetch-depth: 0以获取所有提交历史，这对于列出所有文件是必要的
+          fetch-depth: 0
+
+      - name: List and Delete Files with Arrow
+        run: |
+          # 安装jq用于处理JSON数据
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+          # 获取仓库的所有文件列表
+          FILES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/contents/ | jq -r '.[] | .path')
+
+          # 遍历文件列表，查找包含箭头的文件，并删除它们
+          for FILE in $FILES; do
+            if [[ $FILE == *"→"* ]]; then
+              echo "Deleting file: $FILE"
+              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/$FILE"
+            fi
+          done
+        env:
+          # 使用GitHub提供的token，它对于当前仓库有写权限
+          GITHUB_TOKEN: ${{ secrets.GITHUBXYTV_TOKEN }}
