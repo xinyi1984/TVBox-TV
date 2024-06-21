@@ -1,10 +1,7 @@
 name: Delete TVBox-TV Directory
 
 on:
-  workflow_dispatch: # 允许手动触发
-  # 或者设置为定期运行，例如每天
-  # schedule:
-  #   - cron: '0 0 * * *' # 每天午夜触发
+  workflow_dispatch:
 
 jobs:
   delete-directory:
@@ -13,28 +10,21 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          # 确保获取整个仓库历史
           fetch-depth: 0
 
-      - name: Delete TVBox-TV Directory
+      - name: Set Git User Info
         run: |
-          # 检查 TVBox-TV 目录是否存在
+          git config --global user.name "xinyi1984"
+          git config --global user.email "75725458@qq.com"
+
+      - name: Check if TVBox-TV Directory Exists and Delete It
+        run: |
           if [ -d "TVBox-TV" ]; then
             echo "Deleting TVBox-TV directory..."
-            # 删除 TVBox-TV 目录
             rm -rf TVBox-TV
-            # 将删除操作添加到暂存区
             git add TVBox-TV
-            # 提交更改
             git commit -m "Delete TVBox-TV directory"
-            # 推送更改到远程仓库
             git push
           else
             echo "TVBox-TV directory does not exist."
           fi
-
-      - name: Check Git Status
-        if: always() # 无论成功还是失败都执行
-        run: |
-          # 输出Git状态信息
-          git status
