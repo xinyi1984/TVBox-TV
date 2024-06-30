@@ -56,6 +56,8 @@ jobs:
         if: ${{ env.commit }}
         run: |
           git clone https://github.com/androidx/media.git TVBox-TV
+          cd TVBox-TV
+          git checkout -b 1.4.0-beta01 origin/1.4.0-beta01
           git clone ${{ env.upStream }} TVBox-TV/media
           cd TVBox-TV/media
           git checkout ${{ env.commit }}
