@@ -56,7 +56,6 @@ jobs:
         if: ${{ env.commit }}
         run: |
           git clone https://github.com/androidx/media.git TVBox-TV
-          cd TVBox-TV
           git checkout -b release-1.4.0-beta01 origin/release-1.4.0-beta01
           git clone ${{ env.upStream }} TVBox-TV/media
           cd TVBox-TV/media
@@ -80,7 +79,7 @@ jobs:
 
       - name: Compress Source Code
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           #删除xinyi1984-TV的release目录
           rm -rf release
