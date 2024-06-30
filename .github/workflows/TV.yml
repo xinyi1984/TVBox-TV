@@ -80,7 +80,7 @@ jobs:
 
       - name: Compress Source Code
         if: ${{ env.commit }}
-        working-directory: TVBox-TV/media
+        working-directory: TVBox-TV
         run: |
           #删除xinyi1984-TV的release目录
           rm -rf release
