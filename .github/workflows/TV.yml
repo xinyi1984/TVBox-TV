@@ -57,7 +57,8 @@ jobs:
         run: |
           git clone https://github.com/androidx/media.git TVBox-TV
           cd TVBox-TV
-          #git checkout -b release-1.4.0-beta01 origin/release-1.4.0-beta01
+          git checkout -b release-1.4.0-beta01 origin/release-1.4.0-beta01
+          cd /home/runner/work/TVBox-TV/TVBox-TV
           git clone ${{ env.upStream }} TVBox-TV/media
           cd TVBox-TV/media
           git checkout ${{ env.commit }}
