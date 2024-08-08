@@ -117,7 +117,7 @@ jobs:
           distribution: temurin
           java-version: 17
       
-      - uses: gradle/gradle-build-action@v3
+      - uses: gradle/actions/setup-gradle@v4
         if: ${{ env.commit }}
       
       - name: Build With Gradle
