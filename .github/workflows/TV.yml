@@ -123,7 +123,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      
+          
+      - name: Clean Gradle Cache
+        run: gradlew cleanBuildCache
+        
       - name: Setup Gradle
         if: ${{ env.commit }}
         uses: gradle/actions/setup-gradle@v4
