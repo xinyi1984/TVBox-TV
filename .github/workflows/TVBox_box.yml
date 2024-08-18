@@ -52,8 +52,8 @@ jobs:
       - name: Checkout Source Code
         if: ${{ env.commit }}
         run: |
-          git clone ${{ env.upStream }} TVBoxOSC
-          cd TVBoxOSC
+          git clone ${{ env.upStream }} TVBox-TV
+          cd TVBox-TV
           git checkout ${{ env.commit }}
           echo "tag=$(git log --date=format:'%Y%m%d-%H%M' --pretty=format:%cd ${{ env.commitS }} -1)" >> $GITHUB_ENV
           
