@@ -64,21 +64,25 @@ jobs:
           cd TVBox-TV/media
           git checkout ${{ env.commit }}
           echo "tag=$(git log --date=format:'%Y%m%d-%H%M' --pretty=format:%cd ${{ env.commitS }} -1)" >> $GITHUB_ENV
-      
-      #- name: Extra Modify
-        #if: ${{ env.commit }}
-       #working-directory: TVBox-TV
-        #run: |
-          #echo '修改VersionName'
-          #sed -i "/versionName/s#[0-9a-zA-Z_\.\'\"-]\+\$#\'${{ env.tag }}\'#" app/build.gradle
-          #sed -i "/android:text=/s#=\"#=\"${{ env.tag }}\\\\n\\\\n#" app/src/leanback/res/layout/activity_setting.xml
-          #sed -i "/android:text=/s#=\"#=\"${{ env.tag }}\\\\n\\\\n#" app/src/mobile/res/layout/fragment_setting.xml
-          #echo 'crosswalk源，防挂'
-          #if grep -q 'crosswalk' build.gradle; then
-            #sed -i "/crosswalk/a\        maven { url 'https://xinyi1984.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
-          #else
-            #sed -i "/jitpack.io/a\        maven { url 'https://xinyi1984.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
-          #fi
+          
+      - name: Extra Modify
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV
+        run: |
+          echo '修改VersionName'
+          if [ "${{ matrix.userName }}" == "takagen99" ]; then
+            # 进行 sed 修改
+            sed -i 's/\.concat(buildTime())/ +\"${{ env.tag }}\"/g' app/build.gradle 
+          else
+             sed -i "/versionName/s#[0-9a-zA-Z_\.\'\"-]\+\$#\'${{ env.tag }}\'#" app/build.gradle
+             sed -i "/android:text=/s#=\"#=\"${{ env.tag }}\\\\n\\\\n#" app/src/main/res/layout/dialog_about.xml
+          fi 
+          echo 'crosswalk源，防挂'
+          if grep -q 'crosswalk' build.gradle; then
+            sed -i "/crosswalk/a\        maven { url 'https://o0HalfLife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
+          else
+            sed -i "/jitpack.io/a\        maven { url 'https://o0HalfLife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
+          fi
 
       - name: Compress Source Code
         if: ${{ env.commit }}
