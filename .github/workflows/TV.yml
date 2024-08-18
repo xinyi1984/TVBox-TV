@@ -32,7 +32,7 @@ jobs:
           - userName: xinyi1984
             repoName: TV 
             branchName: dev
-          - userName: xinyi1984
+          - userName: FongMi
             repoName: TV
             branchName: release
 
