@@ -23,14 +23,16 @@ def genFileDirectory(path):
     media[-1]['parse_mode'] = "Markdown"
     return media, files
 
-def sendAPKs(path):
+def sendAPKs(path, batch_size=5):  # 添加 batch_size 参数，默认每次发送 5 个文件
     media, files = genFileDirectory(path)
-    parma = {
-        "chat_id": CHAT_ID,
-        "media": json.dumps(media)
-    }
-    response = requests.post(urlPrefix + "/sendMediaGroup", params=parma, files=files)
-    print(response.json())
+    for i in range(0, len(media), batch_size):  # 按照 batch_size 分批处理
+        batch_media = media[i:i + batch_size]
+        parma = {
+            "chat_id": CHAT_ID,
+            "media": json.dumps(batch_media)
+        }
+        response = requests.post(urlPrefix + "/sendMediaGroup", params=parma, files={f: files[f] for f in [m['media'].replace('attach://', '') for m in batch_media]})
+        print(response.json())
 
 if __name__ == "__main__":
     apk_path = "./apk"
