@@ -196,6 +196,14 @@ jobs:
              TVBox-TV/apk/*.apk
              TVBox-TV/apk/source-${{ env.commitS }}.*
              
+      
+      - name: Download Telegram Bot API Binary
+        if: ${{ env.commit }}
+        uses: actions/download-artifact@v4
+        with:
+          name: telegram-bot-api-binary
+          path: TVBox-TV
+          
       - name: Post To Telegram
         if: ${{ env.commit }}
         working-directory: TVBox-TV
