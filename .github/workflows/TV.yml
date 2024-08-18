@@ -143,7 +143,8 @@ jobs:
         run: |
           rm -rf apk/
           mkdir -p apk/
-          for file in `find ~ \( -name "*python*.apk" -o -name "*java*.apk" \) -print`; do
+          for file in `find ~ \( -name "*python*.apk" -o -name "*java*.apk" \) -not -name "*x86*" -print`; do
+          #for file in `find ~ -name "*java*.apk" -not -name "*x86*" -print`; do
             # 获取文件的基本名称
             base=$(basename "$file")
             # 在基本名称添加分支${{ matrix.branchName }}_
