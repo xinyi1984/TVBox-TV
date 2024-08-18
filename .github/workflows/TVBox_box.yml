@@ -198,7 +198,7 @@ jobs:
              
       - name: Post To Telegram
         if: ${{ env.commit }}
-        working-directory: TVBoxOSC
+        working-directory: TVBox-TV
         env:
           CHAT_ID: -1002241320915
           TELEGRAM_TOKEN: ${{ secrets.BOT_TOKEN }}
