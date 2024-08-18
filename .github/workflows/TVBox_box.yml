@@ -71,9 +71,9 @@ jobs:
           fi 
           echo 'crosswalk源，防挂'
           if grep -q 'crosswalk' build.gradle; then
-            sed -i "/crosswalk/a\        maven { url 'https://o0halflife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
+            sed -i "/crosswalk/a\        maven { url 'https://xinyi1984.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
           else
-            sed -i "/jitpack.io/a\        maven { url 'https://o0halflife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
+            sed -i "/jitpack.io/a\        maven { url 'https://xinyi1984.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
           fi
           
       - name: Compress Source Code
@@ -202,7 +202,7 @@ jobs:
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
-            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_${{ matrix.userName }}_*.apk")
+            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_${{ matrix.userName }}_*")
             export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
