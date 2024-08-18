@@ -67,7 +67,7 @@ jobs:
           
       - name: Extra Modify
         if: ${{ env.commit }}
-        working-directory: TVBox-TV
+        working-directory: TVBox-TV/media
         run: |
           echo '修改VersionName'
           if [ "${{ matrix.userName }}" == "takagen99" ]; then
