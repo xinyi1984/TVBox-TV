@@ -151,7 +151,7 @@ jobs:
             # 移动并重命名文件
             mv "$file" "apk/$new_base"
           done
-          mv source-${{ env.commitS }}.* apk/
+          #mv source-${{ env.commitS }}.* apk/
       
       - name: Release Note
         if: ${{ env.commit }}
