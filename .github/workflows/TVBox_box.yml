@@ -194,7 +194,7 @@ jobs:
            removeArtifacts: true
            artifacts: |
              TVBox-TV/apk/*.apk
-             TVBox-TV/source-${{ env.commitS }}.*
+             TVBox-TV/apk/source-${{ env.commitS }}.*
       
       - name: Post To Telegram
         if: ${{ env.commit }}
@@ -203,7 +203,7 @@ jobs:
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
             export appRelease=$(find $OUTPUT/apk/ -name "$new_base")
-            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
+            export sourceCode=$(find $OUTPUT/apk/ -name "source-${{ env.commitS }}.*")
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
             if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
