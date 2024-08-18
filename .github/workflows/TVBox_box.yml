@@ -111,7 +111,7 @@ jobs:
             #echo "setup_java_ver=17" >> $GITHUB_ENV
           #fi
       
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         if: ${{ env.commit && matrix.userName == 'takagen99' }}
         with:
           distribution: temurin
@@ -134,8 +134,18 @@ jobs:
           rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*release*.apk" -print`; do
-            mv "$file" apk/TVBox_${{ matrix.userName }}.apk
+            # 获取文件的基本名称
+            base=$(basename "$file")
+            # 如果文件是 TVBox_ 开头
+            if [[ "$base" == TVBox_* ]]; then
+              new_base=$(echo "$base" | sed "s/release/${{ matrix.userName }}_${{ env.tag }}/")
+            else
+              new_base="TVBox_${{ matrix.userName }}_${{ env.tag }}.apk"
+            fi
+            # 移动并重命名文件
+            mv "$file" "apk/$new_base"
           done
+          mv source-${{ env.commitS }}.* apk/
       
       - name: Release Note
         if: ${{ env.commit }}
@@ -204,7 +214,7 @@ jobs:
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
-            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_${{ matrix.userName }}.apk")
+            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_${{ matrix.userName }}_*.apk")
             export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
