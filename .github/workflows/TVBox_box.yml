@@ -194,8 +194,7 @@ jobs:
            removeArtifacts: true
            artifacts: |
              TVBox-TV/apk/*.apk
-             TVBox-TV/apk/source-${{ env.commitS }}.*
-             
+             TVBox-TV/apk/source-${{ env.commitS }}.*             
       
       - name: Download Telegram Bot API Binary
         if: ${{ env.commit }}
@@ -219,6 +218,7 @@ jobs:
             mv ../.github/scripts/upload.py ./
             python upload.py
           fi
+          
       - name: Push to master
         if: ${{ env.commit }}
         run: |
@@ -234,7 +234,6 @@ jobs:
           git commit -m "${{ env.commit }}"
           git push -u -f origin master
 
-      
       - name: Upload json To xytv
         if: ${{ env.commit }}
         working-directory: TVBox-TV
