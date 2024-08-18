@@ -41,10 +41,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Clean Gradle Cache
-        run: |
-          ./gradlew cleanBuildCache
         
       - name: Check New Commit
         run: |
@@ -137,10 +133,10 @@ jobs:
         working-directory: TVBox-TV/media
         run: |
           chmod +x /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/gradlew
+          ./gradlew cleanBuildCache
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
           rm -rf app/src/arm64_v8a/assets
-          ./gradlew cleanBuildCache
           ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
           #./gradlew assembleleanbackJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
           #./gradlew assembleleanbackJavaArmeabi_v7arelease --build-cache --parallel --daemon --warning-mode all
