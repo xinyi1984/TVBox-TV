@@ -207,14 +207,14 @@ jobs:
           removeArtifacts: true
           artifacts: |
             TVBox-TV/media/apk/*.apk
-            TVBox-TV/media/source-${{ env.commitS }}.*              
+            TVBox-TV/media/apk/source-${{ env.commitS }}.*              
       
       - name: Download Telegram Bot API Binary
         if: ${{ env.commit }}
         uses: actions/download-artifact@v4
         with:
           name: telegram-bot-api-binary
-          path: TVBox-TV
+          path: TVBox-TV/media
           
       - name: Post To Telegram
         if: ${{ env.commit }}
