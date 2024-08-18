@@ -202,7 +202,7 @@ jobs:
         run: |
           if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
             OUTPUT="${{ github.workspace }}/TVBox-TV"
-            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_${{ matrix.userName }}.apk")
+            export appRelease=$(find $OUTPUT/apk/ -name "TVBox_${{ matrix.userName }}*.apk")
             export sourceCode=$(find $OUTPUT/apk/ -name "source-${{ env.commitS }}.*")
             ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
             count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
