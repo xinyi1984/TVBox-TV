@@ -266,7 +266,6 @@ jobs:
           git push -u -f origin master
           #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
         continue-on-error: true
-        continue-on-error: true
         
   telegram-bot-api:
     name: Telegram Bot API
