@@ -254,6 +254,8 @@ jobs:
       - name: Push to master
         if: ${{ env.commit }}
         run: |
+          rm -rf TVBox-TV
+          git reset --hard #用于将当前分支的 HEAD 指针强制移动到指定的提交，并重置工作目录和暂存区以匹配该提交，这会丢弃所有未提交的更改
           sed -i '/url =/d' ./.git/config
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
