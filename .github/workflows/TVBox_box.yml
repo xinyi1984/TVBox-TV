@@ -289,7 +289,7 @@ jobs:
           key: CI-telegram-bot-api-${{ hashFiles('telegram-bot-api-status') }}
 
       - name: Compile Telegram Bot API
-        if: ${{ env.commit || steps.cache-bot-api.outputs.cache-hit != 'true' }} #||其中一个满足，&&两个同时满足
+        if: ${{ env.commit }} #||其中一个满足，&&两个同时满足
         run: |
           sudo apt-get update
           sudo apt-get install make git zlib1g-dev libssl-dev gperf cmake g++
