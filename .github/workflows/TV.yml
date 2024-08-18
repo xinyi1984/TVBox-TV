@@ -125,7 +125,7 @@ jobs:
           java-version: '17'
           
       - name: Clean Gradle Cache
-        working-directory: TVBox-TV/media
+        working-directory: TVBox-TV
         run: gradlew cleanBuildCache
         
       - name: Setup Gradle
