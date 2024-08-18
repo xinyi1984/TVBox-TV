@@ -126,14 +126,13 @@ jobs:
       
       - name: Setup Gradle
         if: ${{ env.commit }}
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v3
         
       - name: Build With Gradle
         if: ${{ env.commit }}
         working-directory: TVBox-TV/media
         run: |
           chmod +x /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/gradlew
-          ./gradlew cleanBuildCache
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
           rm -rf app/src/arm64_v8a/assets
