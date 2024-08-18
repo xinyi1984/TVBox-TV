@@ -132,26 +132,26 @@ jobs:
           #cp -r gradle.properties local.properties
           rm -rf app/src/armeabi_v7a/assets
           rm -rf app/src/arm64_v8a/assets
-          ./gradlew assembleleanbackJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
-          ./gradlew assembleleanbackJavaArmeabi_v7arelease --build-cache --parallel --daemon --warning-mode all
-          ./gradlew assemblemobileJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
-  
+          ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
+          #./gradlew assembleleanbackJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
+          #./gradlew assembleleanbackJavaArmeabi_v7arelease --build-cache --parallel --daemon --warning-mode all
+          #./gradlew assemblemobileJavaArm64_v8arelease --build-cache --parallel --daemon --warning-mode all
+          
       - name: Prepare App
         if: ${{ env.commit }}
-        working-directory: TVBox-TV/media
+        working-directory: TVBox-TV
         run: |
-          #rm -rf apk/
+          rm -rf apk/
           mkdir -p apk/
-          for file in `find ~ -name "*leanback-java-arm64*.apk" -print`; do
-            mv "$file" apk/${{ matrix.branchName }}_leanback-java-arm64_v8a.apk
+          for file in `find ~ -name "*.apk" -print`; do
+            # 获取文件的基本名称
+            base=$(basename "$file")
+            # 在基本名称添加分支${{ matrix.branchName }}_
+            new_base="${{ matrix.branchName }}_$base"
+            # 移动并重命名文件
+            mv "$file" "apk/$new_base"
           done
-          for file in `find ~ -name "*leanback-java-armeabi*.apk" -print`; do
-            mv "$file" apk/${{ matrix.branchName }}_leanback-java-armeabi_v7a.apk
-          done
-          for file in `find ~ -name "*mobile-java-arm64*.apk" -print`; do
-            mv "$file" apk/${{ matrix.branchName }}_mobile-java-arm64_v8a.apk
-            #mv "$file" apk/mobile_java_${{ matrix.branchName }}_${{ env.tag }}.apk
-          done
+          mv source-${{ env.commitS }}.* apk/
       
       - name: Release Note
         if: ${{ env.commit }}
@@ -207,81 +207,29 @@ jobs:
           removeArtifacts: true
           artifacts: |
             TVBox-TV/media/apk/*.apk
-            TVBox-TV/media/source-${{ env.commitS }}.*  
-            
-      - name: Post To Telegram leanback arm64
+            TVBox-TV/media/source-${{ env.commitS }}.*              
+      
+      - name: Download Telegram Bot API Binary
         if: ${{ env.commit }}
-        working-directory: TVBox-TV/media
-        run: |
-          if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
-            OUTPUT="${{ github.workspace }}/TVBox-TV/media"
-            export appRelease=$(find $OUTPUT/apk/ -name "*leanback-java-arm64*.apk")
-            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
-            ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
-            count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
-            if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
-            fi                            
-            ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
-            #检查源码尺寸，太大则不上传
-            file_size=$(du -s ${sourceCode} | awk '{print $1}')
-            #文件最大值，1024代表1M
-            file_limit_size=20480
-            if [[ ${file_size} -lt ${file_limit_size} ]];then
-              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FsourceCode%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease" -F sourceCode="@$sourceCode"
-            else
-              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
-            fi
-          fi
-    
-      - name: Post To Telegram leanback armeabi
+        uses: actions/download-artifact@v4
+        with:
+          name: telegram-bot-api-binary
+          path: TVBox-TV
+          
+      - name: Post To Telegram
         if: ${{ env.commit }}
-        working-directory: TVBox-TV/media
+        working-directory: TVBox-TV
+        env:
+          CHAT_ID: -1002241320915
+          TELEGRAM_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
-          if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
-            OUTPUT="${{ github.workspace }}/TVBox-TV/media"
-            export appRelease=$(find $OUTPUT/apk/ -name "*leanback-java-armeabi*.apk")
-            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
-            ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
-            count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
-            if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
-            fi                            
-            ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
-            #检查源码尺寸，太大则不上传
-            file_size=$(du -s ${sourceCode} | awk '{print $1}')
-            #文件最大值，1024代表1M
-            file_limit_size=20480
-            if [[ ${file_size} -lt ${file_limit_size} ]];then
-              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FsourceCode%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease" -F sourceCode="@$sourceCode"
-            else
-              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
-            fi
-          fi
-    
-      - name: Post To Telegram mobile
-        if: ${{ env.commit }}
-        working-directory: TVBox-TV/media
-        run: |
-          if [ -n "${{ secrets.CHANNEL_ID }}" ] && [ -n "${{ secrets.BOT_TOKEN }}" ]; then
-            OUTPUT="${{ github.workspace }}/TVBox-TV/media"
-            export appRelease=$(find $OUTPUT/apk/ -name "*mobile*.apk")
-            export sourceCode=$(find $OUTPUT -name "source-${{ env.commitS }}.*")
-            ESCAPED="$(sed -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log)"
-            count=$(echo "$ESCAPED" |wc -m |cut -d ' ' -f1)
-            if [ ${count} -eq 1 ] || [ ${count} -gt 1024 ]; then
-              ESCAPED="$(echo -e "Credit: #${{ matrix.userName }}/${{ matrix.repoName }}/${{ matrix.branchName }}\nCommit: ${{ env.commit }}\nChangelog:\n${{ env.upStream }}/commits/${{ matrix.branchName }}")"
-            fi
-            ESCAPED=`python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ESCAPED"`
-            #检查源码尺寸，太大则不上传
-            file_size=$(du -s ${sourceCode} | awk '{print $1}')
-            #文件最大值，1024代表1M
-            file_limit_size=20480
-            if [[ ${file_size} -lt ${file_limit_size} ]];then
-              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FsourceCode%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease" -F sourceCode="@$sourceCode"
-            else
-              curl -v "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMediaGroup?chat_id=${{ secrets.CHANNEL_ID }}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FappRelease%22%2C%20%22caption%22%3A%22${ESCAPED}%22%7D%5D" -F appRelease="@$appRelease"
-            fi
+          if [ -n "${{ secrets.BOT_TOKEN }}" ]; then
+            sed -i -e '1s/\[\(.*\)\].*/#\1/' -e 's#\([&"\/]\)#\\\1#g' apk/${{ matrix.userName }}-Release.log
+            mv -f apk/${{ matrix.userName }}-Release.log caption.txt
+            chmod +x telegram-bot-api-binary
+            ./telegram-bot-api-binary --api-id=21724 --api-hash=3e0cb5efcd52300aec5994fdfc5bdc16 --local 2>&1 > /dev/null &
+            mv ../.github/scripts/upload.py ./
+            python upload.py
           fi
             
       - name: Upload json To xytv
@@ -317,3 +265,43 @@ jobs:
           git push -u -f origin master
           #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
         continue-on-error: true
+        
+  telegram-bot-api:
+    name: Telegram Bot API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Clone Telegram Bot API
+        run: |
+          git clone --recursive https://github.com/tdlib/telegram-bot-api.git
+          git status telegram-bot-api >> telegram-bot-api-status
+
+      - name: Cache Bot API Binary
+        id: cache-bot-api
+        uses: actions/cache@v4
+        with:
+          path: telegram-bot-api-binary
+          key: CI-telegram-bot-api-${{ hashFiles('telegram-bot-api-status') }}
+
+      - name: Compile Telegram Bot API
+        if: steps.cache-bot-api.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install make git zlib1g-dev libssl-dev gperf cmake g++
+          cd telegram-bot-api
+          rm -rf build
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. ..
+          cmake --build . --target install -j$(nproc)
+          cd ../..
+          ls -l telegram-bot-api/bin/telegram-bot-api*
+          cp telegram-bot-api/bin/telegram-bot-api telegram-bot-api-binary
+
+      - name: Upload Binary
+        uses: actions/upload-artifact@master
+        with:
+          name: telegram-bot-api-binary
+          path: telegram-bot-api-binary
