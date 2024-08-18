@@ -266,7 +266,7 @@ jobs:
           git push -u -f origin master
           #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
         continue-on-error: true
-        
+
   telegram-bot-api:
     name: Telegram Bot API
     runs-on: ubuntu-latest
@@ -275,13 +275,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Clone Telegram Bot API
-        if: ${{ env.commit }}
         run: |
           git clone --recursive https://github.com/tdlib/telegram-bot-api.git
           git status telegram-bot-api >> telegram-bot-api-status
 
       - name: Cache Bot API Binary
-        if: ${{ env.commit }}
         id: cache-bot-api
         uses: actions/cache@v4
         with:
@@ -289,7 +287,7 @@ jobs:
           key: CI-telegram-bot-api-${{ hashFiles('telegram-bot-api-status') }}
 
       - name: Compile Telegram Bot API
-        if: ${{ env.commit || steps.cache-bot-api.outputs.cache-hit != 'true' }} #||其中一个满足，&&两个同时满足
+        if: steps.cache-bot-api.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install make git zlib1g-dev libssl-dev gperf cmake g++
@@ -304,7 +302,6 @@ jobs:
           cp telegram-bot-api/bin/telegram-bot-api telegram-bot-api-binary
 
       - name: Upload Binary
-        if: ${{ env.commit }}
         uses: actions/upload-artifact@master
         with:
           name: telegram-bot-api-binary
