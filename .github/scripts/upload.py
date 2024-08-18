@@ -23,7 +23,7 @@ def genFileDirectory(path):
     media[-1]['parse_mode'] = "Markdown"
     return media, files
 
-def sendAPKs(path, batch_size=5):  # 添加 batch_size 参数，默认每次发送 5 个文件
+def sendAPKs(path, batch_size=10):  # 添加 batch_size 参数，默认每次发送 5 个文件
     media, files = genFileDirectory(path)
     for i in range(0, len(media), batch_size):  # 按照 batch_size 分批处理
         batch_media = media[i:i + batch_size]
