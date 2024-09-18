@@ -1,6 +1,10 @@
 name: Delete TVBox-TV Directory
 
 on:
+  schedule:
+    - cron: '0 */4 * * *'
+# 这里默认间隔4小时执行一次
+
   workflow_dispatch:
 
 jobs:
