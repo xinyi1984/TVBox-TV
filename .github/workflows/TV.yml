@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - userName: FongMi
+          - userName: xinyi1984
             repoName: TV 
             branchName: fongmi
           - userName: xinyi1984
