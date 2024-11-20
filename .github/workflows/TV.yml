@@ -14,10 +14,6 @@ on:
         description: '构建后不提交发布新版'
         required: false
         type: boolean
-      testOption:
-        description: 'arm64支持，不支持ijk解码'
-        required: false
-        type: boolean
 
 jobs:
   build:
