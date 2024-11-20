@@ -240,7 +240,7 @@ jobs:
         working-directory: TVBox-TV
         run: |
           rm -rf *  
-          git clone https://github.com/xinyi1984/xytv.git
+          git clone --depth 5 https://github.com/xinyi1984/xytv.git
           sed -i "s#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/[0-9\-]*/TVBox_${{ matrix.userName }}_[0-9\-]*#https://mirror.ghproxy.com/https://github.com/xinyi1984/TVBox-TV/releases/download/${{ env.tag }}/TVBox_${{ matrix.userName }}_${{ env.tag }}#g" xytv/json/market.json
           cd xytv
           git config --global user.name "github-actions[bot]"
