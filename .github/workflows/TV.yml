@@ -27,7 +27,7 @@ jobs:
             branchName: fongmi
           - userName: xinyi1984
             repoName: TV 
-            branchName: dev
+            branchName: okjack
           - userName: xinyi1984
             repoName: TV
             branchName: release
