@@ -110,11 +110,11 @@ jobs:
           signingConfigs="$(echo "$signingConfigs" |base64 -d )"
           signingConfig="$(echo "$signingConfig" |base64 -d )"
           sed -i -e "/defaultConfig {/i\\$signingConfigs " -e "/debug {/a\\$signingConfig " -e "/release {/a\\$signingConfig " app/build.gradle
-          cp -f ${{ github.workspace }}/.github/workflows/TVBoxOSC.jks app/TVBoxOSC.jks
-          sed -i '$a\RELEASE_STORE_FILE=./TVBoxOSC.jks'     ./gradle.properties
-          sed -i '$a\RELEASE_KEY_ALIAS=TVBoxOSC'            ./gradle.properties
-          sed -i '$a\RELEASE_STORE_PASSWORD=TVBoxOSC'       ./gradle.properties
-          sed -i '$a\RELEASE_KEY_PASSWORD=TVBoxOSC'         ./gradle.properties
+          cp -f ${{ github.workspace }}/.github/workflows/TV.jks app/TV.jks
+          sed -i '$a\RELEASE_STORE_FILE=./TV.jks'     ./gradle.properties
+          sed -i '$a\RELEASE_KEY_ALIAS=FongMi'            ./gradle.properties
+          sed -i '$a\RELEASE_STORE_PASSWORD=FongMi'       ./gradle.properties
+          sed -i '$a\RELEASE_KEY_PASSWORD=FongMi'         ./gradle.properties
 
       # Set up JDK 17 解决androidx/room/RoomProcessor has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0  61需要java-version: 17
       - name: set up JDK 17 
