@@ -152,7 +152,8 @@ jobs:
             # 获取文件的基本名称
             base=$(basename "$file")
             # 在基本名称添加分支${{ matrix.branchName }}_
-            new_base="${{ matrix.branchName }}_$base"
+            # new_base="${{ matrix.branchName }}_$base"
+            new_base="$base"
             # 移动并重命名文件
             mv "$file" "apk/$new_base"
           done
