@@ -180,40 +180,40 @@ jobs:
           #path: |
             #TVBox-TV/apk/*
           
-      - name: Check if release exists and delete it
-        if: ${{ env.commit }}
-        run: |
-          # 设置你的 GitHub 仓库信息
-          REPO_OWNER=xinyi1984
-          REPO_NAME=TVBox-TV
-          GITHUB_TOKEN=${{ secrets.GITHUBXYTV_TOKEN }} # 这是 GitHub Actions 自动提供的 token
-          RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}') # 这是你想要删除的 releases 的名称
+       #- name: Check if release exists and delete it
+         #if: ${{ env.commit }}
+         #run: |
+           ## 设置你的 GitHub 仓库信息
+           #REPO_OWNER=xinyi1984
+           #REPO_NAME=TVBox-TV
+           #GITHUB_TOKEN=${{ secrets.GITHUBXYTV_TOKEN }} # 这是 GitHub Actions 自动提供的 token
+           #RELEASE_NAME=$(grep "${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}" ${{ github.workspace }}/README.md |grep -o '[0-9\-]\{13\}') # 这是你想要删除的 releases 的名称
           # 使用 curl 和 GitHub API 获取 releases 列表
-          RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
+          #RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases")
           # 使用 jq 工具解析 JSON，并查找匹配的 releases ID
-          RELEASE_ID=$(echo "$RELEASES" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
+          # RELEASE_ID=$(echo "$RELEASES" | jq -r --arg name "$RELEASE_NAME" '.[] | select(.name == $name) | .id')
           # 检查是否找到了匹配的 releases
-          if [ -n "$RELEASE_ID" ]; then
-            echo "Found release with name $RELEASE_NAME and ID $RELEASE_ID. Deleting it..."
-            # 使用 curl 和 GitHub API 删除匹配的 releases
-            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID"
-            echo "Release deleted successfully."
-          else
-            echo "No release found with name $RELEASE_NAME."
-          fi
+           #if [ -n "$RELEASE_ID" ]; then
+            # echo "Found release with name $RELEASE_NAME and ID $RELEASE_ID. Deleting it..."
+            # # 使用 curl 和 GitHub API 删除匹配的 releases
+            # curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/$RELEASE_ID"
+             #echo "Release deleted successfully."
+          # else
+            # echo "No release found with name $RELEASE_NAME."
+          # fi
           
-      - name: Release and Upload Assets
-        uses: ncipollo/release-action@v1
-        if: ${{ env.commit }}
-        with:
-          name: ${{ env.tag }}
-          tag: ${{ env.tag }}
-          bodyFile: TVBox-TV/media/apk/${{ matrix.userName }}-Release.log
-          allowUpdates: true
-          removeArtifacts: true
-          artifacts: |
-            TVBox-TV/media/apk/*.apk
-            TVBox-TV/media/apk/source-${{ env.commitS }}.*              
+      #- name: Release and Upload Assets
+         #uses: ncipollo/release-action@v1
+         #if: ${{ env.commit }}
+         #with:
+           #name: ${{ env.tag }}
+           #tag: ${{ env.tag }}
+           #bodyFile: TVBox-TV/media/apk/${{ matrix.userName }}-Release.log
+           #allowUpdates: true
+           #removeArtifacts: true
+           #artifacts: |
+             #TVBox-TV/media/apk/*.apk
+             #TVBox-TV/media/apk/source-${{ env.commitS }}.*              
       
       - name: Download Telegram Bot API Binary
         if: ${{ env.commit }}
@@ -259,21 +259,21 @@ jobs:
         if: ${{ env.commit }}
         run: |
           # 克隆fongmi分支到临时目录
-          git clone --depth 1 --branch fongmi "https://xinyi1984:${{ secrets.GITHUB_TOKEN }}@github.com/xinyi1984/TVBox-TV.git" fongmi-apk
+          git clone --depth 5 --branch fongmi "https://xinyi1984:${{ secrets.GITHUB_TOKEN }}@github.com/xinyi1984/TVBox-TV.git" fongmi-apk
           cd fongmi-apk
 
           # 清理并创建发布目录
           mkdir -p apk/release
-          rm -f apk/release/*.apk  # 清理旧文件
+          rm -f apk/release/*  # 清理旧文件
 
           # 复制新构建的APK文件
-          cp -v /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/apk/*.apk apk/release/
+          cp -v /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/apk/* apk/release/
 
           # 配置Git并提交更改
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apk/release/
-          git commit -m "Auto update: ${{ matrix.branchName }} build APKs [$(date +'%Y%m%d-%H%M')]"
+          git commit -m " 更新apk build APKs [$(date +'%Y%m%d-%H%M')]"
 
           # 强制推送更新
           git push --force origin fongmi
