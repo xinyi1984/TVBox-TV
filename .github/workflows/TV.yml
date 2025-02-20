@@ -255,6 +255,31 @@ jobs:
           git push -f -u origin master
         continue-on-error: true
         
+      - name: Push APK to fongmi
+        if: ${{ env.commit }}
+        run: |
+          # 克隆fongmi分支到临时目录
+          git clone --depth 1 --branch fongmi "https://xinyi1984:${{ secrets.GITHUB_TOKEN }}@github.com/xinyi1984/TVBox-TV.git" fongmi-apk
+          cd fongmi-apk
+
+          # 清理并创建发布目录
+          mkdir -p apk/release
+          rm -f apk/release/*.apk  # 清理旧文件
+
+          # 复制新构建的APK文件
+          cp -v $GITHUB_WORKSPACE/TVBox-TV/media/apk/*.apk apk/release/
+
+          # 配置Git并提交更改
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apk/release/
+          git commit -m "Auto update: ${{ matrix.branchName }} build APKs [$(date +'%Y%m%d-%H%M')]"
+
+          # 强制推送更新
+          git push --force origin fongmi
+          cd ..
+          rm -rf fongmi-apk
+        
       - name: Push to master
         if: ${{ env.commit }}
         run: |
