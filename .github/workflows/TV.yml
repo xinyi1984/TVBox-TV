@@ -258,6 +258,7 @@ jobs:
         
       - name: Push APK to fongmi
         if: ${{ env.commit }}
+        working-directory: TVBox-TV/media
         run: |
           # 克隆fongmi分支到临时目录
           git clone --depth 1 --branch fongmi "https://xinyi1984:${{ secrets.GITHUB_TOKEN }}@github.com/xinyi1984/TVBox-TV.git" fongmi-apk
