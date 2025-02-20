@@ -269,7 +269,7 @@ jobs:
           rm -f apk/release/*.apk  # 清理旧文件
 
           # 复制新构建的APK文件
-          cp -v $GITHUB_WORKSPACE/TVBox-TV/media/apk/*.apk apk/release/
+          cp -v TVBox-TV/media/apk/*.apk apk/release/
 
           # 配置Git并提交更改
           git config --local user.name "github-actions[bot]"
