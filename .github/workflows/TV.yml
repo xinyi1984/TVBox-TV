@@ -273,7 +273,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apk/release/
-          git commit -m " 更新apk build APKs [$(date +'%Y%m%d-%H%M')]"
+          git commit -m " 更新apk build APKs [$(TZ='Asia/Shanghai' date +'%Y%m%d-%H%M')]"
 
           # 强制推送更新
           git push --force origin fongmi
