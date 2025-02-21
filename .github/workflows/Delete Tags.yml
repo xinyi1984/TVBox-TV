@@ -20,20 +20,6 @@ jobs:
           git config --global user.name "xinyi1984"
           git config --global user.email "75725458@qq.com"
 
-      - name: Delete Tags
-        run: |
-          # 筛选出要删除的标签，这里以 20 为前缀的标签为例
-          tags_to_delete=$(git tag | grep '20')
-          if [ -n "$tags_to_delete" ]; then
-            echo "Deleting tags: $tags_to_delete"
-            # 删除本地标签
-            git tag -d $tags_to_delete
-            # 删除远程标签
-            git push origin --delete $tags_to_delete
-          else
-            echo "No tags to delete."
-          fi
-
       - name: Rewrite History
         run: |
           # 获取与已删除标签相关的提交哈希
