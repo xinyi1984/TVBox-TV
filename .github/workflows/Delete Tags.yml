@@ -1,7 +1,6 @@
 name: Remove Commit History
 
 on:
-  # 可按需调整触发方式，这里设置为手动触发
   workflow_dispatch:
 
 jobs:
@@ -12,6 +11,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install git-filter-repo
         run: |
@@ -20,12 +20,43 @@ jobs:
 
       - name: Remove Commits
         run: |
-          # 获取以 20 开头标签关联的提交哈希
           tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E '^20')
           if [ -n "$tag_commits" ]; then
-            # 使用 git filter-repo 移除这些提交
             git filter-repo --invert-paths --path $(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
-            # 强制推送重写后的历史到远程仓库
+            git push origin --force
+          else
+            echo "No commits associated with '20' prefixed tags found."
+          fi
+3. git-filter-repo 参数问题
+git filter-repo 的参数可能存在问题，尤其是 --path 参数。你可以先打印出要处理的提交哈希，确保参数正确。
+yaml
+name: Remove Commit History
+
+on:
+  workflow_dispatch:
+
+jobs:
+  remove-history:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install git-filter-repo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-filter-repo
+
+      - name: Remove Commits
+        run: |
+          tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E '^20')
+          if [ -n "$tag_commits" ]; then
+            path_args=$(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
+            echo "Paths to filter: $path_args"
+            git filter-repo --invert-paths --path $path_args
             git push origin --force
           else
             echo "No commits associated with '20' prefixed tags found."
