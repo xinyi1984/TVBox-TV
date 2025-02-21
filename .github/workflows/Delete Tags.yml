@@ -1,0 +1,35 @@
+name: Delete Tags
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  # 这里默认间隔4小时执行一次
+  workflow_dispatch:
+
+jobs:
+  delete-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set Git User Info
+        run: |
+          git config --global user.name "xinyi1984"
+          git config --global user.email "75725458@qq.com"
+
+      - name: Delete Tags
+        run: |
+          # 筛选出要删除的标签，这里以 old- 为前缀的标签为例
+          tags_to_delete=$(git tag | grep 'old-')
+          if [ -n "$tags_to_delete" ]; then
+            echo "Deleting tags: $tags_to_delete"
+            # 删除本地标签
+            git tag -d $tags_to_delete
+            # 删除远程标签
+            git push origin --delete $tags_to_delete
+          else
+            echo "No tags to delete."
+          fi
