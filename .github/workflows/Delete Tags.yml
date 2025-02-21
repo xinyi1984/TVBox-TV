@@ -33,3 +33,64 @@ jobs:
           else
             echo "No tags to delete."
           fi
+
+      - name: Show Filtered Log
+        run: |
+          # 显示不包含已删除标签相关提交的日志
+          git log --no-merges --pretty=format:'%h %ad | %s%d [%an]' --date=short | grep -vE "$(echo $tags_to_delete | tr ' ' '|')"
+在这个例子中，Show Filtered Log 步骤会显示不包含已删除标签相关提交的日志。
+2. 重写提交历史（谨慎使用）
+如果你想要彻底从仓库历史中移除这些记录，可以使用 git rebase 或 git filter-branch（不推荐，因为它有一些局限性，git filter-repo 是更好的替代方案）来重写提交历史。
+首先，确保你安装了 git filter-repo：
+bash
+sudo apt-get install git-filter-repo
+然后在工作流中添加重写历史的步骤：
+yaml
+name: Delete Tags
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  # 这里默认间隔4小时执行一次
+  workflow_dispatch:
+
+jobs:
+  delete-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set Git User Info
+        run: |
+          git config --global user.name "xinyi1984"
+          git config --global user.email "75725458@qq.com"
+
+      - name: Delete Tags
+        run: |
+          # 筛选出要删除的标签，这里以 20 为前缀的标签为例
+          tags_to_delete=$(git tag | grep '20')
+          if [ -n "$tags_to_delete" ]; then
+            echo "Deleting tags: $tags_to_delete"
+            # 删除本地标签
+            git tag -d $tags_to_delete
+            # 删除远程标签
+            git push origin --delete $tags_to_delete
+          else
+            echo "No tags to delete."
+          fi
+
+      - name: Rewrite History
+        run: |
+          # 获取与已删除标签相关的提交哈希
+          tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E "$(echo $tags_to_delete | tr ' ' '|')")
+          if [ -n "$tag_commits" ]; then
+            # 使用 git filter-repo 移除这些提交
+            git filter-repo --invert-paths --path $(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
+            # 强制推送重写后的历史到远程仓库
+            git push origin --force
+          else
+            echo "No commits associated with deleted tags found."
+          fi
