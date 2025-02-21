@@ -244,7 +244,7 @@ jobs:
         run: |
           git clone --depth 5 https://github.com/xinyi1984/xytv.git
           sed -i "s#https://raw.githubusercontent.com#https://ghfast.top/https://raw.githubusercontent.com#g" xytv/json/market.json
-          sed -i "s#[0-9\-]*#$(TZ='Asia/Shanghai' date +'%Y%m%d-%H%M')#g" xytv/json/market.json
+          sed -i "s#[0-9]\{8\}-[0-9]\{4\}\"#${{ env.tag }}#g" xytv/json/market.json
           cd xytv
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -273,7 +273,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apk/release/
-          git commit -m " 更新apk build APKs [$(TZ='Asia/Shanghai' date +'%Y%m%d-%H%M')]"
+          git commit -m " 更新apk build APKs [$(TZ='Asia/Shanghai' ${{ env.tag }})]"
 
           # 强制推送更新
           git push --force origin fongmi
@@ -292,7 +292,7 @@ jobs:
           git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git pull --rebase
           sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
-          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#name: [0-9\-]*#name: $(TZ='Asia/Shanghai' date +'%Y%m%d-%H%M')#" README.md
+          sed -i "/${{ matrix.userName }}\/${{ matrix.repoName }}\/tree\/${{ matrix.branchName }}/s#name: [0-9\-]*#name: ${{ env.tag }}#" README.md
           git add --all
           git commit -m "${{ env.commit }}"
           git push -u -f origin master
