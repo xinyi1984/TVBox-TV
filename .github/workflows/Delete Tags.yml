@@ -1,34 +1,32 @@
-name: Delete Tags
+name: Remove Commit History
 
 on:
-  schedule:
-    - cron: '0 */4 * * *'
-  # 这里默认间隔4小时执行一次
+  # 可按需调整触发方式，这里设置为手动触发
   workflow_dispatch:
 
 jobs:
-  delete-tags:
+  remove-history:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Set Git User Info
+      - name: Install git-filter-repo
         run: |
-          git config --global user.name "xinyi1984"
-          git config --global user.email "75725458@qq.com"
+          sudo apt-get update
+          sudo apt-get install -y git-filter-repo
 
-      - name: Rewrite History
+      - name: Remove Commits
         run: |
-          # 获取与已删除标签相关的提交哈希
-          tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E "$(echo $tags_to_delete | tr ' ' '|')")
+          # 获取以 20 开头标签关联的提交哈希
+          tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E '^20')
           if [ -n "$tag_commits" ]; then
             # 使用 git filter-repo 移除这些提交
             git filter-repo --invert-paths --path $(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
             # 强制推送重写后的历史到远程仓库
             git push origin --force
           else
-            echo "No commits associated with deleted tags found."
+            echo "No commits associated with '20' prefixed tags found."
           fi
