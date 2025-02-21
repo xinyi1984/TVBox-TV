@@ -1,31 +1,37 @@
-name: Remove Commit History
+name: Remove 20 Prefixed Tag Related Commits
 
 on:
   workflow_dispatch:
 
 jobs:
-  remove-history:
+  remove-commits:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install git-filter-repo
         run: |
           sudo apt-get update
           sudo apt-get install -y git-filter-repo
+        shell: bash
 
-      - name: Remove Commits
+      - name: Identify Commits to Remove
         run: |
           tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E '^20')
           if [ -n "$tag_commits" ]; then
-            path_args=$(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
-            echo "Paths to filter: $path_args"
-            git filter-repo --invert-paths --path $path_args
-            git push origin --force
+            echo "Commits to remove: $tag_commits"
+            echo "TAG_COMMITS=$tag_commits" >> $GITHUB_ENV
           else
             echo "No commits associated with '20' prefixed tags found."
           fi
+        shell: bash
+
+      - name: Remove Commits
+        if: env.TAG_COMMITS
+        run: |
+          git filter-repo --invert-paths --path $(echo $TAG_COMMITS | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
+          git push origin --force
+        shell: bash
