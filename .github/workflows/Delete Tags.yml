@@ -22,38 +22,6 @@ jobs:
         run: |
           tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E '^20')
           if [ -n "$tag_commits" ]; then
-            git filter-repo --invert-paths --path $(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
-            git push origin --force
-          else
-            echo "No commits associated with '20' prefixed tags found."
-          fi
-3. git-filter-repo 参数问题
-git filter-repo 的参数可能存在问题，尤其是 --path 参数。你可以先打印出要处理的提交哈希，确保参数正确。
-yaml
-name: Remove Commit History
-
-on:
-  workflow_dispatch:
-
-jobs:
-  remove-history:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install git-filter-repo
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git-filter-repo
-
-      - name: Remove Commits
-        run: |
-          tag_commits=$(git for-each-ref --format='%(objectname)' refs/tags | grep -E '^20')
-          if [ -n "$tag_commits" ]; then
             path_args=$(echo $tag_commits | tr ' ' '\n' | xargs -I {} git rev-parse --short {} | tr '\n' ' ')
             echo "Paths to filter: $path_args"
             git filter-repo --invert-paths --path $path_args
