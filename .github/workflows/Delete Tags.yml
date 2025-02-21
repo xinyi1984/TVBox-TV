@@ -22,8 +22,8 @@ jobs:
 
       - name: Delete Tags
         run: |
-          # 筛选出要删除的标签，这里以 old- 为前缀的标签为例
-          tags_to_delete=$(git tag | grep 'old-')
+          # 筛选出要删除的标签，这里以 20 为前缀的标签为例
+          tags_to_delete=$(git tag | grep '20')
           if [ -n "$tags_to_delete" ]; then
             echo "Deleting tags: $tags_to_delete"
             # 删除本地标签
