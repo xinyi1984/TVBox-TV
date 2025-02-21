@@ -243,7 +243,7 @@ jobs:
         working-directory: TVBox-TV/media
         run: |
           git clone --depth 5 https://github.com/xinyi1984/xytv.git
-          sed -i "s#https://raw.githubusercontent.com#https://ghfast.top/https://raw.githubusercontent.com#g" xytv/json/market.json
+          sed -i "s#https://ghfast.top/https://raw.githubusercontent.com#https://ghfast.top/https://raw.githubusercontent.com#g" xytv/json/market.json
           sed -i "s#[0-9]\{8\}-[0-9]\{4\}#${{ env.tag }}#g" xytv/json/market.json
           cd xytv
           git config --global user.name "github-actions[bot]"
