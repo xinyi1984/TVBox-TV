@@ -265,12 +265,12 @@ jobs:
           cd fongmi-apk
 
           # 根据当前分支设置目标目录
-          if [ "${{ github.ref }}" == "refs/heads/fongmi" ]; then
+          if [ "${{ matrix.branchName }}" == "fongmi" ]; then
             target_dir="apk/dev"
-          elif [ "${{ github.ref }}" == "refs/heads/release" ]; then
+          elif [ "${{ matrix.branchName }}" == "release" ]; then
             target_dir="apk/release"
           else
-            echo "Unsupported branch: ${{ github.ref }}"
+            echo "Unsupported branch: ${{ matrix.branchName }}"
             exit 1
           fi
 
