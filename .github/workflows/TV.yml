@@ -264,17 +264,27 @@ jobs:
           git clone --depth 5 --branch fongmi "https://xinyi1984:${{ secrets.GITHUB_TOKEN }}@github.com/xinyi1984/TVBox-TV.git" fongmi-apk
           cd fongmi-apk
 
+          # 根据当前分支设置目标目录
+          if [ "${{ github.ref }}" == "refs/heads/fongmi" ]; then
+            target_dir="apk/dev"
+          elif [ "${{ github.ref }}" == "refs/heads/release" ]; then
+            target_dir="apk/release"
+          else
+            echo "Unsupported branch: ${{ github.ref }}"
+            exit 1
+          fi
+
           # 清理并创建发布目录
-          mkdir -p apk/dev
-          rm -f apk/dev/*  # 清理旧文件
+          mkdir -p $target_dir
+          rm -f $target_dir/*  # 清理旧文件
 
           # 复制新构建的APK文件
-          cp -v /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/apk/* apk/dev/
+          cp -v /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/apk/* $target_dir/
 
           # 配置Git并提交更改
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add apk/dev/
+          git add $target_dir/
           git commit -m " 更新apk build APKs ${{ env.tag }}"
 
           # 强制推送更新
