@@ -264,14 +264,17 @@ jobs:
           git clone --depth 5 --branch fongmi "https://xinyi1984:${{ secrets.GITHUB_TOKEN }}@github.com/xinyi1984/TVBox-TV.git" fongmi-apk
           cd fongmi-apk
 
-          # 根据当前分支设置目标目录
-          if [ "${{ matrix.branchName }}" == "fongmi" ]; then
-            target_dir="apk/dev"
-          elif [ "${{ matrix.branchName }}" == "release" ]; then
+          # 根据当前分支和 versionName 设置目标目录
+          if [ "${{ matrix.branchName }}" == "release" ]; then
             target_dir="apk/release"
           else
-            echo "Unsupported branch: ${{ matrix.branchName }}"
-            exit 1
+            # 获取 app/build.gradle 中的 versionName
+            versionName=$(grep "versionName" /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/app/build.gradle | awk -F '"' '{print $2}')
+            if [[ $versionName =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              target_dir="apk/release"
+            else
+              target_dir="apk/dev"
+            fi
           fi
 
           # 清理并创建发布目录
