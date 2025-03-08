@@ -56,12 +56,24 @@ jobs:
         if: ${{ env.commit }}
         run: |
           # 克隆仓库
-          git clone https://github.com/androidx/media.git TVBox-TV
+          git clone https://github.com/androidx/media.git TVBox-TV || { echo "克隆仓库失败"; exit 1; }
           cd TVBox-TV
-          # 使用 GitHub API 获取最新版本号
-          latest_version=$(curl -s https://api.github.com/repos/androidx/media/releases/latest | grep "tag_name" | cut -d '"' -f 4 | sed 's/^v//')
-          # 生成并执行 git checkout 命令
-          git checkout -b release-$latest_version origin/release-$latest_version
+          # 获取最新的 tags 名称
+          latest_tag=$(git ls-remote --tags origin | grep -o 'refs/tags/.*' | sed 's:refs/tags/::' | sort -V | tail -1)
+          if [ -z "$latest_tag" ]; then
+              echo "未找到任何 tags。"
+              exit 1
+          fi
+          # 生成并检查远程分支
+          branch_name="release-$latest_tag"
+          remote_branch="origin/$branch_name"
+          if ! git ls-remote --heads origin | grep -q "$remote_branch"; then
+              echo "远程分支 $remote_branch 不存在。"
+              exit 1
+          fi
+          # 创建并切换到本地分支
+          git checkout -b "$branch_name" "$remote_branch" || { echo "创建并切换分支失败"; exit 1; }
+          
           cd /home/runner/work/TVBox-TV/TVBox-TV
           git clone ${{ env.upStream }} TVBox-TV/media
           cd TVBox-TV/media
