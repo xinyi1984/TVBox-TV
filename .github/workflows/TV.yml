@@ -58,7 +58,7 @@ jobs:
           git clone https://github.com/androidx/media.git TVBox-TV
           cd TVBox-TV
           #备注git checkout -b main origin/main 默认release分支
-          git checkout -b 1.6.0-beta01 origin/1.6.0-beta01
+          git checkout -b release-1.6.0-beta01 release-1.6.0-beta01
           cd /home/runner/work/TVBox-TV/TVBox-TV
           git clone ${{ env.upStream }} TVBox-TV/media
           cd TVBox-TV/media
