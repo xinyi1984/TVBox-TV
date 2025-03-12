@@ -256,6 +256,18 @@ jobs:
         working-directory: TVBox-TV/media
         run: |
           git clone --depth 5 https://github.com/xinyi1984/xytv.git
+          # 根据当前分支和 versionName 设置目标目录
+          if [ "${{ matrix.branchName }}" == "release" ]; then
+            sed -i "s#xinyi1984/TVBox-TV/fongmi/apk/dev$xinyi1984/TVBox-TV/fongmi/apk/release#g" xytv/json/market.json
+          else
+            # 获取 app/build.gradle 中的 versionName
+            versionName=$(grep "versionName" /home/runner/work/TVBox-TV/TVBox-TV/TVBox-TV/media/app/build.gradle | awk -F '"' '{print $2}')
+            if [[ $versionName =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+               sed -i "s#xinyi1984/TVBox-TV/fongmi/apk/dev$xinyi1984/TVBox-TV/fongmi/apk/release#g" xytv/json/market.json
+            else
+              sed -i "s#xinyi1984/TVBox-TV/fongmi/apk/release$xinyi1984/TVBox-TV/fongmi/apk/dev#g" xytv/json/market.json
+            fi
+          fi
           sed -i "s#https://ghfast.top/https://raw.githubusercontent.com#https://ghfast.top/https://raw.githubusercontent.com#g" xytv/json/market.json
           sed -i "s#[0-9]\{8\}-[0-9]\{4\}#${{ env.tag }}#g" xytv/json/market.json
           cd xytv
