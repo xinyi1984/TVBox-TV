@@ -61,13 +61,17 @@ jobs:
           # 显式同步默认分支（可选，确保本地分支跟踪远程 release）
           git checkout release
           # 获取最新预发布版本
-          LATEST_PRERELEASE=$(curl -s https://api.github.com/repos/androidx/media/releases | jq -r '.[] | select(.prerelease == true) | .tag_name' | sort -Vr | head -n1)
-          if [ -n "$LATEST_PRERELEASE" ]; then
-            # 切换到预发布分支（假设分支名格式为 release-{VERSION}）
-            git checkout -b "release-$LATEST_PRERELEASE" "origin/release-$LATEST_PRERELEASE"
-            echo "已切换到预发布分支：release-$LATEST_PRERELEASE"
+          LATEST_RELEASE=$(curl -s https://api.github.com/repos/androidx/media/releases | jq -r '.[0].tag_name')
+          # 检查版本号末尾是否有字母
+          if [[ -n "$LATEST_RELEASE" && "$LATEST_RELEASE" =~ [a-zA-Z]$ ]]; then
+              # 尝试切换到对应的分支
+              if git checkout -b "release-$LATEST_RELEASE" "origin/release-$LATEST_RELEASE"; then
+                  echo "已切换到分支：release-$LATEST_RELEASE"
+              else
+                  echo "未能找到远程分支 release-$LATEST_RELEASE，保持在默认分支 release。"
+              fi
           else
-            echo "未找到预发布版本，保持在默认分支 release。"
+              echo "未找到合适的版本或版本号末尾无字母，保持在默认分支 release。"
           fi
           
           cd /home/runner/work/TVBox-TV/TVBox-TV
