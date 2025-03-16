@@ -63,7 +63,7 @@ jobs:
           # 获取最新预发布版本
           LATEST_RELEASE=$(curl -s https://api.github.com/repos/androidx/media/releases | jq -r '.[0].tag_name')
           # 检查版本号末尾是否有字母
-          if [[ -n "$LATEST_RELEASE" && "$LATEST_RELEASE" =~ [a-zA-Z]$ ]]; then
+          if [[ -n "$LATEST_RELEASE" && "$LATEST_RELEASE" =~ ^[0-9]+\.[0-9]+\.[0-9]+-(rc|beta|alpha)[0-9]+$ ]]; then
               # 尝试切换到对应的分支
               if git checkout -b "release-$LATEST_RELEASE" "origin/release-$LATEST_RELEASE"; then
                   echo "已切换到分支：release-$LATEST_RELEASE"
