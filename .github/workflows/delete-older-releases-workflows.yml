@@ -29,7 +29,7 @@ jobs:
           releases_keep_latest: 5
           releases_keep_keyword: true
           delete_workflows: true
-          workflows_keep_day: true
+          workflows_keep_day: 0
           workflows_keep_keyword: 0
           out_log: false
           gh_token: ${{ secrets.GITHUB_TOKEN }}
