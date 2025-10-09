@@ -1,24 +1,4 @@
 Credit: [kldtv/TV/fongmi](https://github.com/kldtv/TV)
-Commit: 88b4e916cef87b42404ba48aa53e0ec21d2cb1e7
+Commit: 5dacdab10de54e0aafcd7e1907966b72d8602c98
 Changelog:
-Update README.md
-Signed-off-by: kldtv <811343185@qq.com>
-Update TV.yml
-Update VideoActivity.java
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月09日 09:18
-Update settings.gradle
-Add files via upload
-Delete .github/workflows/reset upstream okjack.yml
-Delete .github/workflows/reset upstream release.yml
-Fix danmaku npe
-Fix img
-Clean
-Update build.gradle
-Revert
-Delete apk/release directory
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
- 更新apk build APKs 20251006-2021
- 更新apk build APKs 20251006-2010
-Fix pip bug
-Update Vod.java
-Update Util.java
+88b4e916cef87b42404ba48aa53e0ec21d2cb1e7
