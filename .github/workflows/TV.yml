@@ -341,6 +341,22 @@ jobs:
           git push -u -f origin master
           #continue-on-error: true 是因为 git commit 会失败也是预期的，这个步骤可以忽略失败。加上这个命令就可以在这个步骤失败的时候，不会影响其他步骤
         continue-on-error: true
+        
+      - name: Clean Gradle Cache After Build
+        if: ${{ env.commit }}
+        run: |
+          echo "清理Gradle缓存..."
+          # 清理项目级缓存
+          if [ -d "TV/media" ]; then
+            cd TV/media
+            ./gradlew clean
+            rm -rf .gradle/caches
+            rm -rf build/
+          fi
+          # 清理全局Gradle缓存中的大文件
+          find ~/.gradle/caches -name "*.jar" -type f -delete
+          find ~/.gradle/caches -name "*.pom" -type f -delete
+          find ~/.gradle/caches -name "*.module" -type f -delete 
 
   # telegram-bot-api:
     # name: Telegram Bot API
