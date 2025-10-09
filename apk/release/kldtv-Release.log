@@ -1,7 +1,8 @@
 Credit: [kldtv/TV/fongmi](https://github.com/kldtv/TV)
-Commit: 95218daa37d0c9cbdc1204134ff0a4e897618dbc
+Commit: a81a91bd802c39d7d58b3485f5cfbd935f58381d
 Changelog:
-Update TV.yml
+Update send_telegram.py
 Signed-off-by: kldtv <811343185@qq.com>
+Update TV.yml
 Add files via upload
 e1f240ae3cbfbd2c988e952224220d3cc16d7267
