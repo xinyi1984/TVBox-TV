@@ -11,7 +11,7 @@ def send_telegram_message(bot_token, chat_id, text):
             data={
                 'chat_id': chat_id,
                 'text': text,
-                'parse_mode': 'Markdown',
+                'parse_mode': 'HTML',  # 使用HTML格式
                 'disable_web_page_preview': 'true'  # 改为true禁用链接预览
             },
             timeout=30
@@ -46,61 +46,61 @@ except Exception as e:
     mobile_name = "获取失败"
     mobile_changelog = ["无法获取更新日志"]
 
-# 电视版完整消息模板
-tv_full_message = f"""*TV正式版：{tv_name}*
-[影視](https://github.com/FongMi/TV)-[蜂蜜&唐三版](https://github.com/FongMi/Release/tree/fongmi/apk)更新啦！
+# 电视版完整消息模板（使用HTML格式）
+tv_full_message = f"""<b>TV正式版：</b>{tv_name}
+<b><a href="https://github.com/FongMi/TV">影視</a>-<a href="https://github.com/FongMi/Release/tree/fongmi/apk">蜂蜜&唐三版</a>更新啦！</b>
 
-*更新内容：*
-{chr(10).join([f'• {item.strip("* ")}' for item in tv_changelog])}
+<b>更新内容：</b>
+{chr(10).join([f'* {item.strip("* ")}' for item in tv_changelog])}
 
-[影視OK版](https://t.me/tvb_ys) [APP库](https://github.com/fongmi/release) [虫库](https://github.com/FongMi/CatVodSpider)
+<b><a href="https://t.me/tvb_ys">影視OK版</a> <a href="https://github.com/fongmi/release">APP库</a> <a href="https://github.com/FongMi/CatVodSpider">虫库</a></b>
 
-[本频道](https://t.me/tv_box_app) [影視群](https://t.me/fongmi_official) [飯總群](https://t.me/TVBoxxoo) 
+<b><a href="https://t.me/tv_box_app">本频道</a> <a href="https://t.me/fongmi_official">影視群</a> <a href="https://t.me/TVBoxxoo">飯總群</a></b>
 
-[牛娃群](https://t.me/wangerxiaofangniuwa) [OK影视群](https://t.me/okdespace)
+<b><a href="https://t.me/wangerxiaofangniuwa">牛娃群</a> <a href="https://t.me/okdespace">OK影视群</a></b>
 
-*Down🐝* :[32](https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-armeabi_v7a.apk) [64](https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-arm64_v8a.apk)     
+Down🐝 :<a href="https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-armeabi_v7a.apk">32</a> <a href="https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-arm64_v8a.apk">64</a>     
 
-*下载🐝* :[32](https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-armeabi_v7a.apk) [64](https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-arm64_v8a.apk)     
+下载🐝 :<a href="https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-armeabi_v7a.apk">32</a> <a href="https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/leanback-arm64_v8a.apk">64</a>     
 
-*線上接口推薦：*
-[飯總](http://www.饭太硬.com/tv) [騷零](https://100km.top/0) [蜂蜜](https://ghfast.top/https://raw.githubusercontent.com/FongMi/CatVodSpider/main/json/demo.json) [小米](https://3450.kstore.space/DEMO.json) [肥猫](http://肥猫.live/)  
+線上接口推薦：
+<a href="http://www.饭太硬.com/tv">飯總</a> <a href="https://100km.top/0">騷零</a> <a href="https://ghfast.top/https://raw.githubusercontent.com/FongMi/CatVodSpider/main/json/demo.json">蜂蜜</a> <a href="https://3450.kstore.space/DEMO.json">小米</a> <a href="http://肥猫.live/">肥猫</a>  
 
-[OK佬1](http://ok321.top/tv) [OK佬2](http://ok321.top/ok) [牛娃](http://tvbox.王二小放牛娃.top/) [更多](http://www.饭太硬.com/)
+<a href="http://ok321.top/tv">OK佬1</a> <a href="http://ok321.top/ok">OK佬2</a> <a href="http://tvbox.王二小放牛娃.top/">牛娃</a> <a href="http://www.饭太硬.com/">更多</a>
 
-*本地接口包推薦：*
-[香佬](https://www.123pan.com/s/alSeVv-lGO0A.html) [貓爪](https://t.me/watson1028)
+本地接口包推薦：
+<a href="https://www.123pan.com/s/alSeVv-lGO0A.html">香佬</a> <a href="https://t.me/watson1028">貓爪</a>
 
-*❓ 支持与帮助*
-[使用反饋](https://t.me/fongmi_offical) | [打賞](https://paypal.me/fongmitw)"""
+❓ 支持与帮助
+<a href="https://t.me/fongmi_official">使用反饋</a> | <a href="https://paypal.me/fongmitw">打賞</a>"""
 
-# 手机版完整消息模板
-mobile_full_message = f"""*手机版：{mobile_name}*
-[影視](https://github.com/FongMi/TV)-[蜂蜜&唐三版](https://github.com/FongMi/Release/tree/fongmi/apk)更新啦！
+# 手机版完整消息模板（使用HTML格式）
+mobile_full_message = f"""<b>手机/平板正式版：</b>{mobile_name}
+<b><a href="https://github.com/FongMi/TV">影視</a>-<a href="https://github.com/FongMi/Release/tree/fongmi/apk">蜂蜜&唐三版</a>更新啦！</b>
 
-*更新内容：*
-{chr(10).join([f'• {item.strip("* ")}' for item in mobile_changelog])}
+<b>更新内容：</b>
+{chr(10).join([f'* {item.strip("* ")}' for item in mobile_changelog])}
 
-[影視OK版](https://t.me/tvb_ys) [APP库](https://github.com/fongmi/release) [虫库](https://github.com/FongMi/CatVodSpider)
+<b><a href="https://t.me/tvb_ys">影視OK版</a> <a href="https://github.com/fongmi/release">APP库</a> <a href="https://github.com/FongMi/CatVodSpider">虫库</a></b>
 
-[本频道](https://t.me/tv_box_app) [影視群](https://t.me/fongmi_official) [飯總群](https://t.me/TVBoxxoo) 
+<b><a href="https://t.me/tv_box_app">本频道</a> <a href="https://t.me/fongmi_official">影視群</a> <a href="https://t.me/TVBoxxoo">飯總群</a></b>
 
-[牛娃群](https://t.me/wangerxiaofangniuwa) [OK影视群](https://t.me/okdespace)
+<b><a href="https://t.me/wangerxiaofangniuwa">牛娃群</a> <a href="https://t.me/okdespace">OK影视群</a></b>
 
-*Down🐝* :[32](https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-armeabi_v7a.apk) [64](https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-arm64_v8a.apk)     
+Down🐝 :<a href="https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-armeabi_v7a.apk">32</a> <a href="https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-arm64_v8a.apk">64</a>     
 
-*下载🐝* :[32](https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-armeabi_v7a.apk) [64](https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-arm64_v8a.apk)     
+下载🐝 :<a href="https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-armeabi_v7a.apk">32</a> <a href="https://ghfast.top/https://raw.githubusercontent.com/xinyi1984/TVBox-TV/fongmi/apk/release/mobile-arm64_v8a.apk">64</a>     
 
-*線上接口推薦：*
-[飯總](http://www.饭太硬.com/tv) [騷零](https://100km.top/0) [蜂蜜](https://ghfast.top/https://raw.githubusercontent.com/FongMi/CatVodSpider/main/json/demo.json) [小米](https://3450.kstore.space/DEMO.json) [肥猫](http://肥猫.live/)  
+線上接口推薦：
+<a href="http://www.饭太硬.com/tv">飯總</a> <a href="https://100km.top/0">騷零</a> <a href="https://ghfast.top/https://raw.githubusercontent.com/FongMi/CatVodSpider/main/json/demo.json">蜂蜜</a> <a href="https://3450.kstore.space/DEMO.json">小米</a> <a href="http://肥猫.live/">肥猫</a>  
 
-[OK佬1](http://ok321.top/tv) [OK佬2](http://ok321.top/ok) [牛娃](http://tvbox.王二小放牛娃.top/) [更多](http://www.饭太硬.com/)
+<a href="http://ok321.top/tv">OK佬1</a> <a href="http://ok321.top/ok">OK佬2</a> <a href="http://tvbox.王二小放牛娃.top/">牛娃</a> <a href="http://www.饭太硬.com/">更多</a>
 
-*本地接口包推薦：*
-[香佬](https://www.123pan.com/s/alSeVv-lGO0A.html) [貓爪](https://t.me/watson1028)
+本地接口包推薦：
+<a href="https://www.123pan.com/s/alSeVv-lGO0A.html">香佬</a> <a href="https://t.me/watson1028">貓爪</a>
 
-*❓ 支持与帮助*
-[使用反饋](https://t.me/fongmi_offical) | [打賞](https://paypal.me/fongmitw)"""
+❓ 支持与帮助
+<a href="https://t.me/fongmi_official">使用反饋</a> | <a href="https://paypal.me/fongmitw">打賞</a>"""
 
 # 发送消息到Telegram频道
 bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
