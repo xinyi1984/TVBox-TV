@@ -12,7 +12,7 @@ def send_telegram_message(bot_token, chat_id, text):
                 'chat_id': chat_id,
                 'text': text,
                 'parse_mode': 'Markdown',
-                'disable_web_page_preview': 'false'
+                'disable_web_page_preview': 'true'  # 改为true禁用链接预览
             },
             timeout=30
         )
@@ -70,6 +70,7 @@ tv_full_message = f"""*TV正式版：{tv_name}*
 
 *本地接口包推薦：*
 [香佬](https://www.123pan.com/s/alSeVv-lGO0A.html) [貓爪](https://t.me/watson1028)
+
 *❓ 支持与帮助*
 [使用反饋](https://t.me/fongmi_offical) | [打賞](https://paypal.me/fongmitw)"""
 
