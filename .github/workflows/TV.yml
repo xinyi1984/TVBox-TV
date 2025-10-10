@@ -322,6 +322,16 @@ jobs:
           git push --force origin fongmi
           cd ..
           rm -rf fongmi-apk
+
+      - name: Send Telegram Notification
+        if: ${{ env.commit }}
+        working-directory: TVBox-TV/media
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: |
+          # 运行Telegram推送脚本
+          python3 ${{ github.workspace }}/.github/scripts/send_telegram.py
         
       - name: Push to master
         if: ${{ env.commit }}
