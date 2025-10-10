@@ -1,19 +1,5 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: adfc91e2caa8b93d5b47b9eda6ed8a372b5f5a63
+Commit: 41f2fd48877593c5aef74915ad2c8c31e467dfe5
 Changelog:
-Update VideoActivity.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
 Update settings.gradle
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月10日 12:51
-Update build.gradle
-Optimize gif wall
-Fix danmaku npe
-Fix img
-Clean
-Revert
-Delete apk/release directory
- 更新apk build APKs 20251006-2021
- 更新apk build APKs 20251006-2010
-Fix pip bug
-Update Vod.java
-Update Util.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
