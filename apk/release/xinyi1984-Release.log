@@ -1,5 +1,7 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 41f2fd48877593c5aef74915ad2c8c31e467dfe5
+Commit: 5082f67af142234d311d21b142db9bc18501f0a5
 Changelog:
-Update settings.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月11日 09:44
+Revert
+Update build.gradle
+Optimize track select
