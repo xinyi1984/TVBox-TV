@@ -1,13 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: e8dc6f6f7402b99672d949ff79c38adfb59e005a
+Commit: cae9a01ffaa7e74efcce6c881fe839306d0fdfc5
 Changelog:
-Update settings.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月14日 20:37
-更新 main.yml
-新建 .atomgit/workflows/main.yml
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月16日 02:01
 Update build.gradle
-Clean code
-Update app icon
-Optimize video wall
-Fix icon
+Optimize collect
