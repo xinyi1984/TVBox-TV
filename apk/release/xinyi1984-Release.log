@@ -1,21 +1,13 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: c3d8a8d4efbe84d6acf56f31bfc18d791f3925c6
+Commit: e8dc6f6f7402b99672d949ff79c38adfb59e005a
 Changelog:
 Update settings.gradle
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月13日 16:59
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月14日 20:37
+更新 main.yml
+新建 .atomgit/workflows/main.yml
 Update build.gradle
-Optimize wallpaper load
-Clean
-Optimize large wallpaper
-🔗 合并上游 FongMi 更新 - 2025年10月12日 15:25:52
-Fix bug
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月12日 14:03
-Optimize glide
-🔗 合并上游 FongMi 更新 - 2025年10月12日 13:37
-Add wall history
-Update FileUtil.java
-Update settings.gradle
-Update TrackNameProvider.java
-Merge upstream updates - 2025-10-11 16:51
-Update FileUtil.java
+Clean code
+Update app icon
+Optimize video wall
+Fix icon
