@@ -1,5 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 12bfbe1f7888f828eb04eda8275c4709d290551e
+Commit: 3438db87972a6cb444cbd3837563250c1e2992cb
 Changelog:
-Update Github.java
+Add androidx.palette dependency to build.gradle
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月16日 22:01
+Fix line bug
+Use palette
