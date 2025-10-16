@@ -1,6 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: cae9a01ffaa7e74efcce6c881fe839306d0fdfc5
+Commit: bd4c47f4b34624f37cd9245b505f06378adc83e8
 Changelog:
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月16日 02:01
-Update build.gradle
-Optimize collect
+🔗 合并上游 FongMi 更新 - 2025年10月16日 13:01
+Fix vod long click bug
+Fix name width
