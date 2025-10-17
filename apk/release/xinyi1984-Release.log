@@ -1,4 +1,5 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 036da9e0473bdb5534f38523b6e8d87714e807b8
+Commit: e8c9e4d4474e674f8deb09fb01983aa7ff2a4fd6
 Changelog:
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月17日 00:01
+Update Github.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
