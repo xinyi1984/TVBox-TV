@@ -1,6 +1,169 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 85f62ed6405e5f873a18ff2ec0402ca1757ac4ec
+Commit: c6383b5dd0fdd530021bdd8abdc0b1744837bc56
 Changelog:
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月19日 02:01
 Update build.gradle
-Fix bug
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update build.gradle
+Update TVBus.java
+Update build.gradle
+Update gradle-wrapper.properties
+Update build.gradle
+Update settings.gradle
+Update build.gradle
+Add files via upload
+Delete app/libs/tvbus-release.aar
+Update settings.gradle
+Update build.gradle
+Update settings.gradle
+Update build.gradle
+Update settings.gradle
+Update build.gradle
+Add 'Display' string resource
+Add control_display string for Chinese localization
+Update strings.xml
+Update dialog_control.xml
+Update activity_video.xml
+Change surface type to surface_view and add display
+Update ControlDialog.java
+Update VideoActivity.java
+Update LiveActivity.java
+Add new string resources for player UI
+Update strings.xml
+Add new strings for playback features in Chinese
+Update Clock.java
+Update SubtitleDialog.java
+Update TrackNameProvider.java
+Update ExoUtil.java
+Comment out view.setRender() call
+Comment out the call to view.setRender() in Players.java.
+Update Setting.java
+Update AndroidManifest.xml
+Add files via upload
+Update view_control_vod.xml
+Update activity_video.xml
+Update activity_live.xml
+Change surface type to 'surface_view' in layout
+Update shape_controller.xml to use gradient color
+Replaced solid color with a gradient for shape.
+Update VideoActivity.java
+Update LiveActivity.java
+Update build.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月19日 02:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月19日 01:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月18日 18:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月18日 04:01
+Update HomeActivity.java
+🔗 合并上游 FongMi 更新 - 2025年10月18日 00:26
+Delete .atomgit/workflows directory
+Update Github.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月17日 00:01
+Add androidx.palette dependency to build.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月16日 22:01
+🔗 合并上游 FongMi 更新 - 2025年10月16日 15:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月16日 14:01
+🔗 合并上游 FongMi 更新 - 2025年10月16日 13:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月16日 02:01
+Update settings.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月14日 20:37
+更新 main.yml
+新建 .atomgit/workflows/main.yml
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月13日 16:59
+🔗 合并上游 FongMi 更新 - 2025年10月12日 15:25:52
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月12日 14:03
+🔗 合并上游 FongMi 更新 - 2025年10月12日 13:37
+Update FileUtil.java
+Update settings.gradle
+Update TrackNameProvider.java
+Merge upstream updates - 2025-10-11 16:51
+Update FileUtil.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月11日 09:44
+Update settings.gradle
+Update VideoActivity.java
+Update settings.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月10日 12:51
+Delete apk/release directory
+ 更新apk build APKs 20251006-2021
+ 更新apk build APKs 20251006-2010
+Update Vod.java
+Update Util.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月04日 16:10
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月03日 17:10
+🔗 合并上游 FongMi 更新 - 2025年10月03日 16:12
+🔗 合并上游 FongMi 更新 - 2025年10月03日 11:21
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月03日 00:12
+🔗 合并上游 FongMi 更新 - 2025年10月02日 23:09
+🔗 合并上游 FongMi 更新 - 2025年10月02日 22:09
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月02日 13:09
+🔗 合并上游 FongMi 更新 - 2025年10月02日 03:07
+🔗 合并上游 FongMi 更新 - 2025年10月02日 02:13
+🔗 合并上游 FongMi 更新 - 2025年10月01日 17:11
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月01日 02:13
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月01日 01:08
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年09月30日 11:24
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年09月30日 01:09
+🔗 合并上游 FongMi 更新 - 2025年09月30日 00:11
+🔗 合并上游 FongMi 更新 - 2025年09月29日 16:14
+🔗 合并上游 FongMi 更新 - 2025年09月29日 15:11
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年09月29日 02:11
+🔗 合并上游 FongMi 更新 - 2025年09月28日 01:07
+🔗 合并上游 FongMi 更新 - 2025年09月27日 17:08
+🔗 合并上游 FongMi 更新 - 2025年09月27日 16:10
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年09月27日 15:47
+🔗 合并上游 FongMi 更新 - 2025年09月26日 23:09
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年09月26日 20:18
+Update ExoUtil.java
+Update Merge upstream fongmi.yml
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年09月26日 17:49
+Update ExoUtil.java
+Update Merge upstream fongmi.yml
+Update VideoActivity.java
+Update Merge upstream fongmi.yml
+Add files via upload
+Update and rename Merge upstream FongMi.yml to Merge upstream fongmi.yml
+Create Merge upstream FongMi.yml
+Update Clock.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update Util.java
+Update view_widget_display.xml
+Update settings.gradle
+Update build.gradle
+Update gradle-wrapper.properties
+Update build.gradle
+Update view_widget_display.xml
+Update dialog_display.xml
+Update adapter_display.xml
+Update view_widget_display.xml
+Update adapter_display.xml
+Update dialog_display.xml
+Update view_widget_display.xml
+Update shape_controller.xml
+Update strings.xml
+Update dialog_control.xml
+Update activity_video.xml
+Update activity_live.xml
+Update activity_video.xml
+Update ControlDialog.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update strings.xml
+Update Util.java
+Update Github.java
+Update SubtitleDialog.java
+Update TVBus.java
+Update TrackNameProvider.java
+Update ExoUtil.java
+Update Players.java
+Update Setting.java
+Update AndroidManifest.xml
+Update view_control_vod.xml
+Update activity_video.xml
+Update activity_live.xml
+Update activity_cast.xml
+Update VideoActivity.java
+Update LiveActivity.java
+Delete app/libs/tvbus-release.aar
+Update build.gradle
