@@ -1,5 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 989053126e7d64debd8332b9e96d0e9de7ffe139
+Commit: 0213dfb43e648a97b0c92b1df49d6a7cf499dcf9
 Changelog:
-Update LiveActivity.java
+比较提交范围: 0213dfb...9890531
+Update build.gradle
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
