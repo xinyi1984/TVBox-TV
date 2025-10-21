@@ -1,8 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 816935cd4517eab020e0641c477c4a78baab81de
+Commit: 1107aa0d6c61c51e9e9bbf8f1c107d0fdedb69d8
 Changelog:
-比较提交范围: 816935c...b56d347
-Update FileUtil.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update Download.java
-Update Util.java
+比较提交范围: 1107aa0...816935c
+🔗 合并上游 FongMi 更新 - 2025年10月21日 19:01
+Update build.gradle
+Remove cookie jar
+Support hide live
