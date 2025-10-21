@@ -1,25 +1,5 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 101ac01d57021c1458d914379fdbdfb0999a54be
+Commit: b56d3479163a92e4c310a1694804dd9ede1e68e9
 Changelog:
-比较提交范围: 101ac01...a5eb80a
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月21日 08:01
-Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update Util.java
-Update Download.java
-Update FileUtil.java
-Update strings.xml
-Update proguard-rules.pro
-Fix proguard
-Update gradle
-Update okhttp
-Update build.gradle
-Add glide clear
-Clean code
-Remove decode memory
-Optimize ui
-Use fontFeatureSettings
-Fix traffic
-Fix bug
-Fix crash
-Remove bold and shadow
+提交相同，显示单提交日志
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月21日 11:06
