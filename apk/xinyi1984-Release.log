@@ -1,47 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: b6282ad875f650ac81165d924d62c8977f768211
+Commit: c646c7bac0808b213a66cc33dc2e83f6ebdc2380
 Changelog:
-比较提交范围: b6282ad...1107aa0
-Update LiveActivity.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update build.gradle
-Add files via upload
-Delete app/libs/thunder-release.aar
-🔗 合并上游 FongMi 更新 - 2025年10月28日 17:44
+比较提交范围: c646c7b...b6282ad
 Update VideoActivity.java
-Optimize search site width
-Update AndroidManifest.xml
-Update build.gradle
-Fix lock orient for live
-Update TVBus.java
-Optimize ui config
-Clean code
-Optimize BottomSheetDialog window
-Fix height bug
-Fix bug
-Fix proxy bug
-Optimize live progress
-Fix live enter bug
-Remove exoplayer log
-Update build.gradle
-Add ripple for type
-Fix thunder
-Fix bug
-Optimize live
-🔗 合并上游 FongMi 更新 - 2025年10月24日 05:01
-Fix dialog height
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月24日 04:01
-Add swipe refresh for tv
-Support live can switch config
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月24日 03:01
-Fix save bug
-🔗 合并上游 FongMi 更新 - 2025年10月24日 02:01
-Fix history bug
-🔗 合并上游 FongMi 更新 - 2025年10月23日 03:01
-Fix bug
-Revert
-Fix history bug
-Remove crash
-Add hash code
-Optimize vod list
-Optimize bean
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update LiveActivity.java
+Update VideoActivity.java
