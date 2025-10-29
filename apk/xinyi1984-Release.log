@@ -1,8 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: c646c7bac0808b213a66cc33dc2e83f6ebdc2380
+Commit: 85d79bddc69d38838718bc37af626f5bfa321fc7
 Changelog:
-比较提交范围: c646c7b...b6282ad
-Update VideoActivity.java
+比较提交范围: 85d79bd...c646c7b
+Update build.gradle
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update LiveActivity.java
-Update VideoActivity.java
+Update settings.gradle
+Update build.gradle
+Update styles.xml
+Update view_widget_display.xml
