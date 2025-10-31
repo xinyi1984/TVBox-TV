@@ -1,10 +1,39 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 85d79bddc69d38838718bc37af626f5bfa321fc7
+Commit: 0a72989af334fd1b69b6b50f6043fcbce1f8a77d
 Changelog:
-比较提交范围: 85d79bd...c646c7b
-Update build.gradle
+比较提交范围: 0a72989...85d79bd
+Update LiveActivity.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update settings.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月31日 22:13
 Update build.gradle
-Update styles.xml
+Update settings.gradle
+Clean code
+Remove auto play
+Remove cache
+Optimize ux
+Use cache for image
+Optimize searchContent
+Optimize live config load
+Clean import
+Optimize vod config load
+Fix bug
+Optimize
+Clean code
+Fix lock bug
+Fix bug
+Fix config save bug
+Fix leanback style
+Downgrade okhttp
+Remove auto play when resume
+Fix live drm parse
+Optimize media3 okhttp
+Update build.gradle
+Fix crash
+Clean import
+Support new drm param
+Optimize search thread
+Adjust collect width
+Fix bug
+Fix logo crash
+Revert permission
 Update view_widget_display.xml
