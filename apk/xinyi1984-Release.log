@@ -1,8 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 6ddd64393d701489043e7d2b512e88a6a8b390c0
+Commit: e265eccc006a5004f6953812c54af95f99773177
 Changelog:
-比较提交范围: 6ddd643...a89b3cc
-🔗 合并上游 FongMi 更新 - 2025年11月01日 01:11
-Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+比较提交范围: e265ecc...6ddd643
+🔗 合并上游 FongMi 更新 - 2025年11月01日 07:29
+Optimize xmltv parse
+Clean log
 Fix bug
