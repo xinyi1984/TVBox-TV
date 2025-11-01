@@ -1,63 +1,7 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 3aca5936dd1a36837ebafc5fce91fc7ff584432a
+Commit: 94d258ccb2e6de65a5782c3e00939d11237f5ecb
 Changelog:
-比较提交范围: 3aca593...3cd5709
-Add files via upload
+比较提交范围: 94d258c...3aca593
+Update build.gradle
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Delete app/libs/thunder-release.aar
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月01日 15:37
-Update strings.xml
-Add new strings for playback features in Chinese
-Remove unused playback string resources
-Removed unused string resources related to playback.
-Add files via upload
-Update settings.gradle
-Update strings for configuration and dialog hints
-Update strings.xml
-Update styles.xml
-Update VideoActivity.java
-Integrate Clock functionality into LiveActivity
-Update LiveActivity.java
-Update strings.xml
-Update LiveActivity.java
-Update build.gradle
-🔗 合并上游 FongMi 更新 - 2025年11月01日 13:29
-🔗 合并上游 FongMi 更新 - 2025年11月01日 07:29
-🔗 合并上游 FongMi 更新 - 2025年11月01日 01:11
-🔗 合并上游 FongMi 更新 - 2025年11月01日 00:43
-Update ExoUtil.java
-🔗 合并上游 FongMi 更新 - 2025年10月31日 23:01
-Update build.gradle
-Update ExoUtil.java
-Update build.gradle
-Update LiveActivity.java
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月31日 22:13
-Update build.gradle
-Update settings.gradle
-Update view_widget_display.xml
-Update styles.xml
-Update view_widget_display.xml
-Update build.gradle
-Update settings.gradle
-Update build.gradle
-Update styles.xml
-Update view_widget_display.xml
-Update VideoActivity.java
-Update LiveActivity.java
-Update VideoActivity.java
-Update LiveActivity.java
-Update build.gradle
-🔗 合并上游 FongMi 更新 - 2025年10月28日 17:44
-Update VideoActivity.java
-🔗 合并上游 FongMi 更新 - 2025年10月24日 05:01
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月24日 04:01
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月24日 03:01
-🔗 合并上游 FongMi 更新 - 2025年10月24日 02:01
-🔗 合并上游 FongMi 更新 - 2025年10月23日 03:01
-🔗 合并上游 FongMi 更新 - 2025年10月21日 19:01
-Update Util.java
-Update Download.java
-Update FileUtil.java
-Update Download.java
-Update Util.java
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月21日 11:06
+Update MediaSourceFactory.java
