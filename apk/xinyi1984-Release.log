@@ -1,5 +1,14 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: b7e814645273155496be0ad7c951eb1b5c06bb1c
+Commit: a193bbb10e2f8d3373ca92b420b6a42d2d182c05
 Changelog:
-比较提交范围: b7e8146...5eb7896
-比较提交失败，显示最近提交
+比较提交范围: a193bbb...b7e8146
+Update build.gradle
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月02日 02:34
+Update BaseLoader.java
+Rename PyLoader.java to PyLoader.java弃用
+Update build.gradle
+Update settings.gradle
+Update build.gradle
+Update gradle
+Update ExoUtil.java
