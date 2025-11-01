@@ -1,5 +1,21 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 7449622a2abf97503d7065e13480bf76a19d87c6
+Commit: 85321f2e469de575d930d8c5ab800e43cfee08db
 Changelog:
-比较提交范围: 7449622...94d258c
-比较提交失败，显示最近提交
+比较提交范围: 85321f2...7449622
+Update TVBus.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update build.gradle
+Update gradle-wrapper.properties
+Update build.gradle
+Add files via upload
+Update gradle-wrapper.properties
+Update build.gradle
+Update activity_video.xml
+Change surface type to 'surface_view' in layout
+Change surface_type to 'surface_view' in XML layout
+Change surface_type to 'surface_view' in layout
+Update activity_cast.xml
+Delete app/libs/thunder-release.aar
+Delete app/libs/tvbus-release.aar
+Update build.gradle
+Change minSdk version from 24 to 21
