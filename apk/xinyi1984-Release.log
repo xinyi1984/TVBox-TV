@@ -1,7 +1,5 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 94d258ccb2e6de65a5782c3e00939d11237f5ecb
+Commit: 7449622a2abf97503d7065e13480bf76a19d87c6
 Changelog:
-比较提交范围: 94d258c...3aca593
-Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update MediaSourceFactory.java
+比较提交范围: 7449622...94d258c
+比较提交失败，显示最近提交
