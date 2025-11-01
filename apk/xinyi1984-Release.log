@@ -1,10 +1,5 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 5eb789644f3e6e361b3915f282f2b19674c337ee
+Commit: b7e814645273155496be0ad7c951eb1b5c06bb1c
 Changelog:
-比较提交范围: 5eb7896...85321f2
-Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update gradle-wrapper.properties
-Update build.gradle
-Update gradle-wrapper.properties
-Update build.gradle
+比较提交范围: b7e8146...5eb7896
+比较提交失败，显示最近提交
