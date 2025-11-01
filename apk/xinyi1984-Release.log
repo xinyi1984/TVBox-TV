@@ -1,8 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: e265eccc006a5004f6953812c54af95f99773177
+Commit: 3cd5709c4f4be7a32eab17b24777feca9e80d563
 Changelog:
-比较提交范围: e265ecc...6ddd643
-🔗 合并上游 FongMi 更新 - 2025年11月01日 07:29
-Optimize xmltv parse
-Clean log
-Fix bug
+比较提交范围: 3cd5709...e265ecc
+🔗 合并上游 FongMi 更新 - 2025年11月01日 13:29
+Update
