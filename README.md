@@ -8,5 +8,5 @@
 
 ## Credits
 This repo relies on the following third-party projects:
-- [FongMi/Release/tree/fongmi](https://github.com/FongMi/Release/tree/fongmi) (Updated: 744ca6e2e3c779822dfb54701693b4c6a7700c25) (name: 20251101-1313)
-- [xinyi1984/TV/tree/fongmi](https://github.com/xinyi1984/TV/tree/fongmi) (Updated: a193bbb10e2f8d3373ca92b420b6a42d2d182c05) (name: 20251102-0303)
+- [FongMi/Release/tree/fongmi](https://github.com/FongMi/Release/tree/fongmi) (Updated: 3413df541354dfa79b69e3348af4cb1a857ac9cd) (name: 20251103-1245)
+- [xinyi1984/TV/tree/fongmi](https://github.com/xinyi1984/TV/tree/fongmi) (Updated: 473a515f2124d1574fe032331b22975412d697ad) (name: 20251103-1323)
