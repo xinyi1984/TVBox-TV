@@ -1,11 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 611e2b6017cfbb644cd491952cd67a337c0a9d4c
+Commit: 30dfaf3585b20f199fe0a46a4becef93169ad550
 Changelog:
-比较提交范围: 611e2b6...12cd869
-🔗 合并上游 FongMi 更新 - 2025年11月03日 20:01
-Update build.gradle
-Fix
-Fix bug
+比较提交范围: 30dfaf3...611e2b6
+🔗 合并上游 FongMi 更新 - 2025年11月04日 02:01
 Clean code
-Optimize suggest word
-Update okhttp
+Update build.gradle
+Optimize server start
+Fix crash
+Fix js bug
