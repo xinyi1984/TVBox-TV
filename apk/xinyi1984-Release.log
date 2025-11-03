@@ -1,14 +1,7 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 473a515f2124d1574fe032331b22975412d697ad
+Commit: 12cd86901b0c5c3bff899d5f122136f135b0ab1a
 Changelog:
-比较提交范围: 473a515...a193bbb
-Update BaseLoader.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月03日 13:01
+比较提交范围: 12cd869...473a515
+🔗 合并上游 FongMi 更新 - 2025年11月03日 14:01
 Update build.gradle
-Clean code
 Fix bug
-Optimize code
-Fix build
-Fix bug
-Optimize onFling
