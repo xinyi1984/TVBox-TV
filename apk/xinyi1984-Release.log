@@ -1,19 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: a4d20f1ee55276fb50f40b14d4e93d7d094a62d6
+Commit: 85a1d2faee14609467822059d17b7d6dda846846
 Changelog:
-比较提交范围: a4d20f1...30dfaf3
-Update TVBus.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Add files via upload
-Delete app/libs/hook-release.aar
-Delete app/libs/thunder-release.aar
-Delete app/libs/tvbus-release.aar
+比较提交范围: 85a1d2f...a4d20f1
+🔗 合并上游 FongMi 更新 - 2025年11月05日 15:01
 Update build.gradle
-Delete app/libs/hook-release.aar
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月04日 20:01
-Optimize
-Fix bug
-Update App.java
-Update hook
-Add chrome hook
-Optimize player check
+Fix focus bug
+Fix lock orientation
