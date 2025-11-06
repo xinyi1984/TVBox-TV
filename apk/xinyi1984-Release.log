@@ -1,8 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 35913da78380cdfb4c687654b6fb61833955e0ef
+Commit: 0bd6b772bce051704be342ab0d1df1757472ef99
 Changelog:
-比较提交范围: 35913da...5d60ff6
-🔗 合并上游 FongMi 更新 - 2025年11月06日 20:00
+比较提交范围: 0bd6b77...35913da
+🔗 合并上游 FongMi 更新 - 2025年11月07日 03:00
 Update build.gradle
-Revert
-Clean code
+Add cancel check
+Optimize flip check
+Fix bug
+Optimize home content load
