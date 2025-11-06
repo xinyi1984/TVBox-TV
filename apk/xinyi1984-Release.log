@@ -1,8 +1,16 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 85a1d2faee14609467822059d17b7d6dda846846
+Commit: 5d60ff6fb95f2c1b7fa6ef3730c405fa6008fa1d
 Changelog:
-比较提交范围: 85a1d2f...a4d20f1
-🔗 合并上游 FongMi 更新 - 2025年11月05日 15:01
+比较提交范围: 5d60ff6...85a1d2f
+🔗 合并上游 FongMi 更新 - 2025年11月06日 18:47
 Update build.gradle
-Fix focus bug
-Fix lock orientation
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update AndroidManifest.xml
+Don't need reload config when set doh
+🔗 合并上游 FongMi 更新 - 2025年11月06日 18:00
+Clean code
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月06日 15:01
+Update build.gradle
+Use app startup
+Fix
+bug
