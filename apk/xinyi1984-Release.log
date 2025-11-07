@@ -1,12 +1,19 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 9f789889536468b884e7a0d2ee750f56ae13e484
+Commit: 64b6ed844eca58da06827fe71ab9716d740f2416
 Changelog:
-比较提交范围: 9f78988...0e7f29d
-🔗 合并上游 FongMi 更新 - 2025年11月07日 17:00
-Fix bug
+比较提交范围: 64b6ed8...9f78988
+🔗 合并上游 FongMi 更新 - 2025年11月07日 22:00
 Update build.gradle
-Fix jar load
-Clean code
-Fix style bug
-Update HomeActivity.java
+Fix nano charset
+Add files via upload
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Delete app/libs/hook-release.aar
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月07日 20:41
+Update styles.xml
+Update hook
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月07日 20:00
+Update build.gradle
+Add web view log
+Optimize crash show
+Fix check more bug
+Fix load more bug
