@@ -1,10 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 0bd6b772bce051704be342ab0d1df1757472ef99
+Commit: 0e7f29d01ab11f267af0dd0544206355c7719634
 Changelog:
-比较提交范围: 0bd6b77...35913da
-🔗 合并上游 FongMi 更新 - 2025年11月07日 03:00
-Update build.gradle
-Add cancel check
-Optimize flip check
-Fix bug
-Optimize home content load
+比较提交范围: 0e7f29d...0bd6b77
+Update HomeActivity.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
