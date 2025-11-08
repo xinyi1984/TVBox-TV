@@ -1,19 +1,12 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 64b6ed844eca58da06827fe71ab9716d740f2416
+Commit: 2d2ea1339ad223e66659e5ab191922c057efbf68
 Changelog:
-比较提交范围: 64b6ed8...9f78988
-🔗 合并上游 FongMi 更新 - 2025年11月07日 22:00
-Update build.gradle
-Fix nano charset
+比较提交范围: 2d2ea13...64b6ed8
 Add files via upload
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
 Delete app/libs/hook-release.aar
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月07日 20:41
-Update styles.xml
-Update hook
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月07日 20:00
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月08日 22:10
 Update build.gradle
-Add web view log
-Optimize crash show
-Fix check more bug
 Fix load more bug
+Clean code
+Fix hook bug
