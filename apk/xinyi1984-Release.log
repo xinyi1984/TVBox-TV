@@ -1,12 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 2d2ea1339ad223e66659e5ab191922c057efbf68
+Commit: 31278f1a65e07ce8e244e90703c271d44b3d4f14
 Changelog:
-比较提交范围: 2d2ea13...64b6ed8
-Add files via upload
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Delete app/libs/hook-release.aar
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月08日 22:10
-Update build.gradle
-Fix load more bug
-Clean code
-Fix hook bug
+比较提交范围: 31278f1...2d2ea13
+🔗 合并上游 FongMi 更新 - 2025年11月09日 13:26
+Remove hook
+🔗 合并上游 FongMi 更新 - 2025年11月09日 12:01
+Remove log
