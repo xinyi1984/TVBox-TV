@@ -1,11 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: a20e61457fb6ba9b4d0ceecc0d1e80aac0623771
+Commit: 4f52de586fd90947ac55af6e9dfe98a95195bbe0
 Changelog:
-比较提交范围: a20e614...31278f1
-🔗 合并上游 FongMi 更新 - 2025年11月10日 00:00
+比较提交范围: 4f52de5...a20e614
+🔗 合并上游 FongMi 更新 - 2025年11月10日 13:00
 Update build.gradle
-Optimize config load
-Optimize wall config
-Fix bug
-Add strm extractor
-Convert channel to result
+Clean code
+Fix strm check
