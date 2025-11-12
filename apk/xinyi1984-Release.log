@@ -1,8 +1,12 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 4f52de586fd90947ac55af6e9dfe98a95195bbe0
+Commit: 7c1bf70638334771dd3c60279d1a3c78b4cd2ad7
 Changelog:
-比较提交范围: 4f52de5...a20e614
-🔗 合并上游 FongMi 更新 - 2025年11月10日 13:00
+比较提交范围: 7c1bf70...4f52de5
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月12日 20:13
+Update Players.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
 Update build.gradle
+Fix bug
 Clean code
-Fix strm check
+Fix crash
+Fix bug
