@@ -1,11 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 94d3a5fdb4a911f9c1d9639aea3f26311a611fa8
+Commit: 25100d495d182b1982adb540461bd5b046b46249
 Changelog:
-比较提交范围: 94d3a5f...07a095e
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月13日 18:01
+比较提交范围: 25100d4...94d3a5f
+🔗 合并上游 FongMi 更新 - 2025年11月14日 07:48
 Update build.gradle
-Update search list image size
-Clean code
-Update AndroidManifest.xml
-Update Players.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Fix bug
