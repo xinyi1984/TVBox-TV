@@ -1,17 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: f25dc2284dd17b38322fc190cae7c87ad6f5955c
+Commit: bd0576ed34c950a9c30f70395e5c662e7ee0d27b
 Changelog:
-比较提交范围: f25dc22...25100d4
-🔗 合并上游 FongMi 更新 - 2025年11月17日 03:01
-Fix bug
-Clean code
+比较提交范围: bd0576e...f25dc22
+🔗 合并上游 FongMi 更新 - 2025年11月17日 18:01
 Update build.gradle
-Fix word bug
+Clean code
 Fix danmaku bug
-Optimize collect title click
-Add danmaku cache
-Fix bug
-Fix jar load
-Optimize live config
-Optimize vod config
-Optimize model
+Remove danmaku cache
+Fix crash
