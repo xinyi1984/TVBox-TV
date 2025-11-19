@@ -1,7 +1,9 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 8c1270aad8812d48b06cff156c8995715302499a
+Commit: aad0fd1bbb98198ae7f719b6d43cfdb38c928381
 Changelog:
-比较提交范围: 8c1270a...bd0576e
-🔗 合并上游 FongMi 更新 - 2025年11月18日 04:01
-Clean code
-Optimize download
+比较提交范围: aad0fd1...8c1270a
+Update build.gradle
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月19日 13:01
+Update gradle
+Optimize zhu to pin
