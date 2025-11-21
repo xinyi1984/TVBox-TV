@@ -1,9 +1,14 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: aad0fd1bbb98198ae7f719b6d43cfdb38c928381
+Commit: 8d67bc4f2f57d2ba24cf206817d28ac29cbb90ee
 Changelog:
-比较提交范围: aad0fd1...8c1270a
+比较提交范围: 8d67bc4...aad0fd1
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月21日 11:00
 Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月19日 13:01
-Update gradle
-Optimize zhu to pin
+Add trans for live and danmaku
+Update Trans.java
+Fix epg bug
+Revert
+Fix bug
+Fix wall bug
+Clean code
+Revert trans map
