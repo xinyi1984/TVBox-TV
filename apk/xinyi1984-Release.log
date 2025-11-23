@@ -1,10 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: c510464713fc6e120b23018b61f7d66f5bdd5ce3
+Commit: 44e4b7e10c99deaf5cae36bca446c0a33794322f
 Changelog:
-比较提交范围: c510464...8d67bc4
-🔗 合并上游 FongMi 更新 - 2025年11月22日 02:01
+比较提交范围: 44e4b7e...c510464
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月24日 02:01
+Update CustomMovement.java
 Update build.gradle
-Fix armeabi-v7a py load
-Fix crash
-Update LiveActivity.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Fix bug
+Clean
+Optimize epg parse

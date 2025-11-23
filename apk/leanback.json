@@ -1,5 +1,5 @@
 {
-  "code": 491,
-  "name": "4.9.1",
-  "desc": "* 優化 so 載入速度\n* 安裝包不再壓縮 so\n* 修正 armeabi-v7a py 載入"
+  "code": 492,
+  "name": "4.9.2",
+  "desc": "* 修正 pgs 字幕顯示\n* 優化 xml epg 匹配"
 }
