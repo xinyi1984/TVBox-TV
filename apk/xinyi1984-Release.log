@@ -1,10 +1,13 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 736742997ba4e594daa0245172c6b10e9035ed2d
+Commit: 8f3c9aa86c9f90a5a919983a74c1c509ab0f5b88
 Changelog:
-比较提交范围: 7367429...44e4b7e
-🔗 合并上游 FongMi 更新 - 2025年11月24日 16:01
-Update build.gradle
-Fix m3u check
-Fix xml parse
-Update LiveActivity.java
+比较提交范围: 8f3c9aa...7367429
+Update BaseLoader.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月25日 14:01
+Rename proxyLocal to proxy
+Clean code
+Update build.gradle
+Update Spider.java
+Add siteKey for spider
+Add sample
