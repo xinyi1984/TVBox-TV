@@ -1,5 +1,5 @@
 {
-  "code": 495,
-  "name": "4.9.5",
-  "desc": "* 優化 proxy 方法\n* licence key 支持 header"
+  "code": 496,
+  "name": "4.9.6",
+  "desc": "* 直播支持設置forceKey"
 }

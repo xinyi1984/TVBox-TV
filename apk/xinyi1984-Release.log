@@ -1,11 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 9f21926f43eddf1024c921e8a8113ba0f371c9fd
+Commit: c9be6387cae3d5a34896ae7270b6cc120d0adf0a
 Changelog:
-比较提交范围: 9f21926...8f3c9aa
-🔗 合并上游 FongMi 更新 - 2025年11月25日 23:01
-Update build.gradle
+比较提交范围: c9be638...9f21926
+🔗 合并上游 FongMi 更新 - 2025年11月26日 15:00
 Clean code
-Optimize header parse
-Revert "Optimize header parse"
-This reverts commit 3d275fa02b34b4b6b678f41989808ccdf7ae2364.
-Support drm licence header
+Update build.gradle
+Add forceKey param
