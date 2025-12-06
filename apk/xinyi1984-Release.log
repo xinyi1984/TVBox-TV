@@ -1,10 +1,15 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 71e9cb5865415c563d05c9ed10eb969ed593d91c
+Commit: 3ad92cb7ad76356347648afeee56ba0bf93b2bab
 Changelog:
-比较提交范围: 71e9cb5...13bd5d9
-Update VideoActivity.java
+比较提交范围: 3ad92cb...71e9cb5
+🔗 合并上游 FongMi 更新 - 2025年12月06日 13:49
+Update activity_cast.xml
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update activity_video.xml
+Update activity_live.xml
+Update activity_cast.xml
+Update activity_video.xml
 Update LiveActivity.java
 Update VideoActivity.java
 Update LiveActivity.java
-Update VideoActivity.java
+Clean code
