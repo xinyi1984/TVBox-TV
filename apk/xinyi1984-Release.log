@@ -1,8 +1,217 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: b20ee49c08ec3d7f1f0915642a8ec3b33fbe5ba6
+Commit: e4ae784bad72ef2cd210f463f5316bdb4ae14ef1
 Changelog:
-比较提交范围: b20ee49...036ba68
-Update VideoActivity.java
+比较提交范围: e4ae784...b20ee49
+Update FileUtil.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update and rename PyLoader.java to PyLoader.java弃用
+Update Vod.java
+Update BaseLoader.java
+Update PyLoader.java
+Update BaseLoader.java
+Update build.gradle
+Add files via upload
+Delete app/libs/hook-release.aar
+Delete app/libs/thunder-release.aar
+Delete app/libs/tvbus-release.aar
+Update FileUtil.java
+Update Vod.java
+Update Util.java
+Update SubtitleDialog.java
+Update Github.java
+Update BaseLoader.java
+Update ExoUtil.java
+Update Players.java
+Update build.gradle
+Update settings.gradle
+Update build.gradle
+Update VideoActivity.java
 Update LiveActivity.java
 Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+🔗 合并上游 FongMi 更新 - 2025年12月06日 13:49
+Update activity_cast.xml
+Update activity_video.xml
+Update activity_live.xml
+Update activity_cast.xml
+Update activity_video.xml
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+🔗 合并上游 FongMi 更新 - 2025年12月06日 11:00
+Update build.gradle
+Update LiveActivity.java
+Update Clock.java
+Update activity_live.xml
+Update activity_video.xml
+Update view_widget_display.xml
+Update activity_live.xml
+Update activity_cast.xml
+Update build.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年12月06日 01:00
+🔗 合并上游 FongMi 更新 - 2025年11月26日 15:00
+🔗 合并上游 FongMi 更新 - 2025年11月25日 23:01
+Update BaseLoader.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月25日 14:01
+🔗 合并上游 FongMi 更新 - 2025年11月24日 16:01
+Update LiveActivity.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月24日 02:01
+🔗 合并上游 FongMi 更新 - 2025年11月22日 02:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月21日 11:00
+Update build.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月19日 13:01
+🔗 合并上游 FongMi 更新 - 2025年11月18日 04:01
+🔗 合并上游 FongMi 更新 - 2025年11月17日 18:01
+🔗 合并上游 FongMi 更新 - 2025年11月17日 03:01
+🔗 合并上游 FongMi 更新 - 2025年11月14日 07:48
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月13日 18:01
+Update Players.java
+Update build.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月12日 20:13
+Update Players.java
+🔗 合并上游 FongMi 更新 - 2025年11月10日 13:00
+🔗 合并上游 FongMi 更新 - 2025年11月10日 00:00
+🔗 合并上游 FongMi 更新 - 2025年11月09日 13:26
+🔗 合并上游 FongMi 更新 - 2025年11月09日 12:01
+Delete app/libs/hook-release.aar
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月08日 22:10
+🔗 合并上游 FongMi 更新 - 2025年11月07日 22:00
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月07日 20:41
+Update styles.xml
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月07日 20:00
+🔗 合并上游 FongMi 更新 - 2025年11月07日 17:00
+Update HomeActivity.java
+🔗 合并上游 FongMi 更新 - 2025年11月07日 03:00
+🔗 合并上游 FongMi 更新 - 2025年11月06日 20:00
+🔗 合并上游 FongMi 更新 - 2025年11月06日 18:47
+Update build.gradle
+Update AndroidManifest.xml
+🔗 合并上游 FongMi 更新 - 2025年11月06日 18:00
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月06日 15:01
+🔗 合并上游 FongMi 更新 - 2025年11月05日 15:01
+Update TVBus.java
+Delete app/libs/thunder-release.aar
+Delete app/libs/tvbus-release.aar
+Update build.gradle
+Delete app/libs/hook-release.aar
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月04日 20:01
+🔗 合并上游 FongMi 更新 - 2025年11月04日 02:01
+🔗 合并上游 FongMi 更新 - 2025年11月03日 20:01
+🔗 合并上游 FongMi 更新 - 2025年11月03日 14:01
+Update BaseLoader.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月03日 13:01
+Update build.gradle
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年11月02日 02:34
+Update BaseLoader.java
+Rename PyLoader.java to PyLoader.java弃用
+Update build.gradle
+Update settings.gradle
+Update ExoUtil.java
+Update build.gradle
+Update gradle-wrapper.properties
+Update build.gradle
+🔗 合并上游 FongMi 更新 - 2025年11月01日 13:29
+🔗 合并上游 FongMi 更新 - 2025年11月01日 07:29
+🔗 合并上游 FongMi 更新 - 2025年11月01日 01:11
+🔗 合并上游 FongMi 更新 - 2025年11月01日 00:43
+Update ExoUtil.java
+🔗 合并上游 FongMi 更新 - 2025年10月31日 23:01
+Update build.gradle
+Update ExoUtil.java
+Update build.gradle
+Update LiveActivity.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月31日 22:13
+Update build.gradle
+Update settings.gradle
+Update view_widget_display.xml
+Update build.gradle
+Update settings.gradle
+Update build.gradle
+Update styles.xml
+Update view_widget_display.xml
+Update VideoActivity.java
+Update LiveActivity.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update build.gradle
+Delete app/libs/thunder-release.aar
+🔗 合并上游 FongMi 更新 - 2025年10月28日 17:44
+Update VideoActivity.java
+🔗 合并上游 FongMi 更新 - 2025年10月24日 05:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月24日 04:01
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月24日 03:01
+🔗 合并上游 FongMi 更新 - 2025年10月24日 02:01
+🔗 合并上游 FongMi 更新 - 2025年10月23日 03:01
+🔗 合并上游 FongMi 更新 - 2025年10月21日 19:01
+Update FileUtil.java
+Update Download.java
+Update Util.java
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年10月21日 11:06
+Update FileUtil.java
+Update Util.java
+Update FileUtil.java
+Update Download.java
+Update build.gradle
+Update Util.java
+Update Download.java
+Update FileUtil.java
+Update strings.xml
+Update Util.java
+Update to 2048kb 原4096kb
+Update Download.java
+Update to 2048kb 原4096kb
+Update FileUtil.java
+Update to 512B
+Update LiveActivity.java
+Update build.gradle
+Update LiveActivity.java
+Update VideoActivity.java
+Update Clock.java
+Update settings.gradle
+Update build.gradle
+Update gradle-wrapper.properties
+Update build.gradle
+Update shape_controller.xml
+Update activity_live.xml
+Update view_widget_display.xml
+Update strings.xml
+Update dialog_control.xml
+Update activity_video.xml
+Update activity_live.xml
+Update activity_video.xml
+Update ControlDialog.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update strings.xml
+Update SubtitleDialog.java
+Update TVBus.java
+Update Clock.java
+Update Util.java
+Update Vod.java
+Update FileUtil.java
+Update Github.java
+Update TrackNameProvider.java
+Update ExoUtil.java
+Update AndroidManifest.xml
+Update Players.java
+Update Setting.java
+Update view_control_vod.xml
+Update activity_video.xml
+Update activity_live.xml
+Update activity_cast.xml
+Update VideoActivity.java
+Update LiveActivity.java
+Delete app/libs/tvbus-release.aar
+Update build.gradle
