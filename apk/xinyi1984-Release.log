@@ -1,34 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: f719eb015fa863b8023c25672acadd059238e41b
+Commit: c88d7bbbbc4ff2d9b3a8391ba652907610333aed
 Changelog:
-比较提交范围: f719eb0...c9be638
-Update LiveActivity.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update Clock.java
-Update activity_live.xml
-Update activity_video.xml
-Update view_widget_display.xml
-Update activity_live.xml
-Update activity_cast.xml
+比较提交范围: c88d7bb...f719eb0
 Update build.gradle
-🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年12月06日 01:00
-Optimize filter
-Clean code
-Use lazyload
-Use lazy load
-Optimize ui
-Adjust player ui
-Update gradle
-Optimize progress ui
-Fix build
-Update python
-Optimize live end check
-Fix bug
-Optimize track selection
-Fix py init
-Fix bug
-Fix build
-Fix bug
-Update ExoUtil.java
-Fix crash
-Clean error msg
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
