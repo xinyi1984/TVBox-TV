@@ -1,33 +1,12 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 5c7ee3e7a477bd4baf9c42a1d5bafb9178c944e0
+Commit: 5b452ed48b845d07fef518b5407b11f35c7f38ec
 Changelog:
-比较提交范围: 5c7ee3e...e4ae784
+比较提交范围: 5b452ed...5c7ee3e
 Update ControlDialog.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update strings.xml
-Update styles.xml
-🔗 合并上游 FongMi 更新 - 2025年12月06日 20:54
-Update dialog_control.xml
-Create view_widget_display.xml
-Update activity_video.xml
-Update activity_live.xml
-Update activity_video.xml
-Update ControlDialog.java
-Update VideoActivity.java
-Clean code
-Update LiveActivity.java
-Update strings.xml
-Update Clock.java
-Update Setting.java
 Update VideoActivity.java
 Update LiveActivity.java
-Create DisplayDialog.java
-Create DisplayAdapter.java
-Create dialog_display.xml
-Create adapter_display.xml
-Update shape_controller.xml
-Update view_control_vod.xml
-Create view_widget_display.xml
-Update activity_video.xml
-Update activity_live.xml
-Update activity_cast.xml
+Update view_widget_display.xml
+Update VideoActivity.java
+Update LiveActivity.java
+Update view_widget_display.xml
