@@ -1,12 +1,11 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 5b452ed48b845d07fef518b5407b11f35c7f38ec
+Commit: 1822ddc9e96fe5fcefa8a8c38077cad414f95f57
 Changelog:
-比较提交范围: 5b452ed...5c7ee3e
-Update ControlDialog.java
+比较提交范围: 1822ddc...5b452ed
+Update Vod.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update VideoActivity.java
-Update LiveActivity.java
-Update view_widget_display.xml
-Update VideoActivity.java
-Update LiveActivity.java
-Update view_widget_display.xml
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年12月08日 17:00
+Update sdk to 36.1
+Clean code
+Update build.gradle
+Optimize digest param parse
