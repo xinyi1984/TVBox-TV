@@ -1,6 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 1e354c90337cd5498c9a6187ef9a79fa972b05e7
+Commit: 34574f34354a84faf86fd026d3a236be0ac40eae
 Changelog:
-比较提交范围: 1e354c9...ddd4e4e
-Update VideoActivity.java
+比较提交范围: 34574f3...1e354c9
+Update CustomWallView.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔗 合并上游 FongMi 更新 - 2025年12月17日 02:00
+Clean code
+Update build.gradle
+Optimize touch event
