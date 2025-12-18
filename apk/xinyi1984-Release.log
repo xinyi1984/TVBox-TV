@@ -1,13 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 73ea9b97556524ac2efd2bdb80b3fe7903381481
+Commit: 29fa14273855c2dcceb3660ee70053c2323c980b
 Changelog:
-比较提交范围: 73ea9b9...bc051be
-🔗 合并上游 FongMi 更新 - 2025年12月18日 19:23
+比较提交范围: 29fa142...73ea9b9
+🔗 合并上游 FongMi 更新 - 2025年12月18日 20:00
 Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Clean code
-Optimize jar load
-🔗 合并上游 FongMi 更新 - 2025年12月18日 18:37
-Add files via upload
-Delete app/libs/thunder-release.aar
-Fix bug
