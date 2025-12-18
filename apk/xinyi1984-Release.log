@@ -1,10 +1,11 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 34574f34354a84faf86fd026d3a236be0ac40eae
+Commit: bc051bed2fe57aa8780407d0a060d9eeb70274da
 Changelog:
-比较提交范围: 34574f3...1e354c9
-Update CustomWallView.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔗 合并上游 FongMi 更新 - 2025年12月17日 02:00
-Clean code
+比较提交范围: bc051be...34574f3
+🔧 自动解决合并冲突 - 保留本地版本，使用上游version信息 - 2025年12月18日 14:00
 Update build.gradle
-Optimize touch event
+Clean code
+Update gradle
+Optimize code
+Fix build
+Fix bug
