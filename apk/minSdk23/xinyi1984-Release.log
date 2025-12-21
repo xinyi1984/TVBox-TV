@@ -1,13 +1,7 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 2d056e3e8589f495c190dea94f9b03120ab2b53e
+Commit: ef35cf6f5c72f96ac51c5ea6918ca5514112d05b
 Changelog:
-比较提交范围: 2d056e3...971f74a
-🔗 合并上游 FongMi 更新 - 2025年12月19日 22:26
-Fix gzip bug
-Clean code
-Fix bug
-Fix gz file refresh
+比较提交范围: ef35cf6...2d056e3
+🔗 合并上游 FongMi 更新 - 2025年12月21日 14:49
 Update build.gradle
-Optimize episode find
-Clean import
-Optimize gz file check
+Fix bug
