@@ -1,9 +1,7 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 27b05d151533cfc217fe5812b95fe12245eb76c9
+Commit: 87146c8dedf9b5513fd0ccbb692ace03eea8e713
 Changelog:
-比较提交范围: 27b05d1...d30f23f
-🔗 合并上游 FongMi 更新 - 2025年12月31日 20:01
+比较提交范围: 87146c8...27b05d1
+🔗 合并上游 FongMi 更新 - 2026年01月01日 04:01
 Update build.gradle
-Clean live ui
-Fix bug
-Clean code
+Optimize live list ui
