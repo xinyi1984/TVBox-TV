@@ -1,9 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: eb31b80341bca8df7052fd2a536401ec3c9dbc5f
+Commit: d30f23fb31af671ef12a319d5adeb1897f77e6e9
 Changelog:
-比较提交范围: eb31b80...33e565a
-🔗 合并上游 FongMi 更新 - 2025年12月31日 17:01
+比较提交范围: d30f23f...33e565a
+🔗 合并上游 FongMi 更新 - 2025年12月31日 18:01
 Clean live ui
+🔗 合并上游 FongMi 更新 - 2025年12月31日 17:01
 Update build.gradle
 Add gbk.js
 Fix bug
