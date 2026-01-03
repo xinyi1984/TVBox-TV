@@ -1,5 +1,5 @@
 {
-  "code": 507,
-  "name": "5.0.7",
-  "desc": "* 微調直播列表"
+  "code": 508,
+  "name": "5.0.8",
+  "desc": "* playerContent 支持 artwork 欄位"
 }

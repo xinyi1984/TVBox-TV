@@ -1,7 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 87146c8dedf9b5513fd0ccbb692ace03eea8e713
+Commit: b67871c7dde9164818eb5d0cfd351dd86b44e803
 Changelog:
-比较提交范围: 87146c8...27b05d1
-🔗 合并上游 FongMi 更新 - 2026年01月01日 04:01
+比较提交范围: b67871c...87146c8
+🔗 合并上游 FongMi 更新 - 2026年01月04日 03:01
 Update build.gradle
-Optimize live list ui
+Support set artwork when get playerContent
+Optimize change live home
