@@ -1,5 +1,5 @@
 {
-  "code": 508,
-  "name": "5.0.8",
-  "desc": "* playerContent 支持 artwork 欄位"
+  "code": 509,
+  "name": "5.0.9",
+  "desc": "* 新增播放控制 api"
 }
