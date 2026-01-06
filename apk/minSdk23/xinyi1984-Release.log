@@ -1,13 +1,22 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 6aed7a69c63375923b5bede7fe3917ee96f7e66d
+Commit: f4308c33ae6ab1c367d8f2616cbb09cdf1ca0dbd
 Changelog:
-比较提交范围: 6aed7a6...b67871c
-🔗 合并上游 FongMi 更新 - 2026年01月05日 01:01
-Fix play pause bug
-Update README.md
+比较提交范围: f4308c3...6aed7a6
+Update title display logic in VideoActivity
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Enhance title formatting in VideoActivity
+Update title display logic in VideoActivity.
+🔗 合并上游 FongMi 更新 - 2026年01月06日 17:07
+Update VideoActivity.java
+Fix formatting of title selection in VideoActivity
+Refactor title text processing in VideoActivity
+Improve title text processing in getPlayer method
+Refactor title text setting logic for better readability.
+Set display title as selected in VideoActivity
+Refactor title setting logic in VideoActivity
+Refactor title setting and cleanup code
+Remove redundant semicolon in VideoActivity
+Remove replay parameter from getPlayer method
 Update build.gradle
-Fix build
-Add control api
-Fix session bug
-Fix error event bug
-Clean code
+Optimize replay
+Fix bug
