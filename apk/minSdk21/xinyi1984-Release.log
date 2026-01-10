@@ -1,19 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: c184f07950ce218368d9ee6fc50708b4b71b755c
+Commit: f4308c33ae6ab1c367d8f2616cbb09cdf1ca0dbd
 Changelog:
-比较提交范围: c184f07...6aed7a6
-🔗 合并上游 FongMi 更新 - 2026年01月06日 17:07
-Update VideoActivity.java
+提交相同，显示单提交日志
+Update title display logic in VideoActivity
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Fix formatting of title selection in VideoActivity
-Refactor title text processing in VideoActivity
-Improve title text processing in getPlayer method
-Refactor title text setting logic for better readability.
-Set display title as selected in VideoActivity
-Refactor title setting logic in VideoActivity
-Refactor title setting and cleanup code
-Remove redundant semicolon in VideoActivity
-Remove replay parameter from getPlayer method
-Update build.gradle
-Optimize replay
-Fix bug
