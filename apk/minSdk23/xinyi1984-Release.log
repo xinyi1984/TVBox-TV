@@ -1,6 +1,11 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: f4308c33ae6ab1c367d8f2616cbb09cdf1ca0dbd
+Commit: 278a2dd2e9a1323c1885a9268712618ee21d84d7
 Changelog:
-提交相同，显示单提交日志
-Update title display logic in VideoActivity
+比较提交范围: 278a2dd...f4308c3
+Update build.gradle
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔗 合并上游 FongMi 更新 - 2026年01月12日 15:44
+Update proguard-rules.pro
+Update build.gradle
+Optimize history
+Clean code
