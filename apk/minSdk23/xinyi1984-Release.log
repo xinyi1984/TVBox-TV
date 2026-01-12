@@ -1,11 +1,11 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 278a2dd2e9a1323c1885a9268712618ee21d84d7
+Commit: 14fea8108d4024c6d8917542e0ef2edcb3252141
 Changelog:
-比较提交范围: 278a2dd...f4308c3
+比较提交范围: 14fea81...278a2dd
+🔗 合并上游 FongMi 更新 - 2026年01月13日 02:00
 Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔗 合并上游 FongMi 更新 - 2026年01月12日 15:44
-Update proguard-rules.pro
-Update build.gradle
-Optimize history
+Fix js proxy
+Revert "Clean code"
+This reverts commit d3394d27a72d2aa7f2bffa16f50dfda75af2003f.
 Clean code
+Add proxy error log

@@ -1,5 +1,5 @@
 {
-  "code": 512,
-  "name": "5.1.2",
-  "desc": "* 更新 NewPipe"
+  "code": 513,
+  "name": "5.1.3",
+  "desc": "* js 代理支持 async"
 }
