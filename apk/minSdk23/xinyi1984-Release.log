@@ -1,11 +1,7 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 14fea8108d4024c6d8917542e0ef2edcb3252141
+Commit: 75120e8528ec0cc7af28f670a66c671bf2b037ab
 Changelog:
-比较提交范围: 14fea81...278a2dd
-🔗 合并上游 FongMi 更新 - 2026年01月13日 02:00
+比较提交范围: 75120e8...14fea81
+🔗 合并上游 FongMi 更新 - 2026年01月21日 19:00
 Update build.gradle
-Fix js proxy
-Revert "Clean code"
-This reverts commit d3394d27a72d2aa7f2bffa16f50dfda75af2003f.
-Clean code
-Add proxy error log
+Fix large bitmap load
