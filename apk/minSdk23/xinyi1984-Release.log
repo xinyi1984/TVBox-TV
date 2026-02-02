@@ -1,23 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: a9847fe472299dfcd5b4b0bb634340c682b0682f
+Commit: cb0a4901bad963be379f77a897671e67c4d8a68b
 Changelog:
-比较提交范围: a9847fe...75120e8
+比较提交范围: cb0a490...a9847fe
+🔗 合并上游 FongMi 更新 - 2026年02月02日 13:00
 Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update ExoUtil.java
-Update Util.java
-🔗 合并上游 FongMi 更新 - 2026年02月02日 10:54
-Simplify clean method for HTML parsing
-Refactor clean method to remove version checks and simplify HTML parsing.
-Update ExoUtil.java
-Update build.gradle
-Fix bug
-Update yt lib
-Update build.gradle
-Clean code
-Support update flag
-Optimize hashCode
-Optimize redirect play
-Fix subtitle bug
-Add vod upadte api
-Support more vod data upadte
