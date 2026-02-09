@@ -1,5 +1,5 @@
 {
-  "code": 517,
-  "name": "5.1.7",
-  "desc": "* 優化 vod api"
+  "code": 518,
+  "name": "5.1.8",
+  "desc": "* 修正 rsaX\n* 更新 media3"
 }
