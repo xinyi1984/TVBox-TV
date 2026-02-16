@@ -1,23 +1,11 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: a9847fe472299dfcd5b4b0bb634340c682b0682f
+Commit: d48f2382d8422ac1c1477008698a8ad53e879ee4
 Changelog:
-比较提交范围: a9847fe...75120e8
-Update build.gradle
+比较提交范围: d48f238...2c818c1
+Remove LibRtmp-Client-for-Android dependency
+Removed the LibRtmp-Client-for-Android dependency from the build.gradle file.
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update ExoUtil.java
-Update Util.java
-🔗 合并上游 FongMi 更新 - 2026年02月02日 10:54
-Simplify clean method for HTML parsing
-Refactor clean method to remove version checks and simplify HTML parsing.
-Update ExoUtil.java
+🔗 合并上游 FongMi 更新 - 2026年02月16日 15:06
+Fix formatting of NewPipeExtractor dependency line
+Update Material Design dependency in build.gradle
 Update build.gradle
-Fix bug
-Update yt lib
-Update build.gradle
-Clean code
-Support update flag
-Optimize hashCode
-Optimize redirect play
-Fix subtitle bug
-Add vod upadte api
-Support more vod data upadte
