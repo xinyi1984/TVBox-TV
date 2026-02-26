@@ -1,5 +1,5 @@
 {
-  "code": 519,
-  "name": "5.1.9",
-  "desc": "* 更新 yt 組件"
+  "code": 521,
+  "name": "5.2.1",
+  "desc": "* 支持 rmvb\n* 優化 hls drm\n* 優化 srt 解析"
 }
