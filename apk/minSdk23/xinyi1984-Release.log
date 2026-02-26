@@ -1,11 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: a4ae08113752ceeec5502ccd6483614151ea43f1
+Commit: c2f2a6abdc8d2c21ad19214c171a46ec0a169336
 Changelog:
-比较提交范围: a4ae081...d48f238
+比较提交范围: c2f2a6a...a4ae081
+🔗 合并上游 FongMi 更新 - 2026年02月26日 14:00
 Update build.gradle
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update LiveActivity.java
-🔗 合并上游 FongMi 更新 - 2026年02月25日 15:15
-Update build.gradle
-Clean code
-Fix bug
