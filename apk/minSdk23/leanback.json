@@ -1,5 +1,5 @@
 {
-  "code": 521,
-  "name": "5.2.1",
-  "desc": "* 支持 rmvb\n* 優化 hls drm\n* 優化 srt 解析"
+  "code": 522,
+  "name": "5.2.2",
+  "desc": "* 優化 ffmpeg 解碼\n* 支持 asf、wma、wmv 解碼"
 }
