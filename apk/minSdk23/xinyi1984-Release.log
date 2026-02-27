@@ -1,8 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: f78da93d977fd7c0b658803a83b0efd28fbaaba9
+Commit: f2a687cc9b6a02e9a12061bfb98cad726b58618f
 Changelog:
-比较提交范围: f78da93...c2f2a6a
-🔗 合并上游 FongMi 更新 - 2026年02月27日 19:01
+比较提交范围: f2a687c...f78da93
+🔗 合并上游 FongMi 更新 - 2026年02月27日 20:01
 Update build.gradle
-Clean code
-Fix sync bug
