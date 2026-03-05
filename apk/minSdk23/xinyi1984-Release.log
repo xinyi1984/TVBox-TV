@@ -1,11 +1,10 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 9d00f405211cc6178a30383f8522147d59a68594
+Commit: b2e6af6ff36acc3e8552add10ab9101dc0567162
 Changelog:
-比较提交范围: 9d00f40...00cb437
-🔗 合并上游 FongMi 更新 - 2026年03月05日 11:49
-Update ExoUtil.java
+比较提交范围: b2e6af6...9d00f40
+Update Github.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Clean code
+Update ExoUtil.java
+🔗 合并上游 FongMi 更新 - 2026年03月05日 14:01
 Update build.gradle
-Optimize config code
-Fix build
+Fix bug
