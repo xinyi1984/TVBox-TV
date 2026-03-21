@@ -1,7 +1,38 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: cb501fb2b8d1f589574988dfb8a2deba77560c8c
+Commit: 956f88ef0340df5f4a660f091555b302c2e0c4dd
 Changelog:
-比较提交范围: cb501fb...7a11485
-🔗 合并上游 FongMi 更新 - 2026年03月15日 16:00
-Update build.gradle
-Support timestamp
+比较提交范围: 956f88e...cb501fb
+Update VideoActivity.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update Players.java
+Rename TitleDialog.java to TitleDialog.java1
+Rename TitleAdapter.java to TitleAdapter.java1
+Update TitleAdapter.java
+🔗 合并上游 FongMi 更新 - 2026年03月21日 04:00
+Fix title visible
+Update TitleDialog.java
+Update TitleAdapter.java
+Update Players.java
+Update TitleDialog.java
+Update TitleAdapter.java
+Update TitleDialog.java
+Update TitleAdapter.java
+Update Players.java
+Replace MediaTitle import with MediaItem import
+Update TitleAdapter.java
+Update TitleDialog.java
+Update BaseLoader.java
+Update VideoActivity.java
+Update BaseLoader.java
+Update view_control_vod.xml
+🔗 合并上游 FongMi 更新 - 2026年03月20日 13:12
+Refactor BaseLoader to include PyLoader functionality
+Update VideoActivity.java
+Optimize fetchArray
+Add fetchArray for headers, proxy, rules and doh
+Add refetsh category api
+Support title select
+Clean code
+Optimize seek view
+Optimize key down check
+Optimize seek view
