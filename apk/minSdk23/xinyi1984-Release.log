@@ -1,16 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
 Commit: f8d83a6f575209d5e91c09106a331aba3a9a90ba
 Changelog:
-比较提交范围: f8d83a6...956f88e
+提交相同，显示单提交日志
 Rename TitleDialog.java to TitleDialog.java1
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Rename TitleAdapter.java to TitleAdapter.java1
-🔗 合并上游 FongMi 更新 - 2026年03月23日 23:01
-Update build.gradle
-🔗 合并上游 FongMi 更新 - 2026年03月23日 22:01
-Support rtsp range
-🔗 合并上游 FongMi 更新 - 2026年03月23日 18:00
-Fix title bu
-🔗 合并上游 FongMi 更新 - 2026年03月23日 16:00
-Rename TitleDialog.java1 to TitleDialog.java
-Rename TitleAdapter.java1 to TitleAdapter.java
