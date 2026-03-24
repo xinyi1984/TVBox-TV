@@ -1,10 +1,16 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: b2e6af6ff36acc3e8552add10ab9101dc0567162
+Commit: f8d83a6f575209d5e91c09106a331aba3a9a90ba
 Changelog:
-比较提交范围: b2e6af6...9d00f40
-Update Github.java
+比较提交范围: f8d83a6...956f88e
+Rename TitleDialog.java to TitleDialog.java1
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-Update ExoUtil.java
-🔗 合并上游 FongMi 更新 - 2026年03月05日 14:01
+Rename TitleAdapter.java to TitleAdapter.java1
+🔗 合并上游 FongMi 更新 - 2026年03月23日 23:01
 Update build.gradle
-Fix bug
+🔗 合并上游 FongMi 更新 - 2026年03月23日 22:01
+Support rtsp range
+🔗 合并上游 FongMi 更新 - 2026年03月23日 18:00
+Fix title bu
+🔗 合并上游 FongMi 更新 - 2026年03月23日 16:00
+Rename TitleDialog.java1 to TitleDialog.java
+Rename TitleAdapter.java1 to TitleAdapter.java
