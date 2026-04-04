@@ -1,5 +1,5 @@
 {
-  "code": 532,
-  "name": "5.3.2",
-  "desc": "* 修正 rtsp 播放\n* 修正 iso 杜比識別\n* 修正 mp4 無法播放"
+  "code": 536,
+  "name": "5.3.6",
+  "desc": "* 優化 iso 解析\n* 修正 dts 軟解\n* 修正 truehd+atmos 直通"
 }

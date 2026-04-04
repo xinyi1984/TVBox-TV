@@ -1,6 +1,25 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: f8d83a6f575209d5e91c09106a331aba3a9a90ba
+Commit: 841b9d10bdde08eb42f14d12e292f66a83e671cb
 Changelog:
-提交相同，显示单提交日志
-Rename TitleDialog.java to TitleDialog.java1
+比较提交范围: 841b9d1...f8d83a6
+Update Clock.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+🔗 合并上游 FongMi 更新 - 2026年04月04日 16:15
+Fix episode compare
+Update .gitignore
+Update build.gradle
+Fix config load
+Clean code
+Update .gitignore
+Update build.gradle
+Fix episode bug
+Fix epg timezone
+Fix epg time zone
+Optimize epg
+Clean executor code
+Fix bug
+Clean quickjs code
+Clean catvod code
+Optimize js spider
+Fix episode bug
+Clean time code
