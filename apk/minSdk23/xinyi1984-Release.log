@@ -1,25 +1,15 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 841b9d10bdde08eb42f14d12e292f66a83e671cb
+Commit: 3fa63789f086ace36a12781c36101209180e4b36
 Changelog:
-比较提交范围: 841b9d1...f8d83a6
-Update Clock.java
+比较提交范围: 3fa6378...841b9d1
+Update TitleDialog.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔗 合并上游 FongMi 更新 - 2026年04月04日 16:15
-Fix episode compare
-Update .gitignore
-Update build.gradle
-Fix config load
-Clean code
-Update .gitignore
-Update build.gradle
-Fix episode bug
-Fix epg timezone
-Fix epg time zone
-Optimize epg
-Clean executor code
-Fix bug
-Clean quickjs code
-Clean catvod code
-Optimize js spider
-Fix episode bug
-Clean time code
+Update TitleAdapter.java
+Delete app/src/main/java/com/fongmi/android/tv/utils/MediaTitle.java
+Update Players.java
+Update MediaTitle.java
+Update VideoActivity.java
+Update and rename TitleDialog.java1 to TitleDialog.java
+Update and rename TitleAdapter.java1 to TitleAdapter.java
+Update Players.java
+Add files via upload
