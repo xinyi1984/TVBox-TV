@@ -1,10 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 2dedef9a82ae859528a3129ce0f8576f5d6ff536
+Commit: 4ba0cb72059817cfe5650e6f0fa12cc80448b2ad
 Changelog:
-比较提交范围: 2dedef9...d5baf5f
+比较提交范围: 4ba0cb7...2dedef9
 Update VideoActivity.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
-🔗 合并上游 FongMi 更新 - 2026年04月15日 23:34
-Fix toggle decode crash
-Optimize voice search
-Revert keep layout
