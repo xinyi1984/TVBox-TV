@@ -1,8 +1,6 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: f2b8b4e74fc897d138793b7eea7e78bcefbbfa56
+Commit: 3fb08ac5042682335c91cff9bb9179f972f21661
 Changelog:
-比较提交范围: f2b8b4e...538d775
-Update layout for view_control_vod_action.xml
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+比较提交范围: 3fb08ac...d5baf5f
 Update VideoActivity.java
-Update LiveActivity.java
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
