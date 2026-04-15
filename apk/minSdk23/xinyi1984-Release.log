@@ -1,31 +1,8 @@
 Credit: [xinyi1984/TV/fongmi](https://github.com/xinyi1984/TV)
-Commit: 538d775c19ab30cc128d2964a7bac22e556d1d93
+Commit: f2b8b4e74fc897d138793b7eea7e78bcefbbfa56
 Changelog:
-比较提交范围: 538d775...3fa6378
-Update LiveActivity.java
+比较提交范围: f2b8b4e...538d775
+Update layout for view_control_vod_action.xml
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
 Update VideoActivity.java
-Update build.gradle
-Delete app/libs/dlna-dmr-release.aar
-Delete app/libs/dlna-dmc-release.aar
-Delete app/libs/dlna-core-release.aar
-Add files via upload
-Update VideoActivity.java
 Update LiveActivity.java
-Update ExoUtil.java
-Add MaterialTextView for display in VOD action layout
-Update VideoActivity.java
-Update LiveActivity.java
-Update build.gradle
-Update VideoActivity.java
-🔗 合并上游 FongMi 更新 - 2026年04月15日 17:48
-Update ExoUtil.java
-Update VideoActivity.java
-Update LiveActivity.java
-Delete app/src/main/java/com/fongmi/android/tv/player/Players.java
-Update VideoActivity.java
-Update view_control_vod.xml
-Refactor VideoActivity control listeners and events
-Update LiveActivity.java
-Update build.gradle
-Refactor the playback architecture
