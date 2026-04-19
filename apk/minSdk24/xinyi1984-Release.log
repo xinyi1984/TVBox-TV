@@ -1,9 +1,10 @@
 Credit: [xinyi1984/TV/release](https://github.com/xinyi1984/TV)
-Commit: 258d0cc8eee37324292fe6103c801c50cc803bec
+Commit: e721cbf0ff626e7443203315209d038618252702
 Changelog:
-比较提交范围: 258d0cc...4ba0cb7
-Update styles.xml
+比较提交范围: e721cbf...4ba0cb7
+Update ControlDialog.java
 Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update styles.xml
 Update LiveActivity.java
 Update activity_video.xml
 Update activity_live.xml
