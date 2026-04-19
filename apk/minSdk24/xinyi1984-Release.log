@@ -1,7 +1,40 @@
 Credit: [xinyi1984/TV/release](https://github.com/xinyi1984/TV)
-Commit: 5c067f2197ec4518343fe0dde215b1c298ce7b68
+Commit: 258d0cc8eee37324292fe6103c801c50cc803bec
 Changelog:
-比较提交范围: 5c067f2...4ba0cb7
+比较提交范围: 258d0cc...4ba0cb7
+Update styles.xml
+Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
+Update LiveActivity.java
+Update activity_video.xml
+Update activity_live.xml
+Update activity_video.xml
+Update activity_live.xml
+Update activity_cast.xml
+Update Clock.java
+Update TVBus.java
+Update VideoActivity.java
+Update LiveActivity.java
+Update strings.xml
+Update dialog_control.xml
+Create view_widget_display.xml
+Update Setting.java
+Update Vod.java
+Update Util.java
+Update TVBus.java
+Update Github.java
+Update FileUtil.java
+Update Clock.java
+Update strings.xml
+Update shape_controller.xml
+Create DisplayDialog.java
+Create DisplayAdapter.java
+Update VideoActivity.java
+Update LiveActivity.java
+Create dialog_display.xml
+Create adapter_display.xml
+Update view_control_vod_action.xml
+Create view_widget_display.xml
+Update build.gradle
 Clean code
 Fix build
 Add aar
@@ -10,7 +43,6 @@ Fix keep screen on flag
 Refactor the player architecture
 Optimize history save
 Fix controller listener
-Update build.gradle
 Fix wall load
 Fix toggle decode
 Update proguard-rules.pro
@@ -19,7 +51,6 @@ Update build.gradle
 Clean
 Update gradle
 Update VideoActivity.java
-Signed-off-by: xinyi1984 <106141301+xinyi1984@users.noreply.github.com>
 🔗 合并上游 FongMi 更新 - 2026年04月15日 23:34
 Fix toggle decode crash
 Optimize voice search
@@ -284,7 +315,6 @@ Update strings.xml
 Update styles.xml
 🔗 合并上游 FongMi 更新 - 2025年12月06日 20:54
 Update dialog_control.xml
-Create view_widget_display.xml
 Update activity_video.xml
 Update activity_live.xml
 Update activity_video.xml
